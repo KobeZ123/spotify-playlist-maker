@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Home from './views/Home';
 
 function App() {
   return (
@@ -18,6 +19,8 @@ function App() {
         >
           Learn React
         </a>
+        <p>{process.env.REACT_APP_AUTH_ENDPOINT} + hit</p>
+        <Home />
       </header>
     </div>
   );
