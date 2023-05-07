@@ -11,7 +11,6 @@ const initialState: State = {
 type StoreTypes = {
   token: string | null
   setToken: (token: string) => void
-  getToken: () => string | null
   removeToken: () => void
   reset: () => void
   isTokenNull: () => boolean
@@ -22,10 +21,6 @@ const useStore = create<StoreTypes>((set, get) => ({
 
   setToken: (token: string) => 
     set(() => ({ token: token })),
-
-  getToken: () => {
-    return get().token;
-  },
 
   removeToken: () => 
     set(() => ({ token: null })),

@@ -3,16 +3,14 @@ import { useEffect, useState } from "react"
 import '../styles/home.css'
 import useStore from "../stores/useStore"
 import axios from "axios"
-import { searchArtists } from "../api/loadData"
+import { getUser, searchArtists } from "../api/loadData"
+import TestViewWithButtons from "./TestViewWithButtons"
 
 export default function Home() {
-    const REDIRECT_URI = "http://localhost:3000/callback"
-    const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
     const RESPONSE_TYPE = "token"
 
     const [token, setToken] = useState("")
     const setStateToken = useStore((state) => state.setToken);
-    const getStateToken = useStore((state) => state.getToken);
     const reset = useStore((state) => state.reset);
 
     useEffect(() => {
@@ -39,19 +37,24 @@ export default function Home() {
     }
 
     const onButtonClicking = async () => {
-        console.log(getStateToken());
-        searchArtists(token, "izzy");
+        // searchArtists(token, "izzy");
+        getUser(token);
     }
 
     return (
         <div className="home-container">
             <h1>Spotify React</h1>
             {!token ?
-                <a href={`${AUTH_ENDPOINT}?client_id=${process.env.REACT_APP_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`} className="button-64">Login
-                    to Spotify</a>
+                <a href={`${process.env.REACT_APP_AUTH_ENDPOINT}?client_id=${process.env.REACT_APP_CLIENT_ID}
+                    &redirect_uri=${process.env.REACT_APP_REDIRECT_URI}
+                    &response_type=${RESPONSE_TYPE}&scope=${process.env.REACT_APP_SCOPE}`} 
+                    className="button-64">
+                    Login to Spotify
+                </a>
                 : <div>
                     <button className="button-64" onClick={logout}>Logout</button>
-                    <button onClick={onButtonClicking}></button>
+                    <button onClick={onButtonClicking}>ACTION</button>
+                    <TestViewWithButtons />
                 </div>}
         </div>
     );

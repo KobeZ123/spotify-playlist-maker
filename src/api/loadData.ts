@@ -1,5 +1,15 @@
 import axios from "axios";
-import useStore from "../stores/useStore";
+
+export async function getUser(token: string) {
+    await axios.get("https://api.spotify.com/v1/me", {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }).then((response) => {
+        console.log(response.data);
+        return response.data;
+    });
+}
 
 export async function searchArtists(token: string, name: string) {
     // let token = useStore((state) => state.getToken());
