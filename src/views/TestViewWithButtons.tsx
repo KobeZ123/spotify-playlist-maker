@@ -1,15 +1,14 @@
-import { getUser, searchArtists } from "../api/loadData";
+import { getUserInformation, searchArtists } from "../api/loadData";
 import useStore from "../stores/useStore";
 
 export default function TestViewWithButtons() {
 
     const token = useStore((state) => state.token);
 
-    const getMyUserData = async () => {
+    const getUserData = async () => {
         // searchArtists(token, "izzy");
         if (token != null) {   
-            getUser(token);
-            
+            getUserInformation(token);
         }
     }
 
@@ -19,11 +18,9 @@ export default function TestViewWithButtons() {
         }
     }
 
-
-
     return (
         <div>
-            <button onClick={getMyUserData}>GET MY USER DATA</button>
+            <button onClick={getUserData}>GET MY USER DATA</button>
             <button onClick={() => getArtistSearch("drake")}>SEARCH ARTIST</button>
         </div>
     );
