@@ -2,8 +2,7 @@ import { useEffect, useState } from "react"
 
 import '../styles/home.css'
 import useStore from "../stores/useStore"
-import axios from "axios"
-import { getUser, searchArtists } from "../api/loadData"
+
 import TestViewWithButtons from "./TestViewWithButtons"
 
 export default function Home() {
@@ -14,6 +13,11 @@ export default function Home() {
     const reset = useStore((state) => state.reset);
 
     useEffect(() => {
+        console.log(`${process.env.REACT_APP_AUTH_ENDPOINT}?` +
+        `client_id=${process.env.REACT_APP_CLIENT_ID}` +
+        `&redirect_uri=${process.env.REACT_APP_REDIRECT_URI}` + 
+        `&response_type=${RESPONSE_TYPE}` +
+        `&scope=${process.env.REACT_APP_SCOPE}`);
         const hash = window.location.hash
         let token = window.localStorage.getItem("token")
 
@@ -38,16 +42,18 @@ export default function Home() {
 
     const onButtonClicking = async () => {
         // searchArtists(token, "izzy");
-        getUser(token);
+        
     }
 
     return (
         <div className="home-container">
             <h1>Spotify React</h1>
             {!token ?
-                <a href={`${process.env.REACT_APP_AUTH_ENDPOINT}?client_id=${process.env.REACT_APP_CLIENT_ID}
-                    &redirect_uri=${process.env.REACT_APP_REDIRECT_URI}
-                    &response_type=${RESPONSE_TYPE}&scope=${process.env.REACT_APP_SCOPE}`} 
+                <a href={`${process.env.REACT_APP_AUTH_ENDPOINT}?` +
+                    `client_id=${process.env.REACT_APP_CLIENT_ID}` +
+                    `&redirect_uri=${process.env.REACT_APP_REDIRECT_URI}` + 
+                    `&response_type=${RESPONSE_TYPE}` +
+                    `&scope=${process.env.REACT_APP_SCOPE}`} 
                     className="button-64">
                     Login to Spotify
                 </a>
