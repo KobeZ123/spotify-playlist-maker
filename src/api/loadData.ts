@@ -25,7 +25,7 @@ export async function getCurrentUserPlaylists(token: string) {
 }
 
 // ABSTRACTION: search for an item by the queried string 
-export async function searchBy(token: string, query: string, type: string) {
+export async function searchBy(token: string, query: string, type: string, callback: (result: any) => void) {
     await axios.get("https://api.spotify.com/v1/search", {
         headers: {
             Authorization: `Bearer ${token}`
@@ -35,19 +35,25 @@ export async function searchBy(token: string, query: string, type: string) {
             type: type,
         }
     }).then((response) => {
-        console.log(response.data);
-        return response.data;
+        if (type === "artist") {
+            console.log(response.data.artists.items);
+            callback(response.data.artists.items);
+        }
+        else if (type === "track") {
+            console.log(response.data.artists.items);
+            callback(response.data.tracks.items);
+        }
     });
 }
 
 // search artists by the queried string 
-export async function searchArtists(token: string, query: string) {
-    searchBy(token, query, "artist");
+export async function searchArtists(token: string, query: string, callback: (result: any) => void = ()=>{}) {
+    searchBy(token, query, "artist", callback);
 }
 
 // search tracks by the queried string 
-export async function searchTrack(token: string, query: string) {
-    searchBy(token, query,  "track");
+export async function searchTrack(token: string, query: string, callback: (result: any) => void) {
+    searchBy(token, query,  "track", callback);
 }
 
 // ABSTRACTION: return's the user's top item in the given term 
