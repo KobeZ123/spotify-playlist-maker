@@ -4,6 +4,7 @@ import '../styles/home.css'
 import useStore from "../stores/useStore"
 
 import TestViewWithButtons from "./TestViewWithButtons"
+import RecommendationPage from "./RecommendationPage"
 
 export default function Home() {
     const RESPONSE_TYPE = "token"
@@ -61,6 +62,7 @@ export default function Home() {
                     <button className="button-64" onClick={logout}>Logout</button>
                     <button onClick={onButtonClicking}>ACTION</button>
                     <TestViewWithButtons />
+                    <RecommendationPage />
                 </div>}
         </div>
     );
