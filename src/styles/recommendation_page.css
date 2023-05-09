@@ -1,0 +1,43 @@
+
+.recommendation-div {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-bar {
+    display: flex;
+    flex-direction: row;
+}
+
+.artist-input-text {
+    padding: 5px 10px;
+}
+
+.artist-submit-btn {
+    padding: 5px 10px;
+}
+
+.artist-result-container {
+    display: inline-grid;
+    grid-template-columns: repeat(5, 5em);
+    grid-template-rows: repeat(2, 5em);
+    gap: 5em;
+
+}
+
+.artist-name {
+    color: white;
+    border: red 3px solid;
+    font-weight: 500;
+    font-size: 1.5em; 
+}
+
+.artist-name:hover {
+    cursor: pointer;
+    border: green 3px solid;
+}
+

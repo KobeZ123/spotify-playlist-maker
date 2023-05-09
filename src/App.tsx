@@ -20,8 +20,8 @@ function App() {
           Learn React
         </a>
         <p>{process.env.REACT_APP_AUTH_ENDPOINT} + hit</p>
-        <Home />
       </header>
+      <Home />
     </div>
   );
 }
