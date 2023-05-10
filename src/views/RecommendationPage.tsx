@@ -8,45 +8,18 @@ export default function RecommendationPage() {
 
     const token = useStore((state) => state.token);
     
-    const [artistQuery, setArtistQuery] = useState("");
-    const [trackQuery, setTrackQuery] = useState("");
-    const [artistResults, setArtistResults] = useState([]);
-    const [trackResults, setTrackResults] = useState([]);
-
-    const renderArtistResults = () => {
-        return ( 
-            <div className="artist-result-container">
-                {artistResults.map((artist) => 
-                    <p className="artist-name" key={artist["id"]}>
-                        {artist["name"]}
-                    </p>
-                )}
-            </div>
-            
-        );
-    }
-
-    const renderTrackResults = () => {
-        return ( 
-            <div className="artist-result-container">
-                {trackResults.map((track: any) => ( 
-                    <span>
-                        <p className="artist-name" key={track["id"]}>
-                            {track["name"]}
-                        </p>
-                        <p>
-                            {track["artists"].reduce((accumulator: string, artist: any) => (
-                                accumulator + " " + artist["name"]
-                            ), "")}
-                        </p>
-                    </span>
-                    
-                    
-                ))}
-            </div>
-            
-        );
-    }
+    // the artist search query state
+    const [artistQuery, setArtistQuery] = useState<string>("");
+    // the track search query state
+    const [trackQuery, setTrackQuery] = useState<string>("");
+    // the artist search results as a list of items
+    const [artistResults, setArtistResults] = useState<any[]>([]);
+    // the track search results as a list of items
+    const [trackResults, setTrackResults] = useState<any[]>([]); 
+    // the selected artists as a list of ids
+    const [selectedArtists, setSelectedArtists] = useState<string[]>([]);
+    // the selected tracks as a list of ids
+    const [selectedTracks, setSelectedTracks] = useState<string[]>([]);
 
     const handleArtistSearchSubmit = async (query: string) => {
         if (token != null) {  
@@ -58,6 +31,73 @@ export default function RecommendationPage() {
         if (token != null) {  
             searchTracks(token, query, setTrackResults);   
         }
+    }
+
+    const handleArtistClick = (event: React.MouseEvent<HTMLElement>) => {
+        console.log("clicked artist");
+        setSelectedArtists([...selectedArtists, (event.target as HTMLTextAreaElement).id]);
+    }
+
+    const handleTrackClick = (event: React.MouseEvent<HTMLElement>) => {
+        console.log("clicked track");
+        setSelectedTracks([...selectedTracks, (event.target as HTMLTextAreaElement).id]);
+    }
+
+    const renderArtistResults = () => {
+        return ( 
+            <div className="artist-result-container">
+                {artistResults.map((artist) => 
+                    <p className="artist-name" 
+                        key={artist["id"]}
+                        id={artist["id"]}
+                        onClick={handleArtistClick}>
+                        {artist["name"]}
+                    </p>
+                )}
+            </div>
+        );
+    }
+
+    const renderTrackResults = () => {
+        return ( 
+            <div className="artist-result-container">
+                {trackResults.map((track: any) => ( 
+                    <span onClick={handleTrackClick} key={track["id"]} id={track["id"]}>
+                        <p className="artist-name">
+                            {track["name"]}
+                        </p>
+                        <p>
+                            {track["artists"].reduce((accumulator: string, artist: any) => (
+                                accumulator + " " + artist["name"]
+                            ), "")}
+                        </p>
+                    </span>    
+                ))}
+            </div>
+            
+        );
+    }
+
+    const renderSelectedArtists = () => {
+        return (
+            <div>
+                <h1>SELECTED ARTISTS</h1>
+                {selectedArtists.map((artist) => (
+                    <p>{artist}</p>
+                ))}
+            </div>
+        );
+    }
+
+    const renderSelectedTracks = () => {
+        return (
+            <div>
+                <h1>SELECTED TRACKS</h1>
+                {selectedTracks.map((track) => (
+                    <p>{track}</p>
+                ))}
+            </div>
+        );
     }
 
     return( 
@@ -78,6 +118,7 @@ export default function RecommendationPage() {
                 
             </section>
             {renderArtistResults()}
+            {renderSelectedArtists()}
             <section className="search-bar">
                 <input 
                     className="artist-input-text"
@@ -94,6 +135,7 @@ export default function RecommendationPage() {
                 
             </section>
             {renderTrackResults()}
+            {renderSelectedTracks()}
         </div>
     );
 }
