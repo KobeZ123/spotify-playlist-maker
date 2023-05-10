@@ -23,7 +23,7 @@
 
 .artist-result-container {
     display: inline-grid;
-    grid-template-columns: repeat(5, 5em);
+    grid-template-columns: repeat(5, 10em);
     grid-template-rows: repeat(2, 5em);
     gap: 5em;
 
@@ -33,7 +33,7 @@
     color: white;
     border: red 3px solid;
     font-weight: 500;
-    font-size: 1.5em; 
+    font-size: 1.2em; 
 }
 
 .artist-name:hover {

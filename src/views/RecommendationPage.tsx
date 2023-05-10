@@ -1,6 +1,6 @@
 import { useState } from "react";
 import useStore from "../stores/useStore";
-import { searchArtists } from "../api/loadData";
+import { searchArtists, searchTracks } from "../api/loadData";
 
 import "../styles/recommendation_page.css"
 
@@ -9,7 +9,9 @@ export default function RecommendationPage() {
     const token = useStore((state) => state.token);
     
     const [artistQuery, setArtistQuery] = useState("");
+    const [trackQuery, setTrackQuery] = useState("");
     const [artistResults, setArtistResults] = useState([]);
+    const [trackResults, setTrackResults] = useState([]);
 
     const renderArtistResults = () => {
         return ( 
@@ -24,9 +26,37 @@ export default function RecommendationPage() {
         );
     }
 
-    const handleArtistSearchSubmit = async (name: string) => {
+    const renderTrackResults = () => {
+        return ( 
+            <div className="artist-result-container">
+                {trackResults.map((track: any) => ( 
+                    <span>
+                        <p className="artist-name" key={track["id"]}>
+                            {track["name"]}
+                        </p>
+                        <p>
+                            {track["artists"].reduce((accumulator: string, artist: any) => (
+                                accumulator + " " + artist["name"]
+                            ), "")}
+                        </p>
+                    </span>
+                    
+                    
+                ))}
+            </div>
+            
+        );
+    }
+
+    const handleArtistSearchSubmit = async (query: string) => {
         if (token != null) {  
-            searchArtists(token, name, setArtistResults);   
+            searchArtists(token, query, setArtistResults);   
+        }
+    }
+
+    const handleTrackSearchSubmit = async (query: string) => {
+        if (token != null) {  
+            searchTracks(token, query, setTrackResults);   
         }
     }
 
@@ -48,6 +78,22 @@ export default function RecommendationPage() {
                 
             </section>
             {renderArtistResults()}
+            <section className="search-bar">
+                <input 
+                    className="artist-input-text"
+                    type="text" 
+                    placeholder="enter track"
+                    value={trackQuery}
+                    onChange={(event) => {setTrackQuery(event.target.value)}} />
+                <button 
+                    className="artist-submit-btn" 
+                    type="button"
+                    onClick={() => {handleTrackSearchSubmit(trackQuery)}}>
+                        SEARCH TRACK
+                </button>
+                
+            </section>
+            {renderTrackResults()}
         </div>
     );
 }

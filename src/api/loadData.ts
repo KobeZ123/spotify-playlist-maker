@@ -40,7 +40,7 @@ export async function searchBy(token: string, query: string, type: string, callb
             callback(response.data.artists.items);
         }
         else if (type === "track") {
-            console.log(response.data.artists.items);
+            console.log(response.data.tracks.items);
             callback(response.data.tracks.items);
         }
     });
@@ -52,7 +52,7 @@ export async function searchArtists(token: string, query: string, callback: (res
 }
 
 // search tracks by the queried string 
-export async function searchTrack(token: string, query: string, callback: (result: any) => void) {
+export async function searchTracks(token: string, query: string, callback: (result: any) => void) {
     searchBy(token, query,  "track", callback);
 }
 
