@@ -1,6 +1,6 @@
 import { useState } from "react";
 import useStore from "../stores/useStore";
-import { searchArtists, searchTracks } from "../api/loadData";
+import { getRecommendations, searchArtists, searchTracks } from "../api/loadData";
 
 import "../styles/recommendation_page.css"
 
@@ -20,6 +20,8 @@ export default function RecommendationPage() {
     const [selectedArtists, setSelectedArtists] = useState<string[]>([]);
     // the selected tracks as a list of ids
     const [selectedTracks, setSelectedTracks] = useState<string[]>([]);
+    // the list of recommendations 
+    const [recommendedTracks, setRecommendedTracks] = useState<any[]>([]);
 
     const handleArtistSearchSubmit = async (query: string) => {
         if (token != null) {  
@@ -34,7 +36,6 @@ export default function RecommendationPage() {
     }
 
     const handleArtistClick = (event: React.MouseEvent<HTMLElement>) => {
-        console.log("clicked artist");
         let artist_id = (event.target as HTMLElement).id;
         let artist_key = (event.target as HTMLElement).getAttribute("key");
         // if artist is already selected, remove it 
@@ -47,7 +48,6 @@ export default function RecommendationPage() {
     }
 
     const handleTrackClick = (event: React.MouseEvent<HTMLElement>) => {
-        
         let track_id = (event.target as HTMLElement).id;
         let track_key = (event.target as HTMLElement).getAttribute("key");
         console.log("clicked track" + track_id);
@@ -57,6 +57,12 @@ export default function RecommendationPage() {
         } else {
             // if the artist is not selected yet, add it 
             setSelectedTracks([...selectedTracks, track_id]);
+        }
+    }
+
+    const handleRecommendationsClick = () => {
+        if (token != null) {  
+            getRecommendations(token, selectedArtists, [], selectedTracks, setRecommendedTracks);   
         }
     }
 
@@ -116,8 +122,33 @@ export default function RecommendationPage() {
         );
     }
 
+    const renderRecommendedTracks = () => {
+        return (
+            <div>
+                <h1>RECOMMENDED TRACKS</h1>
+                {recommendedTracks.map((track) => (
+                    <p id={track["id"]} key={track["id"] + "_name"} className="artist-name">
+                        {track["name"]}
+                    </p>
+                ))}
+            </div>
+        );
+    }
+
+    // clears all searches 
+    const clearSearch = () => {
+        setArtistQuery("");
+        setTrackQuery("");
+        setArtistResults([]);
+        setTrackResults([]);
+        setSelectedArtists([]);
+        setSelectedTracks([]);
+        setRecommendedTracks([]);
+    }
+
     return( 
         <div className="recommendation-div">
+            <button className="action-btn clear-btn" onClick={clearSearch}>CLEAR ALL</button>
             <section className="search-bar">
                 <input 
                     className="artist-input-text"
@@ -126,7 +157,7 @@ export default function RecommendationPage() {
                     value={artistQuery}
                     onChange={(event) => {setArtistQuery(event.target.value)}} />
                 <button 
-                    className="artist-submit-btn" 
+                    className="action-btn search-btn" 
                     type="button"
                     onClick={() => {handleArtistSearchSubmit(artistQuery)}}>
                         SEARCH ARTIST
@@ -143,7 +174,7 @@ export default function RecommendationPage() {
                     value={trackQuery}
                     onChange={(event) => {setTrackQuery(event.target.value)}} />
                 <button 
-                    className="artist-submit-btn" 
+                    className="action-btn search-btn" 
                     type="button"
                     onClick={() => {handleTrackSearchSubmit(trackQuery)}}>
                         SEARCH TRACK
@@ -152,6 +183,15 @@ export default function RecommendationPage() {
             </section>
             {renderTrackResults()}
             {renderSelectedTracks()}
+            <section className="recommendation-section">
+                <button 
+                    className="action-btn recommendation-btn"
+                    type="button"
+                    onClick={handleRecommendationsClick}>
+                    PROVIDE RECOMMENDATIONS
+                </button>
+            </section>
+            {renderRecommendedTracks()}
         </div>
     );
 }
