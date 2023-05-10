@@ -26,7 +26,10 @@
     grid-template-columns: repeat(5, 10em);
     grid-template-rows: repeat(2, 5em);
     gap: 5em;
+}
 
+.artist-result-container div {
+    cursor: pointer;
 }
 
 .artist-name {

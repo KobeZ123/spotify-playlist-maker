@@ -35,12 +35,29 @@ export default function RecommendationPage() {
 
     const handleArtistClick = (event: React.MouseEvent<HTMLElement>) => {
         console.log("clicked artist");
-        setSelectedArtists([...selectedArtists, (event.target as HTMLTextAreaElement).id]);
+        let artist_id = (event.target as HTMLElement).id;
+        let artist_key = (event.target as HTMLElement).getAttribute("key");
+        // if artist is already selected, remove it 
+        if (selectedArtists.includes(artist_id)) {
+            setSelectedArtists(selectedArtists.filter((id) => id != artist_id));
+        } else {
+            // if the artist is not selected yet, add it 
+            setSelectedArtists([...selectedArtists, artist_id]);
+        }
     }
 
     const handleTrackClick = (event: React.MouseEvent<HTMLElement>) => {
-        console.log("clicked track");
-        setSelectedTracks([...selectedTracks, (event.target as HTMLTextAreaElement).id]);
+        
+        let track_id = (event.target as HTMLElement).id;
+        let track_key = (event.target as HTMLElement).getAttribute("key");
+        console.log("clicked track" + track_id);
+        // if artist is already selected, remove it 
+        if (selectedTracks.includes(track_id)) {
+            setSelectedTracks(selectedTracks.filter((id) => id != track_id));
+        } else {
+            // if the artist is not selected yet, add it 
+            setSelectedTracks([...selectedTracks, track_id]);
+        }
     }
 
     const renderArtistResults = () => {
@@ -62,19 +79,18 @@ export default function RecommendationPage() {
         return ( 
             <div className="artist-result-container">
                 {trackResults.map((track: any) => ( 
-                    <span onClick={handleTrackClick} key={track["id"]} id={track["id"]}>
-                        <p className="artist-name">
+                    <div onClick={handleTrackClick} key={track["id"]} id={track["id"]}>
+                        <p id={track["id"]} key={track["id"] + "_name"} className="artist-name">
                             {track["name"]}
                         </p>
-                        <p>
+                        <p id={track["id"]} key={track["id"] + "_artist"}>
                             {track["artists"].reduce((accumulator: string, artist: any) => (
                                 accumulator + " " + artist["name"]
                             ), "")}
                         </p>
-                    </span>    
+                    </div>    
                 ))}
             </div>
-            
         );
     }
 
@@ -83,7 +99,7 @@ export default function RecommendationPage() {
             <div>
                 <h1>SELECTED ARTISTS</h1>
                 {selectedArtists.map((artist) => (
-                    <p>{artist}</p>
+                    <p key={artist + "_selected"}>{artist}</p>
                 ))}
             </div>
         );
@@ -94,7 +110,7 @@ export default function RecommendationPage() {
             <div>
                 <h1>SELECTED TRACKS</h1>
                 {selectedTracks.map((track) => (
-                    <p>{track}</p>
+                    <p key={track + "_selected"}>{track}</p>
                 ))}
             </div>
         );
