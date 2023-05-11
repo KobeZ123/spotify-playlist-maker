@@ -52,12 +52,13 @@ export async function searchArtists(token: string, query: string, callback: (res
 }
 
 // search tracks by the queried string 
-export async function searchTracks(token: string, query: string, callback: (result: any) => void) {
+export async function searchTracks(token: string, query: string, callback: (result: any) => void = ()=>{}) {
     searchBy(token, query,  "track", callback);
 }
 
 // ABSTRACTION: return's the user's top item in the given term 
-export async function getTopItemByTerm(token: string, type: string, term: string, limit: number = 20, offset: number = 0) {
+export async function getTopItemByTerm(token: string, type: string, term: string, 
+    callback: (result: any) => void, limit: number = 20, offset: number = 0) {
     var allowed_terms: string[] = ["short_term", "medium_term", "long_term"];
     if (!allowed_terms.includes(term)) {
         throw new Error("invalid term for getTopItemByTerm");
@@ -72,39 +73,40 @@ export async function getTopItemByTerm(token: string, type: string, term: string
             offset: offset, 
         }
     }).then((response) => {
-        console.log(response.data);
-        return response.data;
+        console.log(response.data.items);
+        callback(response.data.items);
+        return response.data.items;
     });
 }
 
 // return's the user's top artists in the last 4 weeks (short term) 
-export async function getTopArtistsShortTerm(token: string) {
-    getTopItemByTerm(token, "artists", "short_term");
+export async function getTopArtistsShortTerm(token: string, callback: (result: any) => void = ()=>{}) {
+    getTopItemByTerm(token, "artists", "short_term", callback);
 }
 
 // return's the user's top artists in the last 6 months (medium term) 
-export async function getTopArtistsMediumTerm(token: string) {
-    getTopItemByTerm(token, "artists", "medium_term");
+export async function getTopArtistsMediumTerm(token: string, callback: (result: any) => void = ()=>{}) {
+    getTopItemByTerm(token, "artists", "medium_term", callback);
 }
 
 // return's the user's top artists in the last few years (long term) 
-export async function getTopArtistsLongTerm(token: string) {
-    getTopItemByTerm(token, "artists", "long_term");
+export async function getTopArtistsLongTerm(token: string, callback: (result: any) => void = ()=>{}) {
+    getTopItemByTerm(token, "artists", "long_term", callback);
 }
 
 // return's the user's top tracks in the last 4 weeks (short term) 
-export async function getTopTracksShortTerm(token: string) {
-    getTopItemByTerm(token, "tracks", "short_term");
+export async function getTopTracksShortTerm(token: string, callback: (result: any) => void = ()=>{}) {
+    getTopItemByTerm(token, "tracks", "short_term", callback);
 }
 
 // return's the user's top tracks in the last 6 months (medium term) 
-export async function getTopTracksMediumTerm(token: string) {
-    getTopItemByTerm(token, "tracks", "medium_term");
+export async function getTopTracksMediumTerm(token: string, callback: (result: any) => void = ()=>{}) {
+    getTopItemByTerm(token, "tracks", "medium_term", callback);
 }
 
 // return's the user's top tracks in the last few years (long term) 
-export async function getTopTracksLongTerm(token: string) {
-    getTopItemByTerm(token, "tracks", "long_term");
+export async function getTopTracksLongTerm(token: string, callback: (result: any) => void = ()=>{}) {
+    getTopItemByTerm(token, "tracks", "long_term", callback);
 }
 
 // returns recommendations based on a list of artist ids, genre names, and track ids
@@ -114,7 +116,7 @@ export async function getRecommendations(token: string, artists: string[] = [], 
     const param_seed_formatter = (list: string[]) => {
         return list.reduce((accumulator, item) => {
             if (num_seeds < 5) {
-                if (accumulator == "") {
+                if (accumulator === "") {
                     accumulator = item;
                 } else {
                     accumulator = accumulator + "," + item;
