@@ -5,6 +5,7 @@ import useStore from "../stores/useStore"
 
 import TestViewWithButtons from "./TestViewWithButtons"
 import RecommendationPage from "./RecommendationPage"
+import TopArtistsDisplay from "../components/TopArtistsDisplay"
 
 export default function Home() {
     const RESPONSE_TYPE = "token"
@@ -58,11 +59,12 @@ export default function Home() {
                     className="button-64">
                     Login to Spotify
                 </a>
-                : <div>
+                : <div className="home-container">
                     <button className="button-64" onClick={logout}>Logout</button>
                     <button onClick={onButtonClicking}>ACTION</button>
                     <TestViewWithButtons />
                     <RecommendationPage />
+                    <TopArtistsDisplay />
                 </div>}
         </div>
     );
