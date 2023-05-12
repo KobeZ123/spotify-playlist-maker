@@ -28,7 +28,7 @@ export default function TopArtistsDisplay() {
     }, [selectedTerm]);
 
     return (
-        <div className="top-items-page-container">
+        <div className="top-items-display-container">
             <div className="term-tabs-container">
                 <button className={(selectedTerm === "short_term") ? "term-tab-selected" : "term-tab"}
                     onClick={() => setSelectedTerm("short_term")}>Short Term</button>
