@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import useStore from "../stores/useStore";
 import { getTopTracksLongTerm, getTopTracksMediumTerm, getTopTracksShortTerm } from "../api/loadData";
 
-import "../styles/top_artists_display.css";
+import "../styles/top_items_display.css";
 
 export default function TopArtistsDisplay() {
 
