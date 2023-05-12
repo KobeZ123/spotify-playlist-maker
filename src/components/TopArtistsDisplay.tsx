@@ -28,7 +28,7 @@ export default function TopArtistsDisplay() {
     }, [selectedTerm]);
 
     return (
-        <div className="top-artists-page-container">
+        <div className="top-items-page-container">
             <div className="term-tabs-container">
                 <button className={(selectedTerm === "short_term") ? "term-tab-selected" : "term-tab"}
                     onClick={() => setSelectedTerm("short_term")}>Short Term</button>
@@ -37,12 +37,12 @@ export default function TopArtistsDisplay() {
                 <button className={(selectedTerm === "long_term") ? "term-tab-selected" : "term-tab"}
                     onClick={() => setSelectedTerm("long_term")}>Long Term</button>
             </div>
-            <div className="artists-container">
-                <section className="artist-cards-container">
+            <div className="items-container">
+                <section className="item-cards-container">
                     {topArtistsList.map((artist) => (
-                        <span className="artist-card-container" key={artist.name + "_card"}> 
+                        <span className="item-card-container" key={artist.name + "_card"}> 
                             <p>{artist.name}</p>
-                            <img className="artist-img"
+                            <img className="item-img"
                                 src={(artist.images.length > 0) ? artist.images[0].url : ""}
                                 alt={`${artist.name}`}/>
                         </span>
