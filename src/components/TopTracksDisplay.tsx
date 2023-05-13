@@ -4,7 +4,7 @@ import { getTopTracksLongTerm, getTopTracksMediumTerm, getTopTracksShortTerm } f
 
 import "../styles/top_items_display.css";
 
-export default function TopArtistsDisplay() {
+export default function TopTracksDisplay() {
 
     const token = useStore((state) => state.token);
     // the user's top artists as a list of items
@@ -43,7 +43,7 @@ export default function TopArtistsDisplay() {
                         <span className="item-card-container" key={track.name + "_card"}> 
                             <p>{track.name}</p>
                             <img className="item-img"
-                                src={(track.images.length > 0) ? track.images[0].url : ""}
+                                src={(track.album.images.length > 0) ? track.album.images[0].url : ""}
                                 alt={`${track.name}`}/>
                         </span>
                     ))}

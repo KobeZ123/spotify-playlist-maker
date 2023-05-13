@@ -1,4 +1,43 @@
+.top-items-page {
+    display: flex;
+    flex-direction: column;
+}
 
+.top-items-heading {
+    text-align: center;
+}
+
+.selector-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.selector-btn {
+    background-color: lightslategray;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin: 2rem;
+    padding: 2rem 3rem;
+    transition: 0.3s;
+    font-size: 2rem;
+    font-weight: 600;
+    font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.selector-btn-selected {
+    background-color: darkslategray;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin: 2rem;
+    padding: 2rem 3rem;
+    transition: 0.3s;
+    font-size: 2rem;
+    font-weight: 600;
+    font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
+}
 
 .top-items-display-container {
     display: flex;
