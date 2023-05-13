@@ -12,6 +12,18 @@ export async function getUserInformation(token: string) {
     });
 }
 
+// returns the user's id
+export async function getUserID(token: string) {
+    return await axios.get("https://api.spotify.com/v1/me", {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }).then((response) => {
+        console.log(response.data);
+        return response.data;
+    });
+}
+
 // returns the current user's playlists
 export async function getCurrentUserPlaylists(token: string) {
     await axios.get("https://api.spotify.com/v1/me/playlists", {
