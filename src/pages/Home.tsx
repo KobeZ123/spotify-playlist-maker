@@ -6,6 +6,7 @@ import useStore from "../stores/useStore"
 import TestViewWithButtons from "./TestViewWithButtons"
 import RecommendationPage from "./RecommendationPage"
 import TopArtistsDisplay from "../components/TopArtistsDisplay"
+import { Link, Outlet } from "react-router-dom"
 
 export default function Home() {
     const RESPONSE_TYPE = "token"
@@ -62,10 +63,11 @@ export default function Home() {
                 : <div className="home-container">
                     <button className="button-64" onClick={logout}>Logout</button>
                     <button onClick={onButtonClicking}>ACTION</button>
-                    <TestViewWithButtons />
-                    <RecommendationPage />
-                    <TopArtistsDisplay />
+                    <Link to="/recommendations">Recommendations</Link>
+                    <Link to="/top_items">Top Items</Link>
+                    <Link to="/test">Tester</Link>
                 </div>}
+            <Outlet />
         </div>
     );
 }
