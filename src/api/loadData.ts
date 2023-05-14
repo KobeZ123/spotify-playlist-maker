@@ -155,3 +155,41 @@ export async function getRecommendations(token: string, artists: string[] = [], 
         return response.data;
     });
 }
+
+// returns recommendations based on a list of artist ids, genre names, and track ids
+export async function getRecommendationsByDuration(token: string, artists: string[] = [], genres: string[] = [], 
+    tracks: string[] = [], callback: (result: any) => void, 
+    min_duration: number, max_duration: number) {
+    let num_seeds = 0
+    const param_seed_formatter = (list: string[]) => {
+        return list.reduce((accumulator, item) => {
+            if (num_seeds < 5) {
+                if (accumulator === "") {
+                    accumulator = item;
+                } else {
+                    accumulator = accumulator + "," + item;
+                }
+                num_seeds = num_seeds + 1;
+            }
+            return accumulator;
+        }, "");
+    }
+
+    await axios.get("https://api.spotify.com/v1/recommendations", {
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+        params: {
+            seed_artists: param_seed_formatter(artists), 
+            seed_genres: param_seed_formatter(genres),
+            seed_tracks: param_seed_formatter(tracks),
+            limit: 100,
+            min_duration: min_duration, 
+            max_duration: max_duration,
+        }
+    }).then((response) => {
+        console.log(response.data);
+        callback(response.data.tracks);
+        return response.data;
+    });
+}
