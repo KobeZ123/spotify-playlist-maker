@@ -3,6 +3,7 @@ import useStore from "../stores/useStore";
 import { getRecommendations, searchArtists, searchTracks } from "../api/loadData";
 
 import "../styles/recommendation_page.css"
+import PlaylistMaker from "../components/PlaylistMaker";
 
 export default function RecommendationPage() {
 
@@ -192,6 +193,7 @@ export default function RecommendationPage() {
                 </button>
             </section>
             {renderRecommendedTracks()}
+            <PlaylistMaker tracks={recommendedTracks} />
         </div>
     );
 }
