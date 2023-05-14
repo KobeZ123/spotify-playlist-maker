@@ -147,6 +147,7 @@ export async function getRecommendations(token: string, artists: string[] = [], 
             seed_artists: param_seed_formatter(artists), 
             seed_genres: param_seed_formatter(genres),
             seed_tracks: param_seed_formatter(tracks),
+            limit: 100,
         }
     }).then((response) => {
         console.log(response.data);
