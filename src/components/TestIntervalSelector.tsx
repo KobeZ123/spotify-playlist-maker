@@ -26,7 +26,7 @@ export default function TestIntervalSelector() {
         if (token != null) {
             let lowerBound = durationToMilliseconds(lowBoundMinutes, lowBoundSeconds);
             let upperBound = durationToMilliseconds(upperBoundMinutes, upperBoundSeconds);
-            getRecommendationsByDuration(token, [], ["pop"], [], ()=>{}, lowerBound, upperBound);
+            getRecommendationsByDuration(token, [], ["pop"], [], lowerBound, upperBound);
         }
     }
 
