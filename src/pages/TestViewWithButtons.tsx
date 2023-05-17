@@ -1,4 +1,5 @@
 import { getCurrentUserPlaylists, getTopArtistsLongTerm, getTopArtistsMediumTerm, getTopArtistsShortTerm, getTopTracksLongTerm, getTopTracksMediumTerm, getTopTracksShortTerm, getUserInformation, searchArtists } from "../api/loadData";
+import TestIntervalSelector from "../components/TestIntervalSelector";
 import useStore from "../stores/useStore";
 
 export default function TestViewWithButtons() {
@@ -48,6 +49,7 @@ export default function TestViewWithButtons() {
             <button onClick={() => getUserPlaylists()}>GET ALL PLAYLISTS</button>
             <button onClick={() => getTopArtists()}>GET TOP ARTISTS</button>
             <button onClick={() => getTopTracks()}>GET TOP TRACKS</button>
+            <TestIntervalSelector />
         </div>
     );
 }
