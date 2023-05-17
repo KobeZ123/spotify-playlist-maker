@@ -17,3 +17,15 @@ export function millisecondsLowerBound(milliseconds: number) {
 export function millisecondsUpperBound(milliseconds: number) {
     return milliseconds + 499;
 }
+
+// reduces an array of strings to a comma-separated string 
+export function reduceStringArray(array: string[]): string {
+    return array.reduce((accumulator, item) => {
+        if (accumulator === "") {
+            return item;
+        } else {
+            return accumulator + "," + item;
+        }
+    }, "");
+}
+
