@@ -158,8 +158,8 @@ export async function getRecommendations(token: string, artists: string[], genre
 
 // returns recommendations based on a list of artist ids, genre names, and track ids
 export async function getRecommendationsByDuration(token: string, artists: string[], genres: string[], 
-    tracks: string[], callback: (result: any) => void, 
-    min_duration: number, max_duration: number) {
+    tracks: string[], min_duration: number, max_duration: number, 
+    callback: (result: any) => void = () => {}) {
     let num_seeds = 0
     const param_seed_formatter = (list: string[]) => {
         return list.reduce((accumulator, item) => {
