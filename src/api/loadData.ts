@@ -156,7 +156,7 @@ export async function getRecommendations(token: string, artists: string[], genre
     });
 }
 
-// returns recommendations based on a list of artist ids, genre names, and track ids
+// returns data promise recommendations based on a list of artist ids, genre names, and track ids
 export async function getRecommendationsByDuration(token: string, artists: string[], genres: string[], 
     tracks: string[], min_duration: number, max_duration: number, 
     callback: (result: any) => void = () => {}) {
@@ -175,7 +175,7 @@ export async function getRecommendationsByDuration(token: string, artists: strin
         }, "");
     }
 
-    await axios.get("https://api.spotify.com/v1/recommendations", {
+    const promise = axios.get("https://api.spotify.com/v1/recommendations", {
         headers: {
             Authorization: `Bearer ${token}`
         },
@@ -187,9 +187,13 @@ export async function getRecommendationsByDuration(token: string, artists: strin
             min_duration: min_duration, 
             max_duration: max_duration,
         }
-    }).then((response) => {
+    })
+    
+    const dataPromise = promise.then((response) => {
         console.log(response.data);
         callback(response.data.tracks);
         return response.data;
     });
+
+    return dataPromise;
 }
