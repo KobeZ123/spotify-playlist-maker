@@ -18,6 +18,15 @@ export function millisecondsUpperBound(milliseconds: number) {
     return milliseconds + 499;
 }
 
+// given the milliseconds, rounds to the nearest convertable seconds 
+export function millisecondsRounded(milliseconds: number) {
+    if (milliseconds % 1000 < 500) {
+        return milliseconds - (milliseconds % 1000);
+    } else {
+        return milliseconds + (milliseconds - (milliseconds % 1000));
+    }
+}
+
 // reduces an array of strings to a comma-separated string 
 export function reduceStringArray(array: string[]): string {
     return array.reduce((accumulator, item) => {
@@ -28,4 +37,3 @@ export function reduceStringArray(array: string[]): string {
         }
     }, "");
 }
-
