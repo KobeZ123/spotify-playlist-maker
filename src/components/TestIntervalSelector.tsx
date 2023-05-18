@@ -3,6 +3,7 @@ import "../styles/interval_selector.css";
 import { getRecommendationsByDuration } from "../api/loadData";
 import useStore from "../stores/useStore";
 import { durationToMilliseconds } from "../utils/utils";
+import { createEmptyPlaylist, selectTracksForPlaylistAlgorithm } from "../api/postData";
 
 export default function TestIntervalSelector() {
 
@@ -12,6 +13,8 @@ export default function TestIntervalSelector() {
     const [upperBoundMinutes, setUpperBoundMinutes] = useState<number>(0);
     const [lowBoundSeconds, setLowBoundSeconds] = useState<number>(0);
     const [upperBoundSeconds, setUpperBoundSeconds] = useState<number>(0);
+
+    const [playlistID, setPlaylistID] = useState<string>("");
 
     // handles if the seconds goes above 59 
     const handleSecondsChange = (seconds: number) => {
@@ -24,9 +27,12 @@ export default function TestIntervalSelector() {
     // handles the submission 
     const handleSubmit = () => {
         if (token != null) {
+            console.log("creating empty playlist");
+            createEmptyPlaylist(token, "playlist", setPlaylistID);
             let lowerBound = durationToMilliseconds(lowBoundMinutes, lowBoundSeconds);
             let upperBound = durationToMilliseconds(upperBoundMinutes, upperBoundSeconds);
-            getRecommendationsByDuration(token, [], ["pop"], [], lowerBound, upperBound);
+            // getRecommendationsByDuration(token, [], ["pop"], [], lowerBound, upperBound);
+            selectTracksForPlaylistAlgorithm(token, [], ["pop"], [], playlistID, lowerBound);
         }
     }
 
