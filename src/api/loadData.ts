@@ -190,9 +190,10 @@ export async function getRecommendationsByDuration(token: string, artists: strin
     })
     
     const dataPromise = promise.then((response) => {
+        console.log("getting recommendation by duration " + min_duration + " " + max_duration);
         console.log(response.data);
         callback(response.data.tracks);
-        return response.data;
+        return response.data.tracks;
     });
 
     return dataPromise;

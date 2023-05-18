@@ -1,9 +1,10 @@
 import { useState } from "react";
 import useStore from "../stores/useStore";
-import { getRecommendations, searchArtists, searchTracks } from "../api/loadData";
+import { getRecommendations, getRecommendationsByDuration, searchArtists, searchTracks } from "../api/loadData";
 
 import "../styles/recommendation_page.css"
 import PlaylistMaker from "../components/PlaylistMaker";
+import { durationToMilliseconds, millisecondsLowerBound, millisecondsUpperBound } from "../utils/utils";
 
 export default function RecommendationPage() {
 
@@ -63,7 +64,10 @@ export default function RecommendationPage() {
 
     const handleRecommendationsClick = () => {
         if (token != null) {  
-            getRecommendations(token, selectedArtists, [], selectedTracks, setRecommendedTracks);   
+            getRecommendationsByDuration(token, selectedArtists, [], selectedTracks,
+                millisecondsLowerBound(durationToMilliseconds(3, 0)), 
+                millisecondsUpperBound(durationToMilliseconds(3, 0)),
+                setRecommendedTracks);   
         }
     }
 
