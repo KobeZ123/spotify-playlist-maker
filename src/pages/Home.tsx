@@ -7,6 +7,7 @@ import TestViewWithButtons from "./TestViewWithButtons"
 import RecommendationPage from "./RecommendationPage"
 import TopArtistsDisplay from "../components/TopArtistsDisplay"
 import { Link, Outlet } from "react-router-dom"
+import NavigationBar from "../components/NavigationBar"
 
 export default function Home() {
     const RESPONSE_TYPE = "token"
@@ -50,6 +51,7 @@ export default function Home() {
 
     return (
         <div className="home-container">
+            <NavigationBar />
             <h1>Spotify React</h1>
             {!token ?
                 <a href={`${process.env.REACT_APP_AUTH_ENDPOINT}?` +
