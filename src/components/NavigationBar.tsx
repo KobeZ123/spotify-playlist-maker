@@ -6,14 +6,14 @@ export default function NavigationBar() {
 
         <nav className="navbar">
             <div className="navbar-logo">
-                <Link to="/" className="logo-link">Logo</Link>
+                <Link to="/" className="logo-link">Spotify App</Link>
             </div>
-            <ul className="navbar-nav">
+            <ul className="navbar-items">
                 <li className="nav-item">
-                <Link to="/about" className="nav-link">About</Link>
+                    <Link to="/" className="nav-link">Home</Link>
                 </li>
                 <li className="nav-item">
-                <Link to="/contact" className="nav-link">Contact</Link>
+                    <Link to="/" className="nav-link">About</Link>
                 </li>
             </ul>
         </nav>
