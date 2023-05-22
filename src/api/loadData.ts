@@ -1,4 +1,5 @@
 import axios from "axios";
+import { RecommendationParams } from "./recommendationParams";
 
 // returns the user's information
 export async function getUserInformation(token: string) {
@@ -148,6 +149,43 @@ export async function getRecommendations(token: string, artists: string[], genre
             seed_genres: param_seed_formatter(genres),
             seed_tracks: param_seed_formatter(tracks),
             limit: 100,
+        }
+    }).then((response) => {
+        console.log(response.data);
+        callback(response.data.tracks);
+        return response.data;
+    });
+}
+
+// returns recommendations based on a list of artist ids, genre names, track ids and optional parameters
+export async function getRecommendationsWithOptionalParams(token: string, artists: string[], genres: string[], 
+    tracks: string[], optional: RecommendationParams, callback: (result: any) => void) {
+    let num_seeds = 0
+    const param_seed_formatter = (list: string[]) => {
+        return list.reduce((accumulator, item) => {
+            if (num_seeds < 5) {
+                if (accumulator === "") {
+                    accumulator = item;
+                } else {
+                    accumulator = accumulator + "," + item;
+                }
+                num_seeds = num_seeds + 1;
+            }
+            return accumulator;
+        }, "");
+    }
+    console.log(optional);
+
+    await axios.get("https://api.spotify.com/v1/recommendations", {
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+        params: {
+            seed_artists: param_seed_formatter(artists), 
+            seed_genres: param_seed_formatter(genres),
+            seed_tracks: param_seed_formatter(tracks),
+            limit: 100,
+            ...optional.traits,
         }
     }).then((response) => {
         console.log(response.data);
