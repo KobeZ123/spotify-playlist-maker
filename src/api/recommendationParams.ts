@@ -56,10 +56,14 @@ interface SpotifyRecommendationParams {
     max_energy?: number;           // A value from 0 to 1 representing the maximum energy of the tracks
     min_instrumentalness?: number;  // A value from 0 to 1 representing the minimum instrumentalness of the tracks
     max_instrumentalness?: number;  // A value from 0 to 1 representing the maximum instrumentalness of the tracks
+    min_key?: number;               // A value from 0 to 11 representing the minimum key of the track
+    max_key?: number;               // A value from 0 to 11 representing the maximum key of the track
     min_liveness?: number;         // A value from 0 to 1 representing the minimum liveness of the tracks
     max_liveness?: number;         // A value from 0 to 1 representing the maximum liveness of the tracks
     min_loudness?: number;         // A value from -60 to 0 representing the minimum loudness of the tracks (in decibels)
     max_loudness?: number;         // A value from -60 to 0 representing the maximum loudness of the tracks (in decibels)
+    min_mode?: number;             // A value from 0 to 1 representing the minimum mode of the track 
+    max_mode?: number;             // A value from 0 to 1 representing the maximum mode of the track 
     min_speechiness?: number;      // A value from 0 to 1 representing the minimum speechiness of the tracks
     max_speechiness?: number;      // A value from 0 to 1 representing the maximum speechiness of the tracks
     min_tempo?: number;            // A value representing the minimum tempo of the tracks (in beats per minute)
@@ -87,10 +91,110 @@ class RecommendationParams {
     }
 
     addDancability(attribute: TrackAttribute) {
-        
+        if (attribute.isTarget()) {
+            this.traits.target_danceability = attribute.min;
+        } else {
+            this.traits.max_danceability = attribute.max;
+            this.traits.min_danceability = attribute.min;
+        }
     }
 
+    addEnergy(attribute: TrackAttribute) {
+        if (attribute.isTarget()) {
+            this.traits.target_energy = attribute.min;
+        } else {
+            this.traits.max_energy = attribute.max;
+            this.traits.min_energy = attribute.min;
+        }
+    }
 
+    addInstrumentalness(attribute: TrackAttribute) {
+        if (attribute.isTarget()) {
+            this.traits.target_instrumentalness = attribute.min;
+        } else {
+            this.traits.max_instrumentalness = attribute.max;
+            this.traits.min_instrumentalness = attribute.min;
+        }
+    }
 
+    addKey(attribute: TrackAttribute) {
+        if (attribute.isTarget()) {
+            this.traits.target_key = attribute.min;
+        } else {
+            this.traits.max_key = attribute.max;
+            this.traits.min_key = attribute.min;
+        }
+    }
 
+    addLiveness(attribute: TrackAttribute) {
+        if (attribute.isTarget()) {
+            this.traits.target_liveness = attribute.min;
+        } else {
+            this.traits.max_liveness = attribute.max;
+            this.traits.min_liveness = attribute.min;
+        }
+    }
+
+    addLoudness(attribute: TrackAttribute) {
+        if (attribute.isTarget()) {
+            this.traits.target_loudness = attribute.min;
+        } else {
+            this.traits.max_loudness = attribute.max;
+            this.traits.min_loudness = attribute.min;
+        }
+    }
+
+    addMode(attribute: TrackAttribute) {
+        if (attribute.isTarget()) {
+            this.traits.target_mode = attribute.min;
+        } else {
+            this.traits.max_mode = attribute.max;
+            this.traits.min_mode = attribute.min;
+        }
+    }
+
+    addPopularity(attribute: TrackAttribute) {
+        if (attribute.isTarget()) {
+            this.traits.target_popularity = attribute.min;
+        } else {
+            this.traits.max_popularity = attribute.max;
+            this.traits.min_popularity = attribute.min;
+        }
+    }
+
+    addSpeechiness(attribute: TrackAttribute) {
+        if (attribute.isTarget()) {
+            this.traits.target_speechiness = attribute.min;
+        } else {
+            this.traits.max_speechiness = attribute.max;
+            this.traits.min_speechiness = attribute.min;
+        }
+    }
+
+    addTempo(attribute: TrackAttribute) {
+        if (attribute.isTarget()) {
+            this.traits.target_tempo = attribute.min;
+        } else {
+            this.traits.max_tempo = attribute.max;
+            this.traits.min_tempo = attribute.min;
+        }
+    }
+
+    addTimeSignature(attribute: TrackAttribute) {
+        if (attribute.isTarget()) {
+            this.traits.target_time_signature = attribute.min;
+        } else {
+            this.traits.max_time_signature = attribute.max;
+            this.traits.min_time_signature = attribute.min;
+        }
+    }
+
+    addValence(attribute: TrackAttribute) {
+        if (attribute.isTarget()) {
+            this.traits.target_valence = attribute.min;
+        } else {
+            this.traits.max_valence = attribute.max;
+            this.traits.min_valence = attribute.min;
+        }
+    }
 }
