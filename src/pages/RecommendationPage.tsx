@@ -1,10 +1,13 @@
 import { useState } from "react";
 import useStore from "../stores/useStore";
-import { getRecommendations, getRecommendationsByDuration, searchArtists, searchTracks } from "../api/loadData";
+import { getRecommendations, getRecommendationsByDuration, getRecommendationsWithOptionalParams, searchArtists, searchTracks } from "../api/loadData";
 
 import "../styles/recommendation_page.css"
 import PlaylistMaker from "../components/PlaylistMaker";
 import { durationToMilliseconds, millisecondsLowerBound, millisecondsUpperBound } from "../utils/utils";
+import { RecommendationParams, SpotifyRecommendationParams } from "../api/recommendationParams";
+import AttributeSelector from "../components/AttributeSelector";
+import { RECOMMENDATION_CONSTANTS } from "../utils/constants";
 
 export default function RecommendationPage() {
 
@@ -24,6 +27,10 @@ export default function RecommendationPage() {
     const [selectedTracks, setSelectedTracks] = useState<string[]>([]);
     // the list of recommendations 
     const [recommendedTracks, setRecommendedTracks] = useState<any[]>([]);
+    // show the recommmended tracks 
+    const [showTracks, setShowTracks] = useState<boolean>(false);
+    // stores the list of optional parameters 
+    const [optionalParams, setOptionalParams] = useState<RecommendationParams>(new RecommendationParams());
 
     const handleArtistSearchSubmit = async (query: string) => {
         if (token != null) {  
@@ -64,10 +71,8 @@ export default function RecommendationPage() {
 
     const handleRecommendationsClick = () => {
         if (token != null) {  
-            getRecommendationsByDuration(token, selectedArtists, [], selectedTracks,
-                millisecondsLowerBound(durationToMilliseconds(3, 0)), 
-                millisecondsUpperBound(durationToMilliseconds(3, 0)),
-                setRecommendedTracks);   
+            getRecommendationsWithOptionalParams(token, selectedArtists, [], selectedTracks,
+                optionalParams, setRecommendedTracks);   
         }
     }
 
@@ -188,6 +193,21 @@ export default function RecommendationPage() {
             </section>
             {renderTrackResults()}
             {renderSelectedTracks()}
+            
+            <PlaylistMaker tracks={recommendedTracks} />
+            <AttributeSelector name={RECOMMENDATION_CONSTANTS.ACOUSTICNESS} initialParams={optionalParams} updateParams={setOptionalParams} />
+            <AttributeSelector name={RECOMMENDATION_CONSTANTS.DANCEABILITY} initialParams={optionalParams} updateParams={setOptionalParams} />
+            <AttributeSelector name={RECOMMENDATION_CONSTANTS.ENERGY} initialParams={optionalParams} updateParams={setOptionalParams} />
+            <AttributeSelector name={RECOMMENDATION_CONSTANTS.INSTRUMENTALNESS} initialParams={optionalParams} updateParams={setOptionalParams} />
+            <AttributeSelector name={RECOMMENDATION_CONSTANTS.KEY} initialParams={optionalParams} updateParams={setOptionalParams} />
+            <AttributeSelector name={RECOMMENDATION_CONSTANTS.LIVENESS} initialParams={optionalParams} updateParams={setOptionalParams} />
+            <AttributeSelector name={RECOMMENDATION_CONSTANTS.LOUDNESS} initialParams={optionalParams} updateParams={setOptionalParams} />
+            <AttributeSelector name={RECOMMENDATION_CONSTANTS.MODE} initialParams={optionalParams} updateParams={setOptionalParams} />
+            <AttributeSelector name={RECOMMENDATION_CONSTANTS.POPULARITY} initialParams={optionalParams} updateParams={setOptionalParams} />
+            <AttributeSelector name={RECOMMENDATION_CONSTANTS.SPEECHINESS} initialParams={optionalParams} updateParams={setOptionalParams} />
+            <AttributeSelector name={RECOMMENDATION_CONSTANTS.TEMPO} initialParams={optionalParams} updateParams={setOptionalParams} />
+            <AttributeSelector name={RECOMMENDATION_CONSTANTS.TIME_SIGNATURE} initialParams={optionalParams} updateParams={setOptionalParams} />
+            <AttributeSelector name={RECOMMENDATION_CONSTANTS.VALENCE} initialParams={optionalParams} updateParams={setOptionalParams} />
             <section className="recommendation-section">
                 <button 
                     className="action-btn recommendation-btn"
@@ -196,8 +216,13 @@ export default function RecommendationPage() {
                     PROVIDE RECOMMENDATIONS
                 </button>
             </section>
-            {renderRecommendedTracks()}
-            <PlaylistMaker tracks={recommendedTracks} />
+            <button
+                className="action-btn recommendation-btn"
+                type="button"
+                onClick={() => {setShowTracks(!showTracks)}}>
+                    SHOW RECOMMENDED TRACKS
+            </button>
+            {showTracks && renderRecommendedTracks()}
         </div>
     );
 }

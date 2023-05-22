@@ -1,4 +1,5 @@
 import { getCurrentUserPlaylists, getTopArtistsLongTerm, getTopArtistsMediumTerm, getTopArtistsShortTerm, getTopTracksLongTerm, getTopTracksMediumTerm, getTopTracksShortTerm, getUserInformation, searchArtists } from "../api/loadData";
+import AttributeSelector from "../components/AttributeSelector";
 import TestIntervalSelector from "../components/TestIntervalSelector";
 import useStore from "../stores/useStore";
 
