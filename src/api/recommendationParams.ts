@@ -88,6 +88,7 @@ export class RecommendationParams {
             this.traits.max_acousticness = attribute.max;
             this.traits.min_acousticness = attribute.min;
         }
+        return this;
     }
 
     addDancability(attribute: TrackAttribute) {
@@ -97,6 +98,7 @@ export class RecommendationParams {
             this.traits.max_danceability = attribute.max;
             this.traits.min_danceability = attribute.min;
         }
+        return this;
     }
 
     addEnergy(attribute: TrackAttribute) {
@@ -106,6 +108,7 @@ export class RecommendationParams {
             this.traits.max_energy = attribute.max;
             this.traits.min_energy = attribute.min;
         }
+        return this;
     }
 
     addInstrumentalness(attribute: TrackAttribute) {
@@ -115,6 +118,7 @@ export class RecommendationParams {
             this.traits.max_instrumentalness = attribute.max;
             this.traits.min_instrumentalness = attribute.min;
         }
+        return this;
     }
 
     addKey(attribute: TrackAttribute) {
@@ -124,6 +128,7 @@ export class RecommendationParams {
             this.traits.max_key = attribute.max;
             this.traits.min_key = attribute.min;
         }
+        return this;
     }
 
     addLiveness(attribute: TrackAttribute) {
@@ -133,6 +138,7 @@ export class RecommendationParams {
             this.traits.max_liveness = attribute.max;
             this.traits.min_liveness = attribute.min;
         }
+        return this;
     }
 
     addLoudness(attribute: TrackAttribute) {
@@ -142,6 +148,7 @@ export class RecommendationParams {
             this.traits.max_loudness = attribute.max;
             this.traits.min_loudness = attribute.min;
         }
+        return this;
     }
 
     addMode(attribute: TrackAttribute) {
@@ -151,6 +158,7 @@ export class RecommendationParams {
             this.traits.max_mode = attribute.max;
             this.traits.min_mode = attribute.min;
         }
+        return this;
     }
 
     addPopularity(attribute: TrackAttribute) {
@@ -160,6 +168,7 @@ export class RecommendationParams {
             this.traits.max_popularity = attribute.max;
             this.traits.min_popularity = attribute.min;
         }
+        return this;
     }
 
     addSpeechiness(attribute: TrackAttribute) {
@@ -169,6 +178,7 @@ export class RecommendationParams {
             this.traits.max_speechiness = attribute.max;
             this.traits.min_speechiness = attribute.min;
         }
+        return this;
     }
 
     addTempo(attribute: TrackAttribute) {
@@ -178,6 +188,7 @@ export class RecommendationParams {
             this.traits.max_tempo = attribute.max;
             this.traits.min_tempo = attribute.min;
         }
+        return this;
     }
 
     addTimeSignature(attribute: TrackAttribute) {
@@ -187,6 +198,7 @@ export class RecommendationParams {
             this.traits.max_time_signature = attribute.max;
             this.traits.min_time_signature = attribute.min;
         }
+        return this;
     }
 
     addValence(attribute: TrackAttribute) {
@@ -196,5 +208,6 @@ export class RecommendationParams {
             this.traits.max_valence = attribute.max;
             this.traits.min_valence = attribute.min;
         }
+        return this;
     }
 }
