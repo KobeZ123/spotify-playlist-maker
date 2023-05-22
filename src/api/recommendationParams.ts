@@ -1,4 +1,4 @@
-class TrackAttribute {
+export class TrackAttribute {
     min: number;
     max: number;
     target: boolean;
@@ -22,7 +22,7 @@ class TrackAttribute {
     }
 }
 
-interface SpotifyRecommendationParams {
+export interface SpotifyRecommendationParams {
     // Required parameters
     seed_artists?: string[];       // Array of Spotify artist IDs
     seed_genres?: string[];        // Array of genre names
@@ -31,8 +31,6 @@ interface SpotifyRecommendationParams {
     // Optional parameters
     limit?: number;                // The maximum number of recommendations to return (1-100)
     market?: string;               // An ISO 3166-1 alpha-2 country code to limit the results
-    min_popularity?: number;       // A value from 0 to 100 representing the minimum popularity of the tracks (default: 0)
-    max_popularity?: number;       // A value from 0 to 100 representing the maximum popularity of the tracks (default: 100)
     target_acousticness?: number;  // A value from 0 to 1 representing the target acousticness of the tracks
     target_danceability?: number;  // A value from 0 to 1 representing the target danceability of the tracks
     target_energy?: number;        // A value from 0 to 1 representing the target energy of the tracks
@@ -64,6 +62,8 @@ interface SpotifyRecommendationParams {
     max_loudness?: number;         // A value from -60 to 0 representing the maximum loudness of the tracks (in decibels)
     min_mode?: number;             // A value from 0 to 1 representing the minimum mode of the track 
     max_mode?: number;             // A value from 0 to 1 representing the maximum mode of the track 
+    min_popularity?: number;       // A value from 0 to 100 representing the minimum popularity of the tracks (default: 0)
+    max_popularity?: number;       // A value from 0 to 100 representing the maximum popularity of the tracks (default: 100)
     min_speechiness?: number;      // A value from 0 to 1 representing the minimum speechiness of the tracks
     max_speechiness?: number;      // A value from 0 to 1 representing the maximum speechiness of the tracks
     min_tempo?: number;            // A value representing the minimum tempo of the tracks (in beats per minute)
@@ -74,7 +74,7 @@ interface SpotifyRecommendationParams {
     max_valence?: number;          // A value from 0 to 1 representing the maximum valence of the tracks
 }
 
-class RecommendationParams {
+export class RecommendationParams {
     traits: SpotifyRecommendationParams;
 
     constructor() {
