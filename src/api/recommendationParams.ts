@@ -16,18 +16,74 @@ class TrackAttribute {
             this.target = false;
         }
     }
+
+    isTarget(): boolean {
+        return this.target;
+    }
 }
 
+interface SpotifyRecommendationParams {
+    // Required parameters
+    seed_artists?: string[];       // Array of Spotify artist IDs
+    seed_genres?: string[];        // Array of genre names
+    seed_tracks?: string[];        // Array of Spotify track IDs
+  
+    // Optional parameters
+    limit?: number;                // The maximum number of recommendations to return (1-100)
+    market?: string;               // An ISO 3166-1 alpha-2 country code to limit the results
+    min_popularity?: number;       // A value from 0 to 100 representing the minimum popularity of the tracks (default: 0)
+    max_popularity?: number;       // A value from 0 to 100 representing the maximum popularity of the tracks (default: 100)
+    target_acousticness?: number;  // A value from 0 to 1 representing the target acousticness of the tracks
+    target_danceability?: number;  // A value from 0 to 1 representing the target danceability of the tracks
+    target_energy?: number;        // A value from 0 to 1 representing the target energy of the tracks
+    target_instrumentalness?: number;  // A value from 0 to 1 representing the target instrumentalness of the tracks
+    target_key?: number;           // An integer representing the target key of the tracks (0-11, where 0 = C, 1 = C#, etc.)
+    target_liveness?: number;      // A value from 0 to 1 representing the target liveness of the tracks
+    target_loudness?: number;      // A value from -60 to 0 representing the target loudness of the tracks (in decibels)
+    target_mode?: number;          // 0 for minor, 1 for major (default: no preference)
+    target_popularity?: number;    // A value from 0 to 100 representing the target popularity of the tracks
+    target_speechiness?: number;   // A value from 0 to 1 representing the target speechiness of the tracks
+    target_tempo?: number;         // A value representing the target tempo of the tracks (in beats per minute)
+    target_time_signature?: number;  // An integer representing the target time signature of the tracks
+    target_valence?: number;       // A value from 0 to 1 representing the target valence of the tracks
+  
+    // Additional min/max parameters
+    min_acousticness?: number;     // A value from 0 to 1 representing the minimum acousticness of the tracks
+    max_acousticness?: number;     // A value from 0 to 1 representing the maximum acousticness of the tracks
+    min_danceability?: number;     // A value from 0 to 1 representing the minimum danceability of the tracks
+    max_danceability?: number;     // A value from 0 to 1 representing the maximum danceability of the tracks
+    min_energy?: number;           // A value from 0 to 1 representing the minimum energy of the tracks
+    max_energy?: number;           // A value from 0 to 1 representing the maximum energy of the tracks
+    min_instrumentalness?: number;  // A value from 0 to 1 representing the minimum instrumentalness of the tracks
+    max_instrumentalness?: number;  // A value from 0 to 1 representing the maximum instrumentalness of the tracks
+    min_liveness?: number;         // A value from 0 to 1 representing the minimum liveness of the tracks
+    max_liveness?: number;         // A value from 0 to 1 representing the maximum liveness of the tracks
+    min_loudness?: number;         // A value from -60 to 0 representing the minimum loudness of the tracks (in decibels)
+    max_loudness?: number;         // A value from -60 to 0 representing the maximum loudness of the tracks (in decibels)
+    min_speechiness?: number;      // A value from 0 to 1 representing the minimum speechiness of the tracks
+    max_speechiness?: number;      // A value from 0 to 1 representing the maximum speechiness of the tracks
+    min_tempo?: number;            // A value representing the minimum tempo of the tracks (in beats per minute)
+    max_tempo?: number;            // A value representing the maximum tempo of the tracks (in beats per minute)
+    min_time_signature?: number;   // An integer representing the minimum time signature of the tracks
+    max_time_signature?: number;   // An integer representing the maximum time signature of the tracks
+    min_valence?: number;          // A value from 0 to 1 representing the minimum valence of the tracks
+    max_valence?: number;          // A value from 0 to 1 representing the maximum valence of the tracks
+}
 
 class RecommendationParams {
-    traits: object;
+    traits: SpotifyRecommendationParams;
 
     constructor() {
         this.traits = {}
     }
 
     addAcousticness(attribute: TrackAttribute) {
-
+        if (attribute.isTarget()) {
+            this.traits.target_acousticness = attribute.min;
+        } else {
+            this.traits.max_acousticness = attribute.max;
+            this.traits.min_acousticness = attribute.min;
+        }
     }
 
     addDancability(attribute: TrackAttribute) {
