@@ -3,9 +3,6 @@ import { useEffect, useState } from "react"
 import '../styles/home.css'
 import useStore from "../stores/useStore"
 
-import TestViewWithButtons from "./TestViewWithButtons"
-import RecommendationPage from "./RecommendationPage"
-import TopArtistsDisplay from "../components/TopArtistsDisplay"
 import { Link, Outlet } from "react-router-dom"
 import NavigationBar from "../components/NavigationBar"
 
@@ -15,6 +12,7 @@ export default function Home() {
     const [token, setToken] = useState("")
     const setStateToken = useStore((state) => state.setToken);
     const reset = useStore((state) => state.reset);
+    const [infoSelected, setInfoSelected] = useState<boolean>(false);
 
     useEffect(() => {
         console.log(`${process.env.REACT_APP_AUTH_ENDPOINT}?` +
@@ -51,7 +49,6 @@ export default function Home() {
 
     return (
         <div className="home-container">
-            <NavigationBar />
             <h1>Spotify React</h1>
             {!token ?
                 <a href={`${process.env.REACT_APP_AUTH_ENDPOINT}?` +
@@ -62,14 +59,27 @@ export default function Home() {
                     className="button-64">
                     Login to Spotify
                 </a>
-                : <div className="home-container">
+                : <div className="home-content">
+                    <button 
+                        className="info-button"
+                        onClick={() => {setInfoSelected(!infoSelected)}}>i</button>
+                    {infoSelected && 
+                    <p>This web application is designed for users to view their favorite artists and tracks
+                        as well as create interval playlists according to your favorite music!</p>}
+                    <section className="home-btn-section">  
+                        <button className="home-selection-btn-left">
+                            See Top Artists
+                        </button>
+                        <button className="home-selection-btn-right">
+                            Make Interval Playlist
+                        </button>
+                    </section>
                     <button className="button-64" onClick={logout}>Logout</button>
                     <button onClick={onButtonClicking}>ACTION</button>
                     <Link to="/recommendations">Recommendations</Link>
                     <Link to="/top_items">Top Items</Link>
                     <Link to="/test">Tester</Link>
                 </div>}
-            <Outlet />
         </div>
     );
 }

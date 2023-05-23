@@ -21,6 +21,7 @@
   touch-action: manipulation;
   white-space: nowrap;
   cursor: pointer;
+  margin: 2rem;
 }
 
 .button-64:active,
@@ -32,8 +33,6 @@
   background-color: rgb(5, 6, 45);
   padding: 16px 24px;
   border-radius: 6px;
-  width: 100%;
-  height: 100%;
   transition: 300ms;
 }
 
@@ -52,4 +51,43 @@
     text-align: center;
     display: flex;
     flex-direction: column;
+}
+
+.home-content {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.info-button {
+  background-color: rgb(78, 196, 255);
+  font-weight: 600;
+  font-size: 1.5rem;
+  border: 0;
+  border-radius: 5rem;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  margin: 1rem;
+}
+
+.home-btn-section {
+  display: flex;
+  flex-direction: row;
+}
+
+.home-selection-btn-left {
+  width: 50%;
+  font-size: 2rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  border-radius: 2rem 0rem 0rem 2rem;
+}
+
+.home-selection-btn-right {
+  width: 50%;
+  font-size: 2rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  border-radius: 0rem 2rem 2rem 0rem;
+  padding: 1rem 2rem;
 }

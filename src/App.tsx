@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import RecommendationPage from './pages/RecommendationPage';
 import TopItemsPage from './pages/TopItemsPage';
 import TestViewWithButtons from './pages/TestViewWithButtons';
+import Layout from './pages/Layout';
 
 function App() {
   return (
@@ -27,11 +28,12 @@ function App() {
       </header> */}
       <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />}>
+        <Route path="/" element={<Layout />}>
+          <Route path="home" element={<Home />} />
           <Route path="recommendations" element={<RecommendationPage />} />
           <Route path="top_items" element={<TopItemsPage />} />
           <Route path="test" element={<TestViewWithButtons />} />
-          <Route path="*" element={<RecommendationPage />} />
+          <Route path="*" element={<Home />} />
         </Route>
       </Routes>
     </BrowserRouter>
