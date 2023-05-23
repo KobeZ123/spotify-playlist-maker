@@ -10,7 +10,7 @@ import TestViewWithButtons from './pages/TestViewWithButtons';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
@@ -24,7 +24,7 @@ function App() {
           Learn React
         </a>
         <p>{process.env.REACT_APP_AUTH_ENDPOINT} + hit</p>
-      </header>
+      </header> */}
       <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />}>
