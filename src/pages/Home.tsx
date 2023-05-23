@@ -3,8 +3,7 @@ import { useEffect, useState } from "react"
 import '../styles/home.css'
 import useStore from "../stores/useStore"
 
-import { Link, Outlet } from "react-router-dom"
-import NavigationBar from "../components/NavigationBar"
+import { Link } from "react-router-dom"
 
 export default function Home() {
     const RESPONSE_TYPE = "token"
@@ -34,7 +33,7 @@ export default function Home() {
             setToken(token);
             setStateToken(token);
         }   
-    }, [])
+    }, [token])
 
     const logout = () => {
         setToken("");
