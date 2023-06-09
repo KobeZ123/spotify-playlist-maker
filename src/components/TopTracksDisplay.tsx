@@ -41,7 +41,7 @@ export default function TopTracksDisplay() {
                 <section className="item-cards-container">
                     {topTracksList.map((track) => (
                         <span className="item-card-container" key={track.name + "_card"}> 
-                            <p>{track.name}</p>
+                            <p className="item-text">{track.name}</p>
                             <img className="item-img"
                                 src={(track.album.images.length > 0) ? track.album.images[0].url : ""}
                                 alt={`${track.name}`}/>

@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import useStore from "../stores/useStore";
 import { getTopArtistsLongTerm, getTopArtistsMediumTerm, getTopArtistsShortTerm } from "../api/loadData";
 
 import "../styles/top_items_display.css";
 
 export default function TopArtistsDisplay() {
-
+    const storeToken = useStore((state) => state.token);
     const token = useStore((state) => state.token);
     // the user's top artists as a list of items
     const [topArtistsList, setTopArtistsList] = useState<any[]>([]);
@@ -41,7 +41,7 @@ export default function TopArtistsDisplay() {
                 <section className="item-cards-container">
                     {topArtistsList.map((artist) => (
                         <span className="item-card-container" key={artist.name + "_card"}> 
-                            <p>{artist.name}</p>
+                            <p className="item-text">{artist.name}</p>
                             <img className="item-img"
                                 src={(artist.images.length > 0) ? artist.images[0].url : ""}
                                 alt={`${artist.name}`}/>

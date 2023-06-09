@@ -8,7 +8,7 @@ export default function TopItemsPage() {
 
     return (
         <div className="top-items-page">
-            <h1 className="top-items-heading">Top Items</h1>
+            <h1 className="top-items-heading">TOP ITEMS</h1>
             <div className="selector-container">
                 <button 
                     className={(selectedItem === "artists") ? "selector-btn-selected" :"selector-btn"}
