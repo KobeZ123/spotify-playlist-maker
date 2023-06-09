@@ -31,7 +31,7 @@ function App() {
           <Route path="recommendations" element={<RecommendationPage />} />
           <Route path="top_items" element={<TopItemsPage />} />
           <Route path="test" element={<TestViewWithButtons />} />
-          <Route path="*" element={<Home />} />
+          <Route path="callback" element={<Home />} />
         </Route>
       </Routes>
     </BrowserRouter>

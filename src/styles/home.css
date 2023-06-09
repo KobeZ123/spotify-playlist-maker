@@ -1,12 +1,39 @@
+.home-heading {
+  font-size: 3rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.info-button {
+  background-color: rgb(78, 196, 255);
+  font-weight: 600;
+  font-size: 1.5rem;
+  border: 0;
+  border-radius: 5rem;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  margin: 1rem;
+}
+
+.info-paragraph {
+  margin-left: 3rem;
+  margin-right: 3rem;
+  padding: 2rem 3rem;
+  border-radius: 2rem;
+  font-size: 1.5rem;
+  background-color: rgb(78, 196, 255);
+  transition: opacity 1s;
+}
+
 /* CSS */
 .button-64 {
   align-items: center;
-  background-image: linear-gradient(144deg,#1ED760 , #1DB954  50%,#20C759);
+  background-image: linear-gradient(144deg, #1ed760, #1db954 50%, #20c759);
   border: 0;
-  border-radius: 8px;
+  border-radius: 2rem;
   box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
   box-sizing: border-box;
-  color: #FFFFFF;
+  color: #ffffff;
   display: flex;
   font-family: Phantomsans, sans-serif;
   font-size: 20px;
@@ -22,6 +49,9 @@
   white-space: nowrap;
   cursor: pointer;
   margin: 2rem;
+  padding: 2rem 3rem;
+  font-size: 2rem;
+  max-width: 50rem;
 }
 
 .button-64:active,
@@ -48,46 +78,45 @@
 }
 
 .home-container {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
 .home-content {
   text-align: center;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-}
-
-.info-button {
-  background-color: rgb(78, 196, 255);
-  font-weight: 600;
-  font-size: 1.5rem;
-  border: 0;
-  border-radius: 5rem;
-  width: 2rem;
-  height: 2rem;
-  cursor: pointer;
-  margin: 1rem;
+  height: 100%;
 }
 
 .home-btn-section {
   display: flex;
   flex-direction: row;
+  justify-content: space-evenly;
 }
 
 .home-selection-btn-left {
-  width: 50%;
   font-size: 2rem;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  border-radius: 2rem 0rem 0rem 2rem;
+  border-radius: 2rem;
+  padding: 2rem 3rem;
+  margin: 2rem;
+  box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
 }
 
 .home-selection-btn-right {
-  width: 50%;
   font-size: 2rem;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  border-radius: 0rem 2rem 2rem 0rem;
-  padding: 1rem 2rem;
+  border-radius: 2rem;
+  padding: 2rem 3rem;
+  margin: 2rem;
+  box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+}
+
+.home-selection-btn-left:hover, .home-selection-btn-right:hover {
+  cursor: pointer;
 }
