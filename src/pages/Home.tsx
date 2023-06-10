@@ -39,7 +39,7 @@ export default function Home() {
       setToken(token);
       setStateToken(token);
     }
-  }, [token]);
+  }, []);
 
   const logout = () => {
     setToken("");
@@ -73,7 +73,7 @@ export default function Home() {
             your favorite music!
           </p>
         }
-        <ReauthenticateModal visible={true}/>
+        <ReauthenticateModal children={<></>}/>
 
         {!token ? (
           <a

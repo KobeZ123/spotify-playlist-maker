@@ -3,9 +3,8 @@ import useStore from "../stores/useStore";
 import { getTopArtistsLongTerm, getTopArtistsMediumTerm, getTopArtistsShortTerm } from "../api/loadData";
 
 import "../styles/top_items_display.css";
-import { TopItemDisplayProps } from "../utils/types";
 
-export default function TopArtistsDisplay(props: TopItemDisplayProps) {
+export default function TopArtistsDisplay() {
     const token = useStore((state) => state.token);
     // the user's top artists as a list of items
     const [topArtistsList, setTopArtistsList] = useState<any[]>([]);
