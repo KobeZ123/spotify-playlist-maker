@@ -13,7 +13,7 @@ export async function getUserInformation(token: string) {
     });
 }
 
-// returns the user's id
+// returns the user's id as a Promise
 export async function getUserID(token: string) {
     return await axios.get("https://api.spotify.com/v1/me", {
         headers: {
