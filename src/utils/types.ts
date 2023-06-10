@@ -1,3 +1,3 @@
 export interface TopItemDisplayProps {
-    setTokenExpired: boolean,
+    setTokenExpired: (value: boolean) => void,
 }
