@@ -4,10 +4,10 @@ import "../styles/home.css";
 import useStore from "../stores/useStore";
 
 import { Link } from "react-router-dom";
+import ReauthenticateModal from "../components/Reauthenticate";
+import { TOKEN_STRING } from "../utils/constants";
 
 export default function Home() {
-  const RESPONSE_TYPE = "token";
-
   const [token, setToken] = useState("");
   const setStateToken = useStore((state) => state.setToken);
   const reset = useStore((state) => state.reset);
@@ -18,11 +18,11 @@ export default function Home() {
       `${process.env.REACT_APP_AUTH_ENDPOINT}?` +
         `client_id=${process.env.REACT_APP_CLIENT_ID}` +
         `&redirect_uri=${process.env.REACT_APP_REDIRECT_URI}` +
-        `&response_type=${RESPONSE_TYPE}` +
+        `&response_type=${TOKEN_STRING}` +
         `&scope=${process.env.REACT_APP_SCOPE}`
     );
     const hash = window.location.hash;
-    let token = window.localStorage.getItem("token");
+    let token = window.localStorage.getItem(TOKEN_STRING);
 
     if (!token && hash) {
       token = hash
@@ -30,10 +30,10 @@ export default function Home() {
         .split("&")
         .find((elem) => elem.startsWith("access_token"))!
         .split("=")[1];
-
+      
       window.location.hash = "";
       window.location.href = "http://localhost:3000/home";
-      window.localStorage.setItem("token", token);
+      window.localStorage.setItem(TOKEN_STRING, token);
     }
     if (token != null) {
       setToken(token);
@@ -44,7 +44,7 @@ export default function Home() {
   const logout = () => {
     setToken("");
     reset();
-    window.localStorage.removeItem("token");
+    window.localStorage.removeItem(TOKEN_STRING);
   };
 
   const onButtonClicking = async () => {
@@ -73,6 +73,7 @@ export default function Home() {
             your favorite music!
           </p>
         }
+        <ReauthenticateModal visible={true}/>
 
         {!token ? (
           <a
@@ -80,7 +81,7 @@ export default function Home() {
               `${process.env.REACT_APP_AUTH_ENDPOINT}?` +
               `client_id=${process.env.REACT_APP_CLIENT_ID}` +
               `&redirect_uri=${process.env.REACT_APP_REDIRECT_URI}` +
-              `&response_type=${RESPONSE_TYPE}` +
+              `&response_type=${TOKEN_STRING}` +
               `&scope=${process.env.REACT_APP_SCOPE}`
             }
             className="button-64"
