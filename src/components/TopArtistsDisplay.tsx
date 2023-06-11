@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import useStore from "../stores/useStore";
 import { getTopArtistsLongTerm, getTopArtistsMediumTerm, getTopArtistsShortTerm } from "../api/loadData";
 
