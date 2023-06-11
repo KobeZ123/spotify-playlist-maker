@@ -5,6 +5,7 @@ import RecommendationPage from './pages/RecommendationPage';
 import TopItemsPage from './pages/TopItemsPage';
 import TestViewWithButtons from './pages/TestViewWithButtons';
 import Layout from './pages/Layout';
+import HowItWorks from './pages/playlist/HowItWorks';
 
 function App() {
   return (
@@ -27,7 +28,7 @@ function App() {
       <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route path="home" element={<Home />} />
+          <Route path="home" element={<HowItWorks />} />
           <Route path="recommendations" element={<RecommendationPage />} />
           <Route path="top_items" element={<TopItemsPage />} />
           <Route path="test" element={<TestViewWithButtons />} />
