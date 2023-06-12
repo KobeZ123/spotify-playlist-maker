@@ -33,7 +33,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #333;
+    background-color: var(--primary-black);
     padding: 10px;
   }
   
@@ -43,7 +43,7 @@
   }
   
   .logo-link {
-    color: #fff;
+    color: var(--primary-white);
     font-size: 2rem;
     padding: 0.5rem 1rem;
     text-decoration: none;
@@ -64,6 +64,10 @@
   }
   
   .nav-link {
-    color: #fff;
+    color: var(--primary-white);
     text-decoration: none;
+  }
+
+  .logo-link:hover, .nav-link:hover {
+    color: var(--primary-green);
   }

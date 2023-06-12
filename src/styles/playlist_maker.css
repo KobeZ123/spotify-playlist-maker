@@ -40,7 +40,7 @@
     flex-direction: column;
     align-items: center;
     height: 100%;
-    background-color: lightslategrey;
+    background-color: var(--primary-blue);
 }
 
 .playlist-page-container h1 {
@@ -85,12 +85,11 @@
     font-weight: 400;
     margin-right: 3rem;
     margin-left: 3rem;
-    color: darkslategrey;
     font-style: italic;
 }
 
 .get-started-btn {
-    background-color: #1DB954;
+    background-color: var(--primary-green);
     padding: 1rem 4rem;
     font-size: 1.5rem;
     font-family: 'Poppins';
@@ -105,12 +104,11 @@
 
 .get-started-btn:hover,
 .get-started-btn:focus { 
-    background-color: #23d762;
-    color: #ffffff;
+    filter: brightness(110%);
 }
 
 .playlist-back-btn {
-    background-color: #ff6868;
+    background-color: var(--primary-pink);
     padding: 1rem 4rem;
     font-size: 1.5rem;
     font-family: 'Poppins';
@@ -125,6 +123,11 @@
 
 .playlist-back-btn:hover,
 .playlist-back-btn:focus { 
-    background-color: #fe8080;
-    color: #ffffff;
+    filter: brightness(110%);
+}
+
+.sad-face-img {
+    fill: var(--primary-white);
+    color: var(--primary-white);
+    filter: invert(100%);
 }
