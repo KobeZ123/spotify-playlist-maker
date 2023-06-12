@@ -17,7 +17,7 @@ export default function PlaylistError() {
             <br />
             Go back to the home page and try again!
           </p>
-          <img src={sad_face} width={250} height={250} />
+          <img src={sad_face} width={250} height={250} className="sad-face-img"/>
         </section>
 
         <button className="playlist-back-btn" onClick={handleBack}>
