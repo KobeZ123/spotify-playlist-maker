@@ -35,6 +35,7 @@
   justify-content: space-between;
   background-color: var(--primary-black);
   padding: 10px;
+  height: auto;
 }
 
 .navbar-logo {
@@ -71,4 +72,14 @@
 .logo-link:hover,
 .nav-link:hover {
   color: var(--primary-green);
+}
+
+@media screen and (max-width: 680px) {
+  .navbar-items {
+    display: none;
+  }
+
+  .navbar {
+    justify-content: center;
+  }
 }
