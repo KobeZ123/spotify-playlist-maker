@@ -1,0 +1,17 @@
+.reauthenticate-div {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background-color: var(--primary-white);
+  padding: 2rem;
+  border-radius: 4rem;
+  margin: 2rem;
+}
+
+.reauthenticate-div h2 {
+  font-size: 2rem;
+  color: var(--primary-black);
+  font-weight: 600;
+}
+
+

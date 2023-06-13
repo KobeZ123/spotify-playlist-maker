@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { TOKEN_STRING } from "../utils/constants";
 import useStore from "../stores/useStore";
 import { getUserID } from "../api/loadData";
+import "../styles/reauthenticate.css";
+import "../styles/home.css"
 
 interface ModalProps {
   children: JSX.Element;
@@ -31,18 +33,10 @@ export default function ReauthenticateWrapper(props: ModalProps) {
     props.children
   ) : (
     <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        textAlign: "center",
-        backgroundColor: "lightgrey",
-        padding: "2rem",
-        borderRadius: "4rem",
-        margin: "2rem",
-      }}
+      className="reauthenticate-div"
     >
-      <h2 style={{ fontSize: "2rem" }}>Logged out of Spotify account.</h2>
-      <h2 style={{ fontSize: "2rem" }}>Please log in again!</h2>
+      <h2>Logged out of Spotify account.</h2>
+      <h2>Please log in again!</h2>
       <a
         href={
           `${process.env.REACT_APP_AUTH_ENDPOINT}?` +
@@ -51,7 +45,7 @@ export default function ReauthenticateWrapper(props: ModalProps) {
           `&response_type=${TOKEN_STRING}` +
           `&scope=${process.env.REACT_APP_SCOPE}`
         }
-        className="button-64"
+        className="login-to-spotify-btn"
       >
         Login to Spotify
       </a>
