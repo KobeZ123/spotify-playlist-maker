@@ -66,7 +66,7 @@ export default function Home() {
         {
           <p
             className="info-paragraph"
-            style={infoSelected ? { opacity: "100%" } : { opacity: "0%" }}
+            style={infoSelected ? { transform: "translateY(0)", opacity: "1", height: "auto" } : { transform: "translateY(-100%)", opacity: "0", height: "0" }}
           >
             This web application is designed for users to view their favorite
             artists and tracks as well as create interval playlists according to
@@ -105,10 +105,6 @@ export default function Home() {
             <button className="button-64" onClick={logout}>
               Logout
             </button>
-            <button onClick={onButtonClicking}>ACTION</button>
-            <Link to="/recommendations">Recommendations</Link>
-            <Link to="/top_items">Top Items</Link>
-            <Link to="/test">Tester</Link>
           </>
         )}
       </div>
