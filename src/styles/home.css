@@ -91,6 +91,17 @@
   justify-content: center;
   align-items: center;
   height: 100%;
+    background-size: 50% 50%;
+background-repeat: no-repeat;
+  background: 
+  radial-gradient(
+      circle at top left,
+      #f07363 0%,
+      #b15353 20%,
+      #000000 50%,
+      transparent 100%
+    ) top left,
+    radial-gradient(circle at bottom right, rgba(101,211,110,1) 0%, rgba(81,169,88,1) 20%, rgba(0,0,0,1) 70%, transparent 100%) bottom right;
 }
 
 .home-btn-section {
@@ -117,6 +128,7 @@
   box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
 }
 
-.home-selection-btn-left:hover, .home-selection-btn-right:hover {
+.home-selection-btn-left:hover,
+.home-selection-btn-right:hover {
   cursor: pointer;
 }
