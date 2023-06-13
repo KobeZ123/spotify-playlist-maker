@@ -54,6 +54,7 @@
   text-align: center;
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
 .home-content {
@@ -62,7 +63,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  height: 100vh;
     background-size: 50% 50%;
 background-repeat: no-repeat;
 
@@ -117,6 +118,24 @@ background-repeat: no-repeat;
 .home-selection-btn-left:active,
 .home-selection-btn-right:active,
 .button-64:active {
+  cursor: pointer;
+  filter: brightness(110%);
+}
+
+.login-to-spotify-btn {
+  font-size: 2rem;
+  color: var(--primary-white);
+  border-radius: 1.5rem;
+  padding: 1.5rem 3rem;
+  margin: 2rem;
+  background-color: var(--primary-green);
+  border: none;
+  box-shadow: rgba(255, 255, 255, 0.2) 0px 5px 15px;
+  text-decoration: none;
+}
+
+.login-to-spotify-btn:hover,
+.login-to-spotify-btn:active {
   cursor: pointer;
   filter: brightness(110%);
 }

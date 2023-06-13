@@ -84,7 +84,7 @@ export default function Home() {
               `&response_type=${TOKEN_STRING}` +
               `&scope=${process.env.REACT_APP_SCOPE}`
             }
-            className="button-64"
+            className="login-to-spotify-btn"
           >
             Login to Spotify
           </a>
