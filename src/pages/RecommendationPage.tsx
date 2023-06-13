@@ -194,7 +194,7 @@ export default function RecommendationPage() {
             {renderTrackResults()}
             {renderSelectedTracks()}
             
-            <PlaylistMaker tracks={recommendedTracks} />
+            <PlaylistMaker selectedArtists={selectedArtists} selectedGenres={[]} selectedTracks={selectedTracks} />
             <AttributeSelector name={RECOMMENDATION_CONSTANTS.ACOUSTICNESS} initialParams={optionalParams} updateParams={setOptionalParams} />
             <AttributeSelector name={RECOMMENDATION_CONSTANTS.DANCEABILITY} initialParams={optionalParams} updateParams={setOptionalParams} />
             <AttributeSelector name={RECOMMENDATION_CONSTANTS.ENERGY} initialParams={optionalParams} updateParams={setOptionalParams} />

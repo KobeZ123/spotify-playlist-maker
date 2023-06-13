@@ -1,6 +1,7 @@
 import axios from "axios";
 import { getRecommendationsByDuration, getUserID } from "./loadData";
 import { getRandomInt, millisecondsLowerBound, millisecondsRounded, millisecondsUpperBound, reduceStringArray } from "../utils/utils";
+import { trackSelector } from "../algorithm/selectors";
 
 // creates a playlist with the given name and returns the playlist id
 export async function createEmptyPlaylist(token: string, name: string, callback: (result: string) => void = () => {}) {
@@ -70,7 +71,7 @@ export async function selectTracksForPlaylistAlgorithm(token: string, artists: s
     // keep selecting a singular recommendation 
     let selectedTracks: any[] = []; // tracks selected  
     while (duration > 499 && !done) {
-        await getRecommendationsByDuration(token, artists, genres, tracks, 0, duration).then((tracks: any[]) => {
+        await trackSelector(token, artists, genres, tracks, 0, duration).then((tracks: any[]) => {
             console.log("tracks");
             console.log(tracks);
             if (tracks.length == 0) {
@@ -96,7 +97,7 @@ export async function selectTracksForPlaylistAlgorithm(token: string, artists: s
             let added_song = selectedTracks[counter];
             let song_duration_rounded = millisecondsRounded(added_song["duration_ms"]) + duration;
             console.log("milliseconds rounded " + millisecondsRounded(added_song["duration_ms"]));
-            await getRecommendationsByDuration(token, artists, genres, tracks,
+            await trackSelector(token, artists, genres, tracks,
                 millisecondsLowerBound(song_duration_rounded), millisecondsUpperBound(song_duration_rounded)).then((tracks: any[]) => {
                 if (tracks.length != 0) {
                     let selected = tracks[getRandomInt(tracks.length)];

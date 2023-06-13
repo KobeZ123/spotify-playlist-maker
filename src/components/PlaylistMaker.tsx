@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import "../styles/playlist_maker.css";
-import { createEmptyPlaylist, populatePlaylist } from "../api/postData";
+import { createEmptyPlaylist, populatePlaylist, selectTracksForPlaylistAlgorithm } from "../api/postData";
 import useStore from "../stores/useStore";
 
 interface PlaylistMakerProps {
-    tracks: any[]
+    selectedArtists: any[],
+    selectedGenres: any[],
+    selectedTracks: any[],
 }
 
-export default function PlaylistMaker({tracks} : PlaylistMakerProps ) {
+export default function PlaylistMaker(props: PlaylistMakerProps ) {
     // tracks if a playlist has been created yet
     const [isPlaylistCreated, setIsPlaylistCreated] = useState<boolean>(false);
     const [playlistID, setPlaylistID] = useState<string>("");
@@ -21,7 +23,7 @@ export default function PlaylistMaker({tracks} : PlaylistMakerProps ) {
     useEffect(() => {
         if (token != null && playlistID != "" && isPlaylistCreated) {
             console.log("playlist created, time to populate");
-            populatePlaylist(token, playlistID, tracks);
+            selectTracksForPlaylistAlgorithm(token, props.selectedArtists, props.selectedGenres, props.selectedTracks, playlistID, 900000);
         }
     }, [playlistID]);
 
@@ -35,7 +37,7 @@ export default function PlaylistMaker({tracks} : PlaylistMakerProps ) {
 
     return (
         <div className="playlist-maker-container">
-            {isPlaylistCreated ?
+            {/* {isPlaylistCreated ?
                 <section>
                     <h1>RECOMMENDED TRACKS</h1>
                     {tracks.map((track) => (
@@ -43,8 +45,8 @@ export default function PlaylistMaker({tracks} : PlaylistMakerProps ) {
                             {track["name"]}
                         </p>
                     ))}
-                </section> :
-                <button 
+                </section> : */}
+             {   <button 
                     className="make-playlist-btn"
                     onClick={() => {handleMakingPlaylist()}}>
                     CREATE PLAYLIST
