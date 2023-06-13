@@ -1,4 +1,3 @@
-import './App.css';
 import Home from './pages/Home';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import RecommendationPage from './pages/RecommendationPage';
@@ -7,6 +6,7 @@ import TestViewWithButtons from './pages/TestViewWithButtons';
 import Layout from './pages/Layout';
 import HowItWorks from './pages/playlist/HowItWorks';
 import PlaylistError from './pages/playlist/PlaylistError';
+import SelectArtists from './pages/playlist/SelectArtists';
 
 function App() {
   return (
@@ -29,10 +29,10 @@ function App() {
       <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route path="home" element={<PlaylistError />} />
+          <Route path="home" element={<Home />} />
           <Route path="recommendations" element={<RecommendationPage />} />
           <Route path="top_items" element={<TopItemsPage />} />
-          <Route path="test" element={<TestViewWithButtons />} />
+          <Route path="test" element={<SelectArtists />} />
           <Route path="callback" element={<Home />} />
         </Route>
       </Routes>

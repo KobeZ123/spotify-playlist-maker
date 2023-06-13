@@ -6,8 +6,6 @@ import {
   getTopArtistsShortTerm,
 } from "../api/loadData";
 
-import "../styles/top_items_display.css";
-
 export default function TopArtistsDisplay() {
   const token = useStore((state) => state.token);
   // the user's top artists as a list of items
