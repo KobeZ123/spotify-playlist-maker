@@ -10,7 +10,7 @@ export default function TopItemsPage() {
     <ReauthenticateWrapper
       children={
         <div className="top-items-page">
-          <h1 className="top-items-heading">TOP ITEMS</h1>
+          <h1 className="top-items-heading">Top Items</h1>
           <div className="selector-container">
             <button
               className={
@@ -33,7 +33,7 @@ export default function TopItemsPage() {
               Tracks
             </button>
           </div>
-          <h1>HERE IS THE TOP ITEMS PAGE</h1>
+          <h1 className="top-items-subheading">Here are your top {selectedItem}</h1>
           {selectedItem === "artists" ? (
             <TopArtistsDisplay />
           ) : (
