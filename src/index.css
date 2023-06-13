@@ -9,12 +9,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: var(--primary-white);
-  background-color: var(--primary-blue);
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  background-color: var(--background-black);
 }
 
 :root {
@@ -23,4 +18,5 @@ code {
   --primary-pink: #f07363;
   --primary-white: #ffffff;
   --primary-black: #000000;
+  --background-black: #1C1C1C;
 }

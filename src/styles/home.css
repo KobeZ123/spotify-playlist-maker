@@ -54,8 +54,6 @@
   text-align: center;
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  background-color: var(--primary-black);
 }
 
 .home-content {
