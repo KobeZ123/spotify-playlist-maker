@@ -144,7 +144,6 @@ export async function getTopTracksLongTerm(token: string, callback: (result: any
 
 // get a random selection of [amount] top items of the given type (artists, tracks) from the given terms [short_term, medium_term, long_term]
 export async function getTopItemsAndSelectRandom(token: string, type: string, terms: string[], amount: number, callback: (result: any) => void = ()=>{}) {
-    console.log("Selecting random");
     // item represented as a data object
     let selectedItems: any[] = []; 
     let count = 0;
@@ -157,8 +156,6 @@ export async function getTopItemsAndSelectRandom(token: string, type: string, te
             const hasDuplicate = selectedItems.some((item) => item.id === randomItem.id);
             if (!hasDuplicate) {
                 selectedItems.push(randomItem);
-                console.log("current list");
-                console.log(selectedItems);
                 count = count + 1;
             }
             
