@@ -1,5 +1,7 @@
 import axios from "axios";
 import { RecommendationParams } from "./recommendationParams";
+import { ARTISTS, LONG_TERM, MEDIUM_TERM, SHORT_TERM, TRACKS } from "../utils/constants";
+import { getRandomInt } from "../utils/utils";
 
 // returns the user's information
 export async function getUserInformation(token: string) {
@@ -69,10 +71,10 @@ export async function searchTracks(token: string, query: string, callback: (resu
     searchBy(token, query,  "track", callback);
 }
 
-// ABSTRACTION: return's the user's top item in the given term 
+// ABSTRACTION: returns the user's top item in the given term 
 export async function getTopItemByTerm(token: string, type: string, term: string, 
     callback: (result: any) => void, limit: number = 20, offset: number = 0) {
-    var allowed_terms: string[] = ["short_term", "medium_term", "long_term"];
+    var allowed_terms: string[] = [SHORT_TERM, MEDIUM_TERM, LONG_TERM];
     if (!allowed_terms.includes(term)) {
         throw new Error("invalid term for getTopItemByTerm");
     }
@@ -92,34 +94,80 @@ export async function getTopItemByTerm(token: string, type: string, term: string
     });
 }
 
+// promise that returns the user's top item in the given term 
+export async function getTopItemByTermPromise(token: string, type: string, term: string, limit: number = 20, offset: number = 0) {
+    var allowed_terms: string[] = [SHORT_TERM, MEDIUM_TERM, LONG_TERM];
+    if (!allowed_terms.includes(term)) {
+        throw new Error("invalid term for getTopItemByTerm");
+    }
+    return await axios.get(`https://api.spotify.com/v1/me/top/${type}`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+        params: {
+            time_range: term,
+            limit: limit, 
+            offset: offset, 
+        }
+    });
+}
+
 // return's the user's top artists in the last 4 weeks (short term) 
 export async function getTopArtistsShortTerm(token: string, callback: (result: any) => void = ()=>{}) {
-    getTopItemByTerm(token, "artists", "short_term", callback);
+    getTopItemByTerm(token, ARTISTS, "short_term", callback);
 }
 
 // return's the user's top artists in the last 6 months (medium term) 
 export async function getTopArtistsMediumTerm(token: string, callback: (result: any) => void = ()=>{}) {
-    getTopItemByTerm(token, "artists", "medium_term", callback);
+    getTopItemByTerm(token, ARTISTS, "medium_term", callback);
 }
 
 // return's the user's top artists in the last few years (long term) 
 export async function getTopArtistsLongTerm(token: string, callback: (result: any) => void = ()=>{}) {
-    getTopItemByTerm(token, "artists", "long_term", callback);
+    getTopItemByTerm(token, ARTISTS, "long_term", callback);
 }
 
 // return's the user's top tracks in the last 4 weeks (short term) 
 export async function getTopTracksShortTerm(token: string, callback: (result: any) => void = ()=>{}) {
-    getTopItemByTerm(token, "tracks", "short_term", callback);
+    getTopItemByTerm(token, TRACKS, "short_term", callback);
 }
 
 // return's the user's top tracks in the last 6 months (medium term) 
 export async function getTopTracksMediumTerm(token: string, callback: (result: any) => void = ()=>{}) {
-    getTopItemByTerm(token, "tracks", "medium_term", callback);
+    getTopItemByTerm(token, TRACKS, "medium_term", callback);
 }
 
 // return's the user's top tracks in the last few years (long term) 
 export async function getTopTracksLongTerm(token: string, callback: (result: any) => void = ()=>{}) {
-    getTopItemByTerm(token, "tracks", "long_term", callback);
+    getTopItemByTerm(token, TRACKS, "long_term", callback);
+}
+
+// get a random selection of [amount] top items of the given type (artists, tracks) from the given terms [short_term, medium_term, long_term]
+export async function getTopItemsAndSelectRandom(token: string, type: string, terms: string[], amount: number, callback: (result: any) => void = ()=>{}) {
+    console.log("Selecting random");
+    // item represented as a data object
+    let selectedItems: any[] = []; 
+    let count = 0;
+    while (count < amount) {
+        // gets an item from a random term term length and adds to list of items 
+        await getTopItemByTermPromise(token, type, terms[getRandomInt(terms.length)]).then((response) => {
+            const resultList = response.data.items;
+            const randomItem = resultList[getRandomInt(resultList.length)]
+            console.log(randomItem);
+            const hasDuplicate = selectedItems.some((item) => item.id === randomItem.id);
+            if (!hasDuplicate) {
+                selectedItems.push(randomItem);
+                console.log("current list");
+                console.log(selectedItems);
+                count = count + 1;
+            }
+            
+            console.log("current count " + count);
+        });
+        
+    }
+    callback(selectedItems);
+    return selectedItems;
 }
 
 // returns recommendations based on a list of artist ids, genre names, and track ids
