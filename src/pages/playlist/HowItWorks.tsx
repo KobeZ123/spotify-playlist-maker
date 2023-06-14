@@ -1,7 +1,12 @@
+import { useNavigate } from "react-router-dom";
+
 export default function HowItWorks() {
+  const navigate = useNavigate();
+
   const handleNext = (event: any) => {
     event.preventDefault();
     console.log("next page");
+    navigate('select_artists');
   };
 
   return (

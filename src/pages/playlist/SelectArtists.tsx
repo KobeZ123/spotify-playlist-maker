@@ -12,8 +12,10 @@ import {
   MEDIUM_TERM,
   SHORT_TERM,
 } from "../../utils/constants";
+import { useNavigate } from "react-router-dom";
 
 export default function SelectArtists() {
+  const navigate = useNavigate();
   const token = useStore((state) => state.token);
 
   // the artist search query state
@@ -46,6 +48,7 @@ export default function SelectArtists() {
   const handleBack = (event: any) => {
     event.preventDefault();
     console.log("back page");
+    navigate("..");
   };
 
   const handleSearch = (query: string) => {
@@ -159,7 +162,8 @@ export default function SelectArtists() {
         <section className="selection-recommendations">
           <h3>Some of your favorites</h3>
           <section className="rec-cards-container">
-            {topArtistsList.map(
+            {topArtistsList.length == 0 ? <h3>Loading...</h3> :
+            topArtistsList.map(
               (artist, index) =>
                 index < 8 && (
                   <span
@@ -188,8 +192,8 @@ export default function SelectArtists() {
         <section className="progress-btn-div">
           <button className="playlist-back-btn" onClick={handleBack}>
             Back
-            </button>
-            <button className="playlist-next-btn" onClick={handleNext}>
+          </button>
+          <button className="playlist-next-btn" onClick={handleNext}>
             Next
           </button>
         </section>
