@@ -13,6 +13,8 @@ import {
   SHORT_TERM,
 } from "../../utils/constants";
 import { useNavigate } from "react-router-dom";
+import ArtistSelectedSlip from "../../components/playlist/ArtistSelectedSlip";
+import ItemSelectionRecommendation from "../../components/playlist/ArtistSelectionRecommendation";
 
 export default function SelectArtists() {
   const navigate = useNavigate();
@@ -94,21 +96,6 @@ export default function SelectArtists() {
         <h1>Interval Playlist Maker</h1>
         <div>
           <h3>Select Artists</h3>
-          {selectedArtists.length > 0 && (
-            <div className="column-section">
-              <h4>Here are the artists you selected</h4>
-              {selectedArtists.map((artist) => (
-                <p
-                  className="selected-item-name-slip"
-                  id={artist["id"]}
-                  key={artist["id"]}
-                  onClick={(event) => handleArtistClick(event, artist)}
-                >
-                  {artist["name"]}
-                </p>
-              ))}
-            </div>
-          )}
           <p className="how-it-works-p">
             Use the search feature or choose some of your favorite artists to
             curate the playlist!
@@ -131,7 +118,7 @@ export default function SelectArtists() {
               Search
             </button>
           </span> */}
-          <span className="search-bar-span">
+          <span className="search-bar-span adjustable-width-medium">
             <input
               className="search-bar-input"
               onChange={(event) => {
@@ -160,36 +147,26 @@ export default function SelectArtists() {
             )}
           </div>
         </section>
-        <section className="selection-recommendations">
-          <h3>Some of your favorites</h3>
-          <section className="rec-cards-container">
-            {topArtistsList.length == 0 ? <h3>Loading...</h3> :
-            topArtistsList.map(
-              (artist, index) =>
-                index < 8 && (
-                  <span
-                    className={
-                      "rec-card-container" +
-                      (selectedArtists.some((item) => item.id === artist.id)
-                        ? " selected"
-                        : "")
-                    }
-                    key={artist.name + "_card"}
-                    onClick={(event) => {
-                      handleArtistClick(event, artist);
-                    }}
-                  >
-                    <img
-                      className="item-img"
-                      src={artist.images.length > 0 ? artist.images[0].url : ""}
-                      alt={`${artist.name}`}
-                    />
-                    <p className="item-text">{artist.name}</p>
-                  </span>
-                )
+        <section className="adjustable-width-large">
+          <div className="column-section">
+            <h4>Here are the artists you selected</h4>
+            {selectedArtists.length > 0 && (
+              <div className="selected-items-div">
+                {selectedArtists.map((artist) => (
+                  <ArtistSelectedSlip
+                    data={artist}
+                    handleClick={handleArtistClick}
+                  />
+                ))}
+              </div>
             )}
-          </section>
+          </div>
         </section>
+        <ItemSelectionRecommendation
+          topItemsList={topArtistsList}
+          selectedItems={selectedArtists}
+          handleItemClick={handleArtistClick}
+        />
         <section className="progress-btn-div">
           <button className="playlist-back-btn" onClick={handleBack}>
             Back

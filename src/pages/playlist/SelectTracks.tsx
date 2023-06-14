@@ -9,6 +9,8 @@ import {
 import { useNavigate } from "react-router-dom";
 import useStore from "../../stores/useStore";
 import { reduceArtistNamesToString } from "../../utils/utils";
+import TrackSelectionRecommendation from "../../components/playlist/TrackSelectionRecommendation";
+import TrackSelectedSlip from "../../components/playlist/TrackSelectedSlip";
 
 export default function SelectTracks() {
   const navigate = useNavigate();
@@ -114,23 +116,6 @@ export default function SelectTracks() {
         <h1>Interval Playlist Maker</h1>
         <div>
           <h3>Select Tracks</h3>
-          {selectedTracks.length > 0 && (
-            <div className="column-section">
-              <h4>Here are the tracks you selected</h4>
-              {selectedTracks.map((track) => (
-                <p
-                  className="selected-item-name-slip"
-                  id={track["id"]}
-                  key={track["id"]}
-                  onClick={(event) => handleTrackClick(event, track)}
-                >
-                  {track["name"] +
-                    " - " +
-                    reduceArtistNamesToString(track["artists"])}
-                </p>
-              ))}
-            </div>
-          )}
           <p className="how-it-works-p">
             Use the search feature or choose some of your favorite tracks to
             curate the playlist!
@@ -184,43 +169,26 @@ export default function SelectTracks() {
             )}
           </div>
         </section>
-        <section className="selection-recommendations">
-          <h3>Some of your favorites</h3>
-          <section className="rec-cards-container">
-            {topTracksList.length == 0 ? (
-              <h3>Loading...</h3>
-            ) : (
-              topTracksList.map(
-                (track, index) =>
-                  index < 8 && (
-                    <span
-                      className={
-                        "rec-card-container" +
-                        (selectedTracks.some((item) => item.id === track.id)
-                          ? " selected"
-                          : "")
-                      }
-                      key={track.name + "_card"}
-                      onClick={(event) => {
-                        handleTrackClick(event, track);
-                      }}
-                    >
-                      <img
-                        className="item-img"
-                        src={
-                          track.album.images.length > 0
-                            ? track.album.images[0].url
-                            : ""
-                        }
-                        alt={`${track.name}`}
-                      />
-                      <p className="item-text">{track.name}</p>
-                    </span>
-                  )
-              )
+        <section className="adjustable-width-large">
+          <div className="column-section">
+            <h4>Here are the tracks you selected</h4>
+            {selectedTracks.length > 0 && (
+              <div className="selected-items-div">
+                {selectedTracks.map((track) => (
+                  <TrackSelectedSlip
+                    data={track}
+                    handleClick={handleTrackClick}
+                  />
+                ))}
+              </div>
             )}
-          </section>
+          </div>
         </section>
+        <TrackSelectionRecommendation
+          topItemsList={topTracksList}
+          selectedItems={selectedTracks}
+          handleItemClick={handleTrackClick}
+        />
         <section className="progress-btn-div">
           <button className="playlist-back-btn" onClick={handleBack}>
             Back
