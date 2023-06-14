@@ -43,6 +43,7 @@ export default function SelectArtists() {
   const handleNext = (event: any) => {
     event.preventDefault();
     console.log("next page");
+    navigate("/interval_playlist/select_tracks");
   };
 
   const handleBack = (event: any) => {
