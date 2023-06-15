@@ -281,3 +281,14 @@ export async function getRecommendationsByDuration(token: string, artists: strin
 
     return dataPromise;
 }
+
+// gets all the available genres 
+export async function getAvailableGenres(token: string, callback: (array: any[]) => void = () => {}) {
+    await axios.get(`https://api.spotify.com/v1/recommendations/available-genre-seeds`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+    }).then((response) => {
+        callback(response.data.genres);
+    });
+}
