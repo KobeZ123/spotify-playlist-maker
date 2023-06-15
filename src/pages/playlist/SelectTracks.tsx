@@ -11,6 +11,7 @@ import useStore from "../../stores/useStore";
 import { reduceArtistNamesToString } from "../../utils/utils";
 import TrackSelectionRecommendation from "../../components/playlist/TrackSelectionRecommendation";
 import TrackSelectedSlip from "../../components/playlist/TrackSelectedSlip";
+import TrackSearchBar from "../../components/playlist/TrackSearchBar";
 
 export default function SelectTracks() {
   const navigate = useNavigate();
@@ -121,54 +122,7 @@ export default function SelectTracks() {
             curate the playlist!
           </p>
         </div>
-        <section>
-          {/* <span className="search-bar-span">
-            <input
-              className="search-bar-input"
-              type="text"
-              value={artistQuery}
-              onChange={(event) => {
-                setArtistQuery(event.target.value);
-              }}
-            />
-            <button
-              className="search-bar-btn"
-              onClick={() => handleSearch(artistQuery)}
-            >
-              Search
-            </button>
-          </span> */}
-          <span className="search-bar-span">
-            <input
-              className="search-bar-input"
-              onChange={(event) => {
-                handleSearch(event.target.value);
-              }}
-              type="search"
-              placeholder="Search"
-            />
-          </span>
-          <div className="column-section">
-            {trackResults.map(
-              (track, index) =>
-                index < 10 && (
-                  <p
-                    className="item-result-slip"
-                    key={track["id"]}
-                    id={track["id"]}
-                    data-item={track}
-                    onClick={(event) => {
-                      handleTrackClick(event, track);
-                    }}
-                  >
-                    {track["name"] +
-                      " - " +
-                      reduceArtistNamesToString(track["artists"])}
-                  </p>
-                )
-            )}
-          </div>
-        </section>
+        <TrackSearchBar handleItemClick={handleTrackClick} />
         <section className="adjustable-width-large">
           <div className="column-section">
             <h4>Here are the tracks you selected</h4>

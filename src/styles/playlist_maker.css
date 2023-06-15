@@ -52,11 +52,6 @@
     padding-right: 2rem;
     padding-left: 2rem;
   }
-
-  .search-bar-span {
-    display: flex;
-    flex-direction: column;
-  }
 }
 
 .playlist-page-container h1 {
@@ -127,7 +122,7 @@
   border: 0;
   border-radius: 1rem;
   cursor: pointer;
-  margin:2rem;
+  margin: 2rem;
   transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s,
     box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s,
     color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
@@ -163,8 +158,10 @@
 .column-section {
   display: flex;
   flex-direction: column;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
+}
+
+.search-container {
+  position: relative;
 }
 
 .search-bar-span {
@@ -172,6 +169,33 @@
   flex-direction: row;
   background-color: var(--primary-white);
   border-radius: 1rem;
+}
+
+.search-bar-span-opened {
+  display: flex;
+  flex-direction: row;
+  background-color: var(--primary-white);
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+
+@media screen and (max-width: 680px) {
+  .search-bar-span {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.search-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  z-index: 1;
+  border-top: none;
+  box-shadow: 0px 5px 5px black;;
+  display: none;
 }
 
 .adjustable-width-large {
@@ -250,6 +274,7 @@
   margin-left: 1rem;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
+  max-width: 100%;
 }
 
 .remove-selected-x {
@@ -262,11 +287,14 @@
 
 .selected-item-name-slip {
   color: var(--primary-black);
-  width: auto;
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
   margin-right: 1rem;
   margin-left: 1rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+
 }
 
 .selected-item-name-slip-div:hover,
@@ -280,8 +308,12 @@
 }
 
 .item-result-slip {
-  border: red 3px solid;
-  margin: 0.25rem 0.5rem;
+  padding: 0 1rem;
+  color: var(--primary-black);
+  margin: 0.25rem 0rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
   cursor: pointer;
 }
 
@@ -330,7 +362,6 @@ input.nosubmit {
   cursor: pointer;
 }
 
-
 .rec-card-container:hover {
   background-color: var(--primary-green);
 }
@@ -345,5 +376,3 @@ input.nosubmit {
   flex-direction: row;
   justify-content: right;
 }
-
-
