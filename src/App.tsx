@@ -9,6 +9,7 @@ import PlaylistError from "./pages/playlist/PlaylistError";
 import SelectArtists from "./pages/playlist/SelectArtists";
 import MakeIntervalPlaylist from "./pages/playlist/MakeIntervalPlaylist";
 import SelectTracks from "./pages/playlist/SelectTracks";
+import SelectGenres from "./pages/playlist/SelectGenres";
 
 function App() {
   return (
@@ -37,9 +38,10 @@ function App() {
               <Route index element={<HowItWorks />} />
               <Route path="select_artists" element={<SelectArtists />} />
               <Route path="select_tracks" element={<SelectTracks />} />
+              <Route path="select_genres" element={<SelectGenres />} />
             </Route>
             <Route path="top_items" element={<TopItemsPage />} />
-            <Route path="test" element={<SelectArtists />} />
+            <Route path="test" element={<TestViewWithButtons />} />
             <Route path="callback" element={<Home />} />
           </Route>
         </Routes>
