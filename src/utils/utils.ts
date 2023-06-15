@@ -54,3 +54,41 @@ export function reduceArtistNamesToString(array: any[]): string {
     }
   }, "");
 }
+
+// capitalizes the first letter of the given word and returns it
+export function capitalizeWord(word: string): string {
+  return word.charAt(0).toUpperCase() + word.slice(1);
+}
+
+// converts one of the genre strings from the API to a user-friendly string
+export function polishGenreName(name: string) {
+  // r-n-b is an exception
+  if (name === "r-n-b") {
+    return "RNB";
+  }
+  // each multi-word genre name is split by dashes
+  const genreNameArray = name.split("-");
+  genreNameArray.forEach((word) => {
+    return capitalizeWord(word);
+  });
+  // if genre is one word, capitalize it and return it
+  // ex: "pop" => "Pop"
+  if (genreNameArray.length == 1) {
+    return genreNameArray[0];
+  } else {
+    // if any word in the genre is one letter, the "-" belongs in the genre
+    // ex: "k-pop" => "K-Pop"
+    if (genreNameArray[0].length == 1) {
+      return genreNameArray[0] + "-" + genreNameArray[1];
+    } else {
+      // reduce the word to a singular string and return it
+      return genreNameArray.reduce((acc, word, index) => {
+        if (index == 0) {
+          return word;
+        } else {
+          return acc + " " + word;
+        }
+      });
+    }
+  }
+}
