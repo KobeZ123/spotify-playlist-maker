@@ -17,10 +17,6 @@ export default function SelectTracks() {
   const navigate = useNavigate();
   const token = useStore((state) => state.token);
 
-  // the artist search query state
-  const [trackQuery, setTrackQuery] = useState<string>("");
-  // the artist search results as a list of items
-  const [trackResults, setTrackResults] = useState<any[]>([]);
   // the selected artists as a list of data objects
   const [selectedTracks, setSelectedTracks] = useState<any[]>([]);
   // the user's top artists as a list of items
@@ -67,23 +63,13 @@ export default function SelectTracks() {
   const handleNext = (event: any) => {
     event.preventDefault();
     console.log("next page");
+    navigate("/interval_playlist/select_genres");
   };
 
   const handleBack = (event: any) => {
     event.preventDefault();
     console.log("back page");
     navigate("/interval_playlist/select_artists");
-  };
-
-  const handleSearch = (query: string) => {
-    console.log("searched " + query);
-    setTrackQuery(query);
-    if (query == "") {
-      setTrackResults([]);
-    }
-    if (token != null && query != "") {
-      searchTracks(token, query, setTrackResults);
-    }
   };
 
   const handleTrackClick = (
