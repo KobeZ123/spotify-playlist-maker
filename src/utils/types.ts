@@ -12,3 +12,7 @@ export interface ItemSelectProps {
   data: any;
   handleClick: (event: any, data: any) => void;
 }
+
+export interface SearchBarProps {
+  handleItemClick: (event: any, data: any) => void;
+}
