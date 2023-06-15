@@ -60,6 +60,14 @@ export function capitalizeWord(word: string): string {
   return word.charAt(0).toUpperCase() + word.slice(1);
 }
 
+// removes the "-" from the genre name
+export function simplifyGenreName(name: string) {
+  let genreNameArray = name.split("-");
+  return genreNameArray.reduce((acc, word) => {
+    return acc + word;
+  });
+}
+
 // converts one of the genre strings from the API to a user-friendly string
 export function polishGenreName(name: string) {
   // r-n-b is an exception
@@ -67,8 +75,8 @@ export function polishGenreName(name: string) {
     return "RNB";
   }
   // each multi-word genre name is split by dashes
-  const genreNameArray = name.split("-");
-  genreNameArray.forEach((word) => {
+  let genreNameArray = name.split("-");
+  genreNameArray = genreNameArray.map((word) => {
     return capitalizeWord(word);
   });
   // if genre is one word, capitalize it and return it
@@ -91,4 +99,79 @@ export function polishGenreName(name: string) {
       });
     }
   }
+}
+
+function minimum(a: number, b: number, c: number): number {
+  return Math.min(a, Math.min(b, c));
+}
+
+function levenshteinDistance(word1: string, word2: string): number {
+  const len1 = word1.length;
+  const len2 = word2.length;
+
+  const matrix: number[][] = [];
+  for (let i = 0; i <= len1; i++) {
+    matrix[i] = [];
+    matrix[i][0] = i;
+  }
+  for (let j = 1; j <= len2; j++) {
+    matrix[0][j] = j;
+  }
+
+  for (let i = 1; i <= len1; i++) {
+    for (let j = 1; j <= len2; j++) {
+      const cost = word1[i - 1] === word2[j - 1] ? 0 : 1;
+
+      matrix[i][j] = minimum(
+        matrix[i - 1][j] + 1, // Deletion
+        matrix[i][j - 1] + 1, // Insertion
+        matrix[i - 1][j - 1] + cost // Substitution
+      );
+    }
+  }
+
+  return matrix[len1][len2];
+}
+
+export function searchWords(searchQuery: string, wordList: string[]): string[] {
+  // const distances: [string, number][] = [];
+  // for (const word of wordList) {
+  //   const distance = levenshteinDistance(searchQuery, word);
+  //   distances.push([word, distance]);
+  // }
+
+  // const sortedWords = distances.sort((a, b) => a[1] - b[1]);
+  const distances: [string, number, number][] = [];
+  for (const word of wordList) {
+    const distance = levenshteinDistance(searchQuery, simplifyGenreName(word));
+    const position = word.indexOf(searchQuery);
+
+    distances.push([word, distance, position]);
+  }
+
+  const sortedWords = distances.sort((a, b) => {
+    if (a[2] !== -1 && b[2] !== -1) {
+      // Both words have a match at the beginning
+      if (a[2] === b[2]) {
+        // Same position, sort by distance
+        return a[1] - b[1];
+      } else {
+        // Different position, sort by position
+        return a[2] - b[2];
+      }
+    } else if (a[2] !== -1) {
+      // Only word 'a' has a match at the beginning
+      return -1;
+    } else if (b[2] !== -1) {
+      // Only word 'b' has a match at the beginning
+      return 1;
+    } else {
+      // No match at the beginning for both words, sort by distance
+      return a[1] - b[1];
+    }
+  });
+
+  return sortedWords.map((sortedWords) => {
+    return sortedWords[0];
+  });
 }
