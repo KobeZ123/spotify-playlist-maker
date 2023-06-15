@@ -21,10 +21,6 @@ export default function SelectArtists() {
   const navigate = useNavigate();
   const token = useStore((state) => state.token);
 
-  // the artist search query state
-  const [artistQuery, setArtistQuery] = useState<string>("");
-  // the artist search results as a list of items
-  const [artistResults, setArtistResults] = useState<any[]>([]);
   // the selected artists as a list of data objects
   const [selectedArtists, setSelectedArtists] = useState<any[]>([]);
   // the user's top artists as a list of items
@@ -53,17 +49,6 @@ export default function SelectArtists() {
     event.preventDefault();
     console.log("back page");
     navigate("..");
-  };
-
-  const handleSearch = (query: string) => {
-    console.log("searched " + query);
-    setArtistQuery(query);
-    if (query == "") {
-      setArtistResults([]);
-    }
-    if (token != null && query != "") {
-      searchArtists(token, query, setArtistResults);
-    }
   };
 
   const handleArtistClick = (
@@ -102,9 +87,7 @@ export default function SelectArtists() {
             curate the playlist!
           </p>
         </div>
-        <ArtistSearchBar
-          handleItemClick={handleArtistClick}
-        />
+        <ArtistSearchBar handleItemClick={handleArtistClick} />
         <section className="adjustable-width-large">
           <div className="column-section">
             <h4>Here are the artists you selected</h4>
