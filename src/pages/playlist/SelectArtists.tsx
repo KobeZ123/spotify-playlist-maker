@@ -15,6 +15,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import ArtistSelectedSlip from "../../components/playlist/ArtistSelectedSlip";
 import ItemSelectionRecommendation from "../../components/playlist/ArtistSelectionRecommendation";
+import ArtistSearchBar from "../../components/playlist/ArtistSearchBar";
 
 export default function SelectArtists() {
   const navigate = useNavigate();
@@ -101,52 +102,9 @@ export default function SelectArtists() {
             curate the playlist!
           </p>
         </div>
-        <section>
-          {/* <span className="search-bar-span">
-            <input
-              className="search-bar-input"
-              type="text"
-              value={artistQuery}
-              onChange={(event) => {
-                setArtistQuery(event.target.value);
-              }}
-            />
-            <button
-              className="search-bar-btn"
-              onClick={() => handleSearch(artistQuery)}
-            >
-              Search
-            </button>
-          </span> */}
-          <span className="search-bar-span adjustable-width-medium">
-            <input
-              className="search-bar-input"
-              onChange={(event) => {
-                handleSearch(event.target.value);
-              }}
-              type="search"
-              placeholder="Search"
-            />
-          </span>
-          <div className="column-section">
-            {artistResults.map(
-              (artist, index) =>
-                index < 10 && (
-                  <p
-                    className="item-result-slip"
-                    key={artist["id"]}
-                    id={artist["id"]}
-                    data-item={artist}
-                    onClick={(event) => {
-                      handleArtistClick(event, artist);
-                    }}
-                  >
-                    {artist["name"]}
-                  </p>
-                )
-            )}
-          </div>
-        </section>
+        <ArtistSearchBar
+          handleItemClick={handleArtistClick}
+        />
         <section className="adjustable-width-large">
           <div className="column-section">
             <h4>Here are the artists you selected</h4>
