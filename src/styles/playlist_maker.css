@@ -160,6 +160,14 @@
   flex-direction: column;
 }
 
+.column-section-with-margins {
+  display: flex;
+  flex-direction: column;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
 .search-container {
   position: relative;
 }

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getTopItemsAndSelectRandom, searchTracks } from "../../api/loadData";
 import {
+  COLOR_PALETTE,
   LONG_TERM,
   MEDIUM_TERM,
   SHORT_TERM,
@@ -68,14 +69,15 @@ export default function SelectGenres() {
         </div>  
         <GenreSearchBar handleItemClick={handleGenreClick} />
         <section className="adjustable-width-large">
-          <div className="column-section">
+          <div className="column-section-with-margins">
             <h4>Here are the genres you selected</h4>
             {selectedGenres.length > 0 && (
               <div className="selected-items-div">
-                {selectedGenres.map((genre) => (
+                {selectedGenres.map((genre, index) => (
                   <GenreSelectedSlip
                     data={genre}
                     handleClick={handleGenreClick}
+                    color={COLOR_PALETTE[index % COLOR_PALETTE.length]}
                   />
                 ))}
               </div>

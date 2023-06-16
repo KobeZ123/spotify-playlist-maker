@@ -89,7 +89,7 @@ export default function SelectArtists() {
         </div>
         <ArtistSearchBar handleItemClick={handleArtistClick} />
         <section className="adjustable-width-large">
-          <div className="column-section">
+          <div className="column-section-with-margins">
             <h4>Here are the artists you selected</h4>
             {selectedArtists.length > 0 && (
               <div className="selected-items-div">
