@@ -10,6 +10,7 @@ import SelectArtists from "./pages/playlist/SelectArtists";
 import MakeIntervalPlaylist from "./pages/playlist/MakeIntervalPlaylist";
 import SelectTracks from "./pages/playlist/SelectTracks";
 import SelectGenres from "./pages/playlist/SelectGenres";
+import SelectDuration from "./pages/playlist/SelectDuration";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
               <Route path="select_artists" element={<SelectArtists />} />
               <Route path="select_tracks" element={<SelectTracks />} />
               <Route path="select_genres" element={<SelectGenres />} />
+              <Route path="select_duration" element={<SelectDuration />} />
             </Route>
             <Route path="top_items" element={<TopItemsPage />} />
             <Route path="test" element={<TestViewWithButtons />} />
