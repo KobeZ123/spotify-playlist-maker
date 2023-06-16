@@ -168,6 +168,13 @@
   text-align: left;
 }
 
+.row-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
 .search-container {
   position: relative;
 }
@@ -240,9 +247,9 @@
 
 .search-bar-input {
   font-size: 1.5rem;
-  font-family: "Poppins";
   font-weight: 400;
   padding: 1rem 2rem 1rem 3rem;
+  font-style: italic;
   outline: none;
   border: 0;
   width: 100%;
@@ -254,6 +261,18 @@
 
 .search-bar-input:focus {
   border: 0;
+}
+
+.input-bar {
+  font-size: 1.5rem;
+  font-weight: 400;
+  padding: 1rem 2rem 1rem 3rem;
+  font-style: italic;
+  outline: none;
+  border: 0;
+  width: 100%;
+  display: block;
+  border-radius: 1rem;
 }
 
 .search-bar-btn {
@@ -383,4 +402,18 @@ input.nosubmit {
   width: 100%;
   flex-direction: row;
   justify-content: right;
+}
+
+.duration-input {
+  font-size: 3rem;
+  font-weight: 400;
+  width: 8rem;
+  padding: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 1rem;
+}
+
+.min-text {
+  margin-left: 2rem;
 }
