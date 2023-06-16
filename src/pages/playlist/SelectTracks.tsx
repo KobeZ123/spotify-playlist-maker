@@ -110,7 +110,7 @@ export default function SelectTracks() {
         </div>
         <TrackSearchBar handleItemClick={handleTrackClick} />
         <section className="adjustable-width-large">
-          <div className="column-section">
+          <div className="column-section-with-margins">
             <h4>Here are the tracks you selected</h4>
             {selectedTracks.length > 0 && (
               <div className="selected-items-div">
