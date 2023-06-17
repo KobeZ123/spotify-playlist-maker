@@ -160,6 +160,12 @@
   flex-direction: column;
 }
 
+.column-section-centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .column-section-with-margins {
   display: flex;
   flex-direction: column;
@@ -416,4 +422,16 @@ input.nosubmit {
 
 .min-text {
   margin-left: 2rem;
+}
+
+.input-with-warning-div {
+  text-align: left;
+}
+
+.playlist-page-container .warning-text {
+  color: red;
+  font-size: 1rem;
+  margin: 0;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
 }

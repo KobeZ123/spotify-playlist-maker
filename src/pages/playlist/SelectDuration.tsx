@@ -12,7 +12,13 @@ export default function SelectDuration() {
 
   const handleNext = (event: any) => {
     event.preventDefault();
-    console.log("next page");
+    setIsSubmitted(true);
+    if (playlistName.length >= 1 && parseInt(duration) >= 5) {
+      console.log("next page");
+      updatePlaylistFormData("playlistName", playlistName);
+      updatePlaylistFormData("playlistDuration", parseInt(duration));
+    }
+    
   };
 
   const handleBack = (event: any) => {
@@ -30,31 +36,43 @@ export default function SelectDuration() {
     <div className="playlist-page-container">
       <div className="playlist-page-content">
         <h1>Name your Playlist</h1>
-        <span className="adjustable-width-medium search-bar-span">
-          <input
-            className="input-bar"
-            onChange={(event) => {
-              setPlaylistName(event.target.value);
-            }}
-            value={playlistName}
-            type="text"
-            placeholder="name your playlist"
-          />
-        </span>
+        <div className="input-with-warning-div">
+          {isSubmitted && playlistName === "" && (
+            <p className="warning-text">Please enter a playlist name.</p>
+          )}
+          <span className="adjustable-width-medium search-bar-span">
+            <input
+              className="input-bar"
+              onChange={(event) => {
+                setPlaylistName(event.target.value);
+              }}
+              value={playlistName}
+              type="text"
+              placeholder="name your playlist"
+            />
+          </span>
+        </div>
 
         <section className="adjustable-width-large">
           <div className="column-section-with-margins">
             <h4>How long is your playlist?</h4>
-            <div className="row-section">
-              <input
-                className="duration-input"
-                type="number"
-                value={duration}
-                onChange={handleDurationChange}
-                min={0}
-                max={9999}
-              />
-              <p className="min-text">MIN</p>
+            <div className="column-section-centered">
+              {isSubmitted && (duration === ""|| parseInt(duration) < 5) && (
+                <p className="warning-text">
+                  Please enter a duration over 5 minutes.
+                </p>
+              )}
+              <div className="row-section">
+                <input
+                  className="duration-input"
+                  type="number"
+                  value={duration}
+                  onChange={handleDurationChange}
+                  min={0}
+                  max={9999}
+                />
+                <p className="min-text">MIN</p>
+              </div>
             </div>
           </div>
         </section>

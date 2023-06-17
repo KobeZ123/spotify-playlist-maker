@@ -12,10 +12,12 @@ import { reduceArtistNamesToString } from "../../utils/utils";
 import TrackSelectionRecommendation from "../../components/playlist/TrackSelectionRecommendation";
 import TrackSelectedSlip from "../../components/playlist/TrackSelectedSlip";
 import TrackSearchBar from "../../components/playlist/TrackSearchBar";
+import { usePlaylistFormStore } from "../../stores/usePlaylistFormStore";
 
 export default function SelectTracks() {
   const navigate = useNavigate();
   const token = useStore((state) => state.token);
+  const { updatePlaylistFormData } = usePlaylistFormStore();
 
   // the selected artists as a list of data objects
   const [selectedTracks, setSelectedTracks] = useState<any[]>([]);
@@ -63,6 +65,7 @@ export default function SelectTracks() {
   const handleNext = (event: any) => {
     event.preventDefault();
     console.log("next page");
+    updatePlaylistFormData("selectedTracks", selectedTracks);
     navigate("/interval_playlist/select_genres");
   };
 
@@ -100,9 +103,8 @@ export default function SelectTracks() {
   return (
     <div className="playlist-page-container">
       <div className="playlist-page-content">
-        <h1>Interval Playlist Maker</h1>
+        <h1>Select Some Tracks</h1>
         <div>
-          <h3>Select Tracks</h3>
           <p className="how-it-works-p">
             Use the search feature or choose some of your favorite tracks to
             curate the playlist!

@@ -16,10 +16,12 @@ import { useNavigate } from "react-router-dom";
 import ArtistSelectedSlip from "../../components/playlist/ArtistSelectedSlip";
 import ItemSelectionRecommendation from "../../components/playlist/ArtistSelectionRecommendation";
 import ArtistSearchBar from "../../components/playlist/ArtistSearchBar";
+import { usePlaylistFormStore } from "../../stores/usePlaylistFormStore";
 
 export default function SelectArtists() {
   const navigate = useNavigate();
   const token = useStore((state) => state.token);
+  const { updatePlaylistFormData } = usePlaylistFormStore();
 
   // the selected artists as a list of data objects
   const [selectedArtists, setSelectedArtists] = useState<any[]>([]);
@@ -42,6 +44,7 @@ export default function SelectArtists() {
   const handleNext = (event: any) => {
     event.preventDefault();
     console.log("next page");
+    updatePlaylistFormData("selectedArtists", selectedArtists);
     navigate("/interval_playlist/select_tracks");
   };
 
@@ -79,9 +82,8 @@ export default function SelectArtists() {
   return (
     <div className="playlist-page-container">
       <div className="playlist-page-content">
-        <h1>Interval Playlist Maker</h1>
+        <h1>Select Some Artists</h1>
         <div>
-          <h3>Select Artists</h3>
           <p className="how-it-works-p">
             Use the search feature or choose some of your favorite artists to
             curate the playlist!

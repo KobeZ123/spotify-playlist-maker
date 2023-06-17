@@ -1,38 +1,25 @@
 import { useEffect, useState } from "react";
-import { getTopItemsAndSelectRandom, searchTracks } from "../../api/loadData";
 import {
   COLOR_PALETTE,
-  LONG_TERM,
-  MEDIUM_TERM,
-  SHORT_TERM,
-  TRACKS,
 } from "../../utils/constants";
 import { useNavigate } from "react-router-dom";
 import useStore from "../../stores/useStore";
-import TrackSelectionRecommendation from "../../components/playlist/TrackSelectionRecommendation";
-import TrackSelectedSlip from "../../components/playlist/TrackSelectedSlip";
-import TrackSearchBar from "../../components/playlist/TrackSearchBar";
 import GenreSearchBar from "../../components/playlist/GenreSearchBar";
 import GenreSelectedSlip from "../../components/playlist/GenreSelectedSlip";
+import { usePlaylistFormStore } from "../../stores/usePlaylistFormStore";
 
 export default function SelectGenres() {
   const navigate = useNavigate();
-  const token = useStore((state) => state.token);
+  const { updatePlaylistFormData } = usePlaylistFormStore();
 
   // the selected artists as a list of data objects
   const [selectedGenres, setSelectedGenres] = useState<any[]>([]);
 
-  useEffect(() => {
-    
-  }, []);
-
-  useEffect(() => {
-   
-  });
-
   const handleNext = (event: any) => {
     event.preventDefault();
     console.log("next page");
+    updatePlaylistFormData("selectedGenres", selectedGenres);
+    navigate("/interval_playlist/select_duration");
   };
 
   const handleBack = (event: any) => {
@@ -45,7 +32,6 @@ export default function SelectGenres() {
     event: React.MouseEvent<HTMLElement>,
     genre: any
   ) => {
-    console.log(genre);
     const hasDuplicate = selectedGenres.some(
       (item) => item === genre
     );
@@ -63,10 +49,7 @@ export default function SelectGenres() {
   return (
     <div className="playlist-page-container">
       <div className="playlist-page-content">
-        <h1>Interval Playlist Maker</h1>
-        <div>
-          <h3>Select Vibes</h3>
-        </div>  
+        <h1>Select Your Vibes</h1>
         <GenreSearchBar handleItemClick={handleGenreClick} />
         <section className="adjustable-width-large">
           <div className="column-section-with-margins">
