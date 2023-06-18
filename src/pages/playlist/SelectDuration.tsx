@@ -1,14 +1,19 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { usePlaylistFormStore } from "../../stores/usePlaylistFormStore";
+import useStore from "../../stores/useStore";
+import { createEmptyPlaylist } from "../../api/postData";
 
 export default function SelectDuration() {
+  const token = useStore((state) => state.token);
   const navigate = useNavigate();
   const { updatePlaylistFormData } = usePlaylistFormStore();
 
   const [playlistName, setPlaylistName] = useState<string>("");
   const [duration, setDuration] = useState<string>("");
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+  const [isPlaylistCreated, setIsPlaylistCreated] = useState<boolean>(false);
+  const [playlistID, setPlaylistID] = useState<string>("");
 
   const handleNext = (event: any) => {
     event.preventDefault();
@@ -17,6 +22,11 @@ export default function SelectDuration() {
       console.log("next page");
       updatePlaylistFormData("playlistName", playlistName);
       updatePlaylistFormData("playlistDuration", parseInt(duration));
+    }
+    console.log("creating empty playlist");
+    if (token != null) {
+      createEmptyPlaylist(token, "playlist", setPlaylistID);
+      setIsPlaylistCreated(true)
     }
     
   };
@@ -57,7 +67,7 @@ export default function SelectDuration() {
           <div className="column-section-with-margins">
             <h4>How long is your playlist?</h4>
             <div className="column-section-centered">
-              {isSubmitted && (duration === ""|| parseInt(duration) < 5) && (
+              {isSubmitted && (duration === "" || parseInt(duration) < 5) && (
                 <p className="warning-text">
                   Please enter a duration over 5 minutes.
                 </p>

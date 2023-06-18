@@ -31,7 +31,7 @@ export default function PlaylistMaker(props: PlaylistMakerProps ) {
         if (token != null) {
             console.log("creating empty playlist");
             createEmptyPlaylist(token, "playlist", setPlaylistID);
-            setIsPlaylistCreated(true)
+            setIsPlaylistCreated(true);
         }
     }
 

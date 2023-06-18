@@ -1,4 +1,5 @@
 import { useState } from "react";
+import SpotifyPlayer from "react-spotify-player";
 
 export default function PlaylistSuccess() {
   const [playlistOpened, setPlaylistOpened] = useState<boolean>(false);
@@ -13,7 +14,15 @@ export default function PlaylistSuccess() {
         </section>
         {playlistOpened ? (
           <div className="column-section">
-            <></>
+            <SpotifyPlayer
+              uri="spotify:album:1TIUsv8qmYLpBEhvmBmyBk"
+              size={{
+                width: "100%",
+                height: 300,
+              }}
+              view={"list"}
+              theme={"black"}
+            />
             <button
               className="playlist-next-btn"
               onClick={() => setPlaylistOpened(!playlistOpened)}
