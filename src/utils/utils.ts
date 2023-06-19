@@ -81,17 +81,17 @@ export function polishGenreName(name: string) {
   });
   // if genre is one word, capitalize it and return it
   // ex: "pop" => "Pop"
-  if (genreNameArray.length == 1) {
+  if (genreNameArray.length === 1) {
     return genreNameArray[0];
   } else {
     // if any word in the genre is one letter, the "-" belongs in the genre
     // ex: "k-pop" => "K-Pop"
-    if (genreNameArray[0].length == 1) {
+    if (genreNameArray[0].length === 1) {
       return genreNameArray[0] + "-" + genreNameArray[1];
     } else {
       // reduce the word to a singular string and return it
       return genreNameArray.reduce((acc, word, index) => {
-        if (index == 0) {
+        if (index === 0) {
           return word;
         } else {
           return acc + " " + word;
