@@ -99,6 +99,7 @@ export default function SelectArtists() {
                   <ArtistSelectedSlip
                     data={artist}
                     handleClick={handleArtistClick}
+                    key={artist.id}
                   />
                 ))}
               </div>

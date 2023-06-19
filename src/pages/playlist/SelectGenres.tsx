@@ -61,6 +61,7 @@ export default function SelectGenres() {
                     data={genre}
                     handleClick={handleGenreClick}
                     color={COLOR_PALETTE[index % COLOR_PALETTE.length]}
+                    key={genre}
                   />
                 ))}
               </div>

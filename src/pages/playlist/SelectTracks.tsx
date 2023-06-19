@@ -120,6 +120,7 @@ export default function SelectTracks() {
                   <TrackSelectedSlip
                     data={track}
                     handleClick={handleTrackClick}
+                    key={track.id}
                   />
                 ))}
               </div>
