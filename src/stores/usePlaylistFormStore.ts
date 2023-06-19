@@ -56,52 +56,6 @@ export const usePlaylistFormStore = create(
     getStorage: () => localStorage,
   })
 );
-// type PlaylistFormState = {
-//   playlistName: string;
-//   playlistDuration: number;
-//   selectedArtists: any[];
-//   selectedTracks: any[];
-//   selectedGenres: any[];
-//   playlistID: string;
-// };
-
-// type PlaylistFormStore = {
-//   formData: PlaylistFormState;
-//   updatePlaylistFormData: (field: keyof PlaylistFormState, value: any) => void;
-//   resetFormData: () => void;
-// };
-
-// const initialPlaylistFormState: PlaylistFormState = {
-//   playlistName: "",
-//   playlistDuration: 0,
-//   selectedArtists: [],
-//   selectedTracks: [],
-//   selectedGenres: [],
-//   playlistID: "",
-// };
-
-// export const usePlaylistFormStore = create(
-//   persist(
-//     (set) => ({
-//       formData: { ...initialPlaylistFormState },
-//       updatePlaylistFormData: (field:any, value: any) =>
-//         set((state: PlaylistFormStore) => ({
-//           formData: {
-//             ...state.formData,
-//             [field]: value,
-//           },
-//         })),
-//       resetFormData: () =>
-//         set(() => ({
-//           formData: { ...initialPlaylistFormState },
-//         })),
-//     }),
-//     {
-//       name: 'playlist-form-storage', // Specify a unique name for the storage
-//       getStorage: () => localStorage, // Use local storage for persistence
-//     }
-//   )
-// );
 
 // export const usePlaylistFormStore = create<PlaylistFormStore>((set) => {
 //   const [formData, setFormData] = useLocalStorage(
