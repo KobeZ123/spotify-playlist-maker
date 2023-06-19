@@ -11,6 +11,7 @@ import MakeIntervalPlaylist from "./pages/playlist/MakeIntervalPlaylist";
 import SelectTracks from "./pages/playlist/SelectTracks";
 import SelectGenres from "./pages/playlist/SelectGenres";
 import SelectDuration from "./pages/playlist/SelectDuration";
+import PlaylistSuccess from "./pages/playlist/PlaylistSuccess";
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
               <Route path="select_tracks" element={<SelectTracks />} />
               <Route path="select_genres" element={<SelectGenres />} />
               <Route path="select_duration" element={<SelectDuration />} />
+              <Route path="success" element={<PlaylistSuccess />} />
             </Route>
             <Route path="top_items" element={<TopItemsPage />} />
             <Route path="test" element={<TestViewWithButtons />} />
