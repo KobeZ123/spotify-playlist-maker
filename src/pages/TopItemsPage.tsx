@@ -1,7 +1,7 @@
 import { useState } from "react";
 import TopArtistsDisplay from "../components/TopArtistsDisplay";
 import TopTracksDisplay from "../components/TopTracksDisplay";
-import ReauthenticateWrapper from "../components/Reauthenticate";
+import ReauthenticateWrapper from "../components/ReauthenticatePageWrapper";
 
 export default function TopItemsPage() {
   const [selectedItem, setSelectedItem] = useState<string>("artists");
