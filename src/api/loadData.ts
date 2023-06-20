@@ -10,7 +10,6 @@ export async function getUserInformation(token: string) {
             Authorization: `Bearer ${token}`
         }
     }).then((response) => {
-        console.log(response.data);
         return response.data;
     });
 }
@@ -22,7 +21,6 @@ export async function getUserID(token: string) {
             Authorization: `Bearer ${token}`
         }
     }).then((response) => {
-        console.log(response.data);
         return response.data;
     });
 }
@@ -34,7 +32,6 @@ export async function getCurrentUserPlaylists(token: string) {
             Authorization: `Bearer ${token}`
         }
     }).then((response) => {
-        console.log(response.data);
         return response.data;
     });
 }
@@ -51,11 +48,9 @@ export async function searchBy(token: string, query: string, type: string, callb
         }
     }).then((response) => {
         if (type === "artist") {
-            console.log(response.data.artists.items);
             callback(response.data.artists.items);
         }
         else if (type === "track") {
-            console.log(response.data.tracks.items);
             callback(response.data.tracks.items);
         }
     });
@@ -88,7 +83,6 @@ export async function getTopItemByTerm(token: string, type: string, term: string
             offset: offset, 
         }
     }).then((response) => {
-        console.log(response.data.items);
         callback(response.data.items);
         return response.data.items;
     });
@@ -152,14 +146,11 @@ export async function getTopItemsAndSelectRandom(token: string, type: string, te
         await getTopItemByTermPromise(token, type, terms[getRandomInt(terms.length)]).then((response) => {
             const resultList = response.data.items;
             const randomItem = resultList[getRandomInt(resultList.length)]
-            console.log(randomItem);
             const hasDuplicate = selectedItems.some((item) => item.id === randomItem.id);
             if (!hasDuplicate) {
                 selectedItems.push(randomItem);
                 count = count + 1;
             }
-            
-            console.log("current count " + count);
         });
         
     }
@@ -196,7 +187,6 @@ export async function getRecommendations(token: string, artists: string[], genre
             limit: 100,
         }
     }).then((response) => {
-        console.log(response.data);
         callback(response.data.tracks);
         return response.data;
     });
@@ -219,7 +209,6 @@ export async function getRecommendationsWithOptionalParams(token: string, artist
             return accumulator;
         }, "");
     }
-    console.log(optional);
 
     await axios.get("https://api.spotify.com/v1/recommendations", {
         headers: {
@@ -233,7 +222,6 @@ export async function getRecommendationsWithOptionalParams(token: string, artist
             ...optional.traits,
         }
     }).then((response) => {
-        console.log(response.data);
         callback(response.data.tracks);
         return response.data;
     });
@@ -273,8 +261,6 @@ export async function getRecommendationsByDuration(token: string, artists: strin
     })
     
     const dataPromise = promise.then((response) => {
-        console.log("getting recommendation by duration " + min_duration + " " + max_duration);
-        console.log(response.data);
         callback(response.data.tracks);
         return response.data.tracks;
     });
