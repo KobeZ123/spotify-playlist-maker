@@ -90,7 +90,7 @@ export default function Home() {
                     See Top Artists
                   </button>
                 </Link>
-                <Link to="/recommendations">
+                <Link to="/interval_playlist">
                   <button className="home-selection-btn-right">
                     Make Interval Playlist
                   </button>
