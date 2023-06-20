@@ -37,7 +37,7 @@ export default function TopArtistsDisplay() {
           }
           onClick={() => setSelectedTerm("short_term")}
         >
-          Short Term
+          Past Month
         </button>
         <button
           className={
@@ -45,7 +45,7 @@ export default function TopArtistsDisplay() {
           }
           onClick={() => setSelectedTerm("medium_term")}
         >
-          Medium Term
+          Last 6 Months
         </button>
         <button
           className={
@@ -53,7 +53,7 @@ export default function TopArtistsDisplay() {
           }
           onClick={() => setSelectedTerm("long_term")}
         >
-          Long Term
+          All Time
         </button>
       </div>
       <div className="items-container">

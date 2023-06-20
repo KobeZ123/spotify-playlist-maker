@@ -23,7 +23,7 @@
 }
 
 .selector-btn {
-  background-color: var(--primary-green);
+  background-color: var(--primary-green-faded);
   color: var(--primary-white);
   border: none;
   outline: none;
@@ -42,7 +42,7 @@
 }
 
 .selector-btn-selected {
-  background-color: darkslategray;
+  background-color: var(--primary-green);
   color: var(--primary-white);
   border: none;
   outline: none;
@@ -69,15 +69,15 @@
 }
 
 .term-tab {
-  background-color: var(--primary-green);
+  background-color: transparent;
   color: var(--primary-white);
-  border: none;
-  outline: none;
+  border: 0;
+  outline: 0;
   cursor: pointer;
   margin: 2rem;
   padding: 1rem 2rem;
   transition: 0.3s;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 500;
   border-radius: 1rem;
 }
@@ -88,17 +88,19 @@
 }
 
 .term-tab-selected {
-  background-color: darkslategray;
-  color: var(--primary-white);
-  border: none;
-  outline: none;
+  background-color: transparent;
+  color: var(--primary-green);
+  /* text-decoration: underline; */
+  border-bottom: 5px solid;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
   cursor: pointer;
   margin: 2rem;
   padding: 1rem 2rem;
   transition: 0.3s;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 500;
-  border-radius: 1rem;
 }
 
 .items-container {
