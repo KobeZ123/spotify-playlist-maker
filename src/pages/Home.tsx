@@ -8,6 +8,7 @@ import ReauthenticateChoiceWrapper from "../components/ReauthenticateChoiceWrapp
 import { TOKEN_STRING } from "../utils/constants";
 
 export default function Home() {
+  const [token, setToken] = useState<string>("");
   const setStateToken = useStore((state) => state.setToken);
   const reset = useStore((state) => state.reset);
   const [infoSelected, setInfoSelected] = useState<boolean>(false);
@@ -21,10 +22,11 @@ export default function Home() {
         `&scope=${process.env.REACT_APP_SCOPE}`
     );
     const hash = window.location.hash;
-    let token = window.localStorage.getItem(TOKEN_STRING);
+    let received_token = window.localStorage.getItem(TOKEN_STRING);
 
-    if (!token && hash) {
-      token = hash
+    if (hash) {
+      console.log("getting hash");
+      received_token = hash
         .substring(1)
         .split("&")
         .find((elem) => elem.startsWith("access_token"))!
@@ -32,20 +34,25 @@ export default function Home() {
 
       window.location.hash = "";
       window.location.href = "http://localhost:3000/";
-      window.localStorage.setItem(TOKEN_STRING, token);
+      window.localStorage.setItem(TOKEN_STRING, received_token);
     }
-    if (token != null) {
-      setStateToken(token);
+    if (!received_token) {
+      console.log("no token, go through login flow");
+      reset();
+      setToken("");
+    }
+    if (received_token != null) {
+      console.log("we got the token");
+      setStateToken(received_token);
+      setToken(received_token);
     }
   }, []);
 
   const logout = () => {
+    console.log("i wanna log out");
     reset();
+    setToken("");
     window.localStorage.removeItem(TOKEN_STRING);
-  };
-
-  const onButtonClicking = async () => {
-    // searchArtists(token, "izzy");
   };
 
   return (
@@ -108,6 +115,7 @@ export default function Home() {
               Login to Spotify
             </a>
           }
+          token={token}
         />
       </div>
     </div>

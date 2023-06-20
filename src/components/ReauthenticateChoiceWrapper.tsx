@@ -8,6 +8,7 @@ import "../styles/home.css"
 interface ChoiceWrapperProps {
   child_active: JSX.Element;
   child_error: JSX.Element;
+  token: string;
 }
 
 // if there is an active session, display the children element
@@ -19,6 +20,7 @@ export default function ReauthenticateChoiceWrapper(props: ChoiceWrapperProps) {
 
   // checks if the session is active
   useEffect(() => {
+    console.log("checking if active session");
     if (token != null) {
       getUserID(token)
         .then(() => {
@@ -27,8 +29,11 @@ export default function ReauthenticateChoiceWrapper(props: ChoiceWrapperProps) {
         .catch(() => {
           setSessionActive(false);
         });
+    } else {
+      console.log("no active session");
+      setSessionActive(false);
     }
-  }, []);
+  }, [props.token]);
 
   return sessionActive ? (
     props.child_active

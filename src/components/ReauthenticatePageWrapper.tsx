@@ -13,7 +13,6 @@ interface ModalProps {
 // if there is an active session, display the children element
 // otherwise, prompts the user to login again
 export default function ReauthenticatePageWrapper(props: ModalProps) {
-
   return (
     <ReauthenticateChoiceWrapper
       child_active={props.children}
@@ -35,6 +34,7 @@ export default function ReauthenticatePageWrapper(props: ModalProps) {
           </a>
         </div>
       }
+      token=""
     />
   );
 }
