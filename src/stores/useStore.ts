@@ -31,7 +31,7 @@ const useStore = create<StoreTypes>((set, get) => ({
 
   reset: () => {
     localStorage.removeItem('token');
-    set(initialState);
+    set(() => ({ token: null }));
   },
 
   isTokenNull: () => {
