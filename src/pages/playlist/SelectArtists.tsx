@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import {
-  getTopArtistsShortTerm,
   getTopItemsAndSelectRandom,
-  searchArtists,
 } from "../../api/loadData";
 import useStore from "../../stores/useStore";
 import "../../styles/playlist_maker.css";

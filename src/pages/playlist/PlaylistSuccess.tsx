@@ -24,7 +24,7 @@ export default function PlaylistSuccess() {
             <iframe
               style={{ borderRadius: "12px" }}
               src={`https://open.spotify.com/embed/playlist/${playlistID}?utm_source=generator`}
-              width="100%"
+              width="500px"
               height="600"
               allowFullScreen={false}
               allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
