@@ -27,17 +27,16 @@ The user selects styles of tracks that they would like to add to their playlist.
   <img src="https://github.com/KobeZ123/spotify-playlist-maker/assets/57577392/17e308ca-a216-403b-a664-8cb0a8e6a73a"/>
 </kbd> <br/>
 
-The user selects the general vibes of their playlist by choosing genres. <br/>
 <kbd>
   <img src="https://github.com/KobeZ123/spotify-playlist-maker/assets/57577392/ef99fbac-cf28-4e40-9597-baaba5061062" />
 </kbd> <br/>
 
-The user names their playlist and selects a specified duration for the interval playlist. <br/>
+The user selects the general vibes of their playlist by choosing genres. <br/>
 <kbd>
   <img src="https://github.com/KobeZ123/spotify-playlist-maker/assets/57577392/f9d432b1-e17d-4635-801b-f53f06f187ae" />
 </kbd> <br/>
 
-
+The user names their playlist and selects a specified duration for the interval playlist. <br/>
 <kbd>
   <img src="https://github.com/KobeZ123/spotify-playlist-maker/assets/57577392/eaa316ec-a088-48d6-a1d4-796ba39cdb8c" />
 </kbd> <br/>
