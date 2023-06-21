@@ -56,6 +56,8 @@ export default function TrackSearchBar(props: SearchBarProps) {
           value={query}
           type="search"
           placeholder="Search"
+          autoCorrect="false"
+          spellCheck="false"
         />
       </span>
       <div

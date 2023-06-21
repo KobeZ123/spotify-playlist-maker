@@ -52,6 +52,8 @@ export default function ArtistSearchBar(props: SearchBarProps) {
           value={query}
           type="search"
           placeholder="Search"
+          autoCorrect="false"
+          spellCheck="false"
         />
       </span>
       <div
