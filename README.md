@@ -22,11 +22,6 @@ The user can generate an "interval playlist" by selecting the artists, tracks, a
 </kbd> <br/>
 
 <kbd>
-  <img src="https://github.com/KobeZ123/spotify-playlist-maker/assets/57577392/eebef248-a465-4c3e-9f4a-cbb3bea1cdb8"/>
-</kbd> <br/>
-
-
-<kbd>
   <img src="https://github.com/KobeZ123/spotify-playlist-maker/assets/57577392/17e308ca-a216-403b-a664-8cb0a8e6a73a"/>
 </kbd> <br/>
 
@@ -41,11 +36,11 @@ The user can generate an "interval playlist" by selecting the artists, tracks, a
 </kbd> <br/>
 
 <kbd>
-  <img src="https://github.com/KobeZ123/spotify-playlist-maker/assets/57577392/0f833478-37bd-4022-b893-709b26e2f2b1" />
+  <img src="https://github.com/KobeZ123/spotify-playlist-maker/assets/57577392/eaa316ec-a088-48d6-a1d4-796ba39cdb8c" />
 </kbd> <br/>
 
 <kbd>
-  <img src="https://github.com/KobeZ123/spotify-playlist-maker/assets/57577392/eaa316ec-a088-48d6-a1d4-796ba39cdb8c" />
+  <img src="https://github.com/KobeZ123/spotify-playlist-maker/assets/57577392/0f833478-37bd-4022-b893-709b26e2f2b1" />
 </kbd> <br/>
 
 # Getting Started with Create React App
