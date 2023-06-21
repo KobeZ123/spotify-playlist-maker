@@ -1,3 +1,44 @@
+# Spotify Interval Playlist Maker
+The Spotify Interval Playlist Maker is a web application that allows a user to view their music listening profile and automatically generate an interval playlist based on recommendations selected by the user. 
+
+# How the App Works 
+First, the user needs to be authenticated with the Spotify API.  <br/>
+<kbd>
+  <img src="https://user-images.githubusercontent.com/57577392/235815640-cb788b05-e776-4c19-b721-43d4355ef091.PNG" width="24em"/>
+</kbd> <br/>
+
+The user is able to view their recent and all-time listening activity by seeing their top artists and tracks! <br/>
+<kbd>
+  <img src="https://user-images.githubusercontent.com/57577392/235815642-d58adb3d-d370-4c7d-ada9-74dcc77583b5.PNG" />
+</kbd> <br/>
+
+The user can generate an "interval playlist" by selecting the artists, tracks, and genres that they want to have in their playlist. An algorithm is used to generate a playlist of a specified duration (or as close as possible) based on the user's selections! <br/>
+<kbd>
+  <img src="https://user-images.githubusercontent.com/57577392/235815724-79168d01-13c5-43d5-8636-4c87498f0db5.PNG" />
+</kbd> <br/>
+
+<kbd>
+  <img src="https://user-images.githubusercontent.com/57577392/235815731-bbec93b0-d7a7-44ae-8a5f-04e43c18d2bb.PNG" />
+</kbd> <br/>
+
+<kbd>
+  <img src="https://user-images.githubusercontent.com/57577392/235815730-9136d82b-aa0b-4e5e-ae35-3994d6a7f97c.PNG"/>
+</kbd> <br/>
+
+<kbd>
+  <img src="https://user-images.githubusercontent.com/57577392/235815736-2ebbedf5-b2f5-460a-b712-04af84d68c7f.PNG"/>
+</kbd> <br/>
+
+<kbd>
+  <img src="https://user-images.githubusercontent.com/57577392/235815794-a661147b-66f5-4eb5-8187-b8076a4d535c.PNG" />
+</kbd> <br/>
+
+<kbd>
+  <img src="https://user-images.githubusercontent.com/57577392/235815797-ba9d77bc-d5d8-43a9-a109-72a07c64a3f0.PNG" />
+</kbd> <br/>
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
