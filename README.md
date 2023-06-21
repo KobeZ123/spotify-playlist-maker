@@ -4,7 +4,7 @@ The Spotify Interval Playlist Maker is a web application that allows a user to v
 # How the App Works 
 First, the user needs to be authenticated with the Spotify API.  <br/>
 <kbd>
-  <img src="https://user-images.githubusercontent.com/57577392/235815640-cb788b05-e776-4c19-b721-43d4355ef091.PNG" width="24em"/>
+  <img src="https://github.com/KobeZ123/spotify-playlist-maker/assets/57577392/747533a4-38c6-4108-a5e9-523f50a52a6a"/>
 </kbd> <br/>
 
 The user is able to view their recent and all-time listening activity by seeing their top artists and tracks! <br/>
