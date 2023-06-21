@@ -17,28 +17,32 @@ The user can generate an "interval playlist" by selecting the artists, tracks, a
   <img src="https://github.com/KobeZ123/spotify-playlist-maker/assets/57577392/6704fd64-a252-49a6-8c9c-400f09c81f63" />
 </kbd> <br/>
 
+The user selects styles of artists that they would like to add to their playlist. <br/>
 <kbd>
   <img src="https://github.com/KobeZ123/spotify-playlist-maker/assets/57577392/e9684f4e-d1b8-49c0-bc1c-d1efcedde48e" />
 </kbd> <br/>
 
+The user selects styles of tracks that they would like to add to their playlist. <br/>
 <kbd>
   <img src="https://github.com/KobeZ123/spotify-playlist-maker/assets/57577392/17e308ca-a216-403b-a664-8cb0a8e6a73a"/>
 </kbd> <br/>
 
-
-
+The user selects the general vibes of their playlist by choosing genres. <br/>
 <kbd>
   <img src="https://github.com/KobeZ123/spotify-playlist-maker/assets/57577392/ef99fbac-cf28-4e40-9597-baaba5061062" />
 </kbd> <br/>
 
+The user names their playlist and selects a specified duration for the interval playlist. <br/>
 <kbd>
   <img src="https://github.com/KobeZ123/spotify-playlist-maker/assets/57577392/f9d432b1-e17d-4635-801b-f53f06f187ae" />
 </kbd> <br/>
+
 
 <kbd>
   <img src="https://github.com/KobeZ123/spotify-playlist-maker/assets/57577392/eaa316ec-a088-48d6-a1d4-796ba39cdb8c" />
 </kbd> <br/>
 
+The playlist is generated and directly added to the user's Spotify playlist library! Happy listening! <br/>
 <kbd>
   <img src="https://github.com/KobeZ123/spotify-playlist-maker/assets/57577392/0f833478-37bd-4022-b893-709b26e2f2b1" />
 </kbd> <br/>
