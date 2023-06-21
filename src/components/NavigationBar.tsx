@@ -13,7 +13,7 @@ export default function NavigationBar() {
                     <Link to="/" className="nav-link">Home</Link>
                 </li>
                 <li className="nav-item">
-                    <Link to="/" className="nav-link">About</Link>
+                    <Link to="/about" className="nav-link">About</Link>
                 </li>
             </ul>
         </nav>

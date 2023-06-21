@@ -30,8 +30,6 @@
   transform: translateY(-100%);
 }
 
-
-
 /* CSS */
 .button-64 {
   font-size: 2rem;
@@ -44,7 +42,7 @@
   box-shadow: rgba(255, 255, 255, 0.35) 0px 5px 15px;
 }
 
-.button-64:hover, 
+.button-64:hover,
 .button-64:active {
   background-color: lightslategrey;
   filter: brightness(0);
@@ -64,16 +62,17 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-    background-size: 50% 50%;
-background-repeat: no-repeat;
+  background-size: 50% 50%;
+  background-repeat: no-repeat;
 
-  background: 
-  radial-gradient(
-      circle at 80% 50%,
-      #f07363 0%,
-      transparent 40%
-    ) top left,
-    radial-gradient(circle at 30% 60%, rgba(101,211,110,1) 0%, transparent 40%) bottom right;
+  background: radial-gradient(circle at 80% 50%, #f07363 0%, transparent 40%)
+      top left,
+    radial-gradient(
+        circle at 30% 60%,
+        rgba(101, 211, 110, 1) 0%,
+        transparent 40%
+      )
+      bottom right;
   /* radial-gradient(
       circle at 80% 50%,
       #f07363 0%,
@@ -138,4 +137,23 @@ background-repeat: no-repeat;
 .login-to-spotify-btn:active {
   cursor: pointer;
   filter: brightness(110%);
+}
+
+.about-page-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: fit-content;
+}
+
+.no-decoration {
+  text-decoration: none;
+  color: var(--primary-white);
+}
+
+.about-page-p {
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin: 3rem 5rem;
 }

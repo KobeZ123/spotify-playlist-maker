@@ -12,6 +12,7 @@ import SelectTracks from "./pages/playlist/SelectTracks";
 import SelectGenres from "./pages/playlist/SelectGenres";
 import SelectDuration from "./pages/playlist/SelectDuration";
 import PlaylistSuccess from "./pages/playlist/PlaylistSuccess";
+import AboutPage from "./pages/AboutPage";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
+            <Route path="about" element={<AboutPage />} />
             <Route path="recommendations" element={<RecommendationPage />} />
             <Route path="interval_playlist" element={<MakeIntervalPlaylist />}>
               <Route index element={<HowItWorks />} />
