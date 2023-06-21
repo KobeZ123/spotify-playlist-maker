@@ -25,7 +25,7 @@ export default function HowItWorks() {
             Then, you are all set!
           </p>
           <p className="how-it-works-hint">
-            Example: 30-minute "High-Intensity Jogging Playlist
+            Example: 30-minute "High-Intensity Jogging Playlist"
           </p>
         </section>
 
