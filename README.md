@@ -29,13 +29,13 @@ The user selects styles of artists that they would like to add to their playlist
 The user selects styles of tracks that they would like to add to their playlist. <br/>
 <kbd>
   ![interval_playlist+select_tracks](https://github.com/KobeZ123/spotify-playlist-maker/assets/57577392/a34aa8dc-92c9-4d1f-85cb-59605a8cd6e2)
-
-</kbd> <br/>
-
-<kbd>
   ![interval_playlist+search_tracks](https://github.com/KobeZ123/spotify-playlist-maker/assets/57577392/63644f49-0930-4181-a463-c941ff2fcb97)
-
 </kbd> <br/>
+
+
+  
+
+
 
 The user selects the general vibes of their playlist by choosing genres. <br/>
 <kbd>
