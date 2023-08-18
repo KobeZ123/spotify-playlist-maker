@@ -3,13 +3,15 @@ The Spotify Interval Playlist Maker is a web application that allows a user to v
 
 # How the App Works 
 First, the user needs to be authenticated with the Spotify API.  <br/>
-<kbd>
-  <img src="https://github.com/KobeZ123/spotify-playlist-maker/assets/57577392/747533a4-38c6-4108-a5e9-523f50a52a6a"/>
-</kbd> <br/>
+![home_screen](https://github.com/KobeZ123/spotify-playlist-maker/assets/57577392/9478dad4-0ddd-461a-8933-0fd4c3a8bcf9)
+
+<br/>
+
 
 The user is able to view their recent and all-time listening activity by seeing their top artists and tracks! <br/>
 <kbd>
-  <img src="https://github.com/KobeZ123/spotify-playlist-maker/assets/57577392/63d8ec8f-3045-47e4-acc2-da63f5fbc642" />
+  ![top_items](https://github.com/KobeZ123/spotify-playlist-maker/assets/57577392/bff8175d-1560-40c5-960a-7f94a9c23a77)
+
 </kbd> <br/>
 
 The user can generate an "interval playlist" by selecting the artists, tracks, and genres that they want to have in their playlist. An algorithm is used to generate a playlist of a specified duration (or as close as possible) based on the user's selections! <br/>
