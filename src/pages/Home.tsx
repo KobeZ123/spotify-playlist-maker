@@ -33,7 +33,7 @@ export default function Home() {
         .split("=")[1];
 
       window.location.hash = "";
-      window.location.href = "http://localhost:3000/";
+      window.location.href = "https://kobe-spotify-playlist-maker.vercel.app/";
       window.localStorage.setItem(TOKEN_STRING, received_token);
     }
     if (!received_token) {
