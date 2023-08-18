@@ -33,7 +33,7 @@ export default function Home() {
         .split("=")[1];
 
       window.location.hash = "";
-      window.location.href = "https://kobe-spotify-playlist-maker.vercel.app/";
+      window.location.href = `${process.env.REACT_APP_REDIRECT_URI}`;
       window.localStorage.setItem(TOKEN_STRING, received_token);
     }
     if (!received_token) {
@@ -56,9 +56,9 @@ export default function Home() {
   };
 
   return (
-    <div className="home-container">
+    
       <div className="home-content">
-        <h1 className="home-heading">Spotify React</h1>
+        <h1 className="home-heading">Welcome to the Spotify Playlist Maker</h1>
         <button
           className="info-button"
           onClick={() => {
@@ -92,7 +92,7 @@ export default function Home() {
                 </Link>
                 <Link to="/interval_playlist">
                   <button className="home-selection-btn-right">
-                    Make Interval Playlist
+                    Make A Playlist
                   </button>
                 </Link>
               </section>
@@ -118,6 +118,6 @@ export default function Home() {
           token={token}
         />
       </div>
-    </div>
+   
   );
 }
