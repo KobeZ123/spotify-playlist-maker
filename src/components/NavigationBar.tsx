@@ -19,6 +19,7 @@ export default function NavigationBar() {
                     onClick={() => {setMenuOpen(!menuOpen)}}/>
             </div>
             <ul className={menuOpen? "navbar-items-menu-active": "navbar-items"}>
+                {menuOpen && <hr className="hr-divider"/>}
                 <li className="nav-item">
                     <Link to="/" className="nav-link">Home</Link>
                 </li>

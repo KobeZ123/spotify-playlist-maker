@@ -73,7 +73,7 @@
   flex-direction: column;
   gap: 18px;
   margin: 0;
-  padding: 18px;
+  padding: 0 18px 18px 18px;
 }
 
 .nav-item {
@@ -107,6 +107,12 @@
   padding: 10px;
   margin: 0;
   flex: 1;
+}
+
+.hr-divider {
+  margin: 0;
+  width: 100%;
+  border: 1px solid var(--primary-green);
 }
 
 
