@@ -73,7 +73,7 @@ export default function Home() {
             style={
               infoSelected
                 ? { transform: "translateY(0)", opacity: "1", height: "auto" }
-                : { transform: "translateY(-100%)", opacity: "0", height: "0" }
+                : { transform: "translateY(0)", opacity: "0", height: "0" }
             }
           >
             This web application is designed for users to view their favorite
