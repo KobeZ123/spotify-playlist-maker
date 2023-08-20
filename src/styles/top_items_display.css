@@ -1,6 +1,7 @@
 .top-items-page {
   display: flex;
   flex-direction: column;
+  align-items: center;
   padding-bottom: 5rem;
 }
 
@@ -22,11 +23,20 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
+  width: 100%;
 }
 
 .selector-btn {
   background-color: var(--primary-green-faded);
   color: var(--primary-white);
+}
+
+.selector-btn-selected {
+  background-color: var(--primary-green);
+  color: var(--primary-white);
+}
+
+.selector-btn-first, .selector-btn-second {
   border: none;
   outline: none;
   cursor: pointer;
@@ -36,6 +46,7 @@
   font-size: 2rem;
   font-weight: 500;
   border-radius: 1rem;
+  flex: 1;
 }
 
 .selector-btn:hover,
@@ -43,31 +54,17 @@
   filter: brightness(110%);
 }
 
-.selector-btn-selected {
-  background-color: var(--primary-green);
-  color: var(--primary-white);
-  border: none;
-  outline: none;
-  cursor: pointer;
-  margin: 2rem;
-  padding: 1rem 2rem;
-  transition: 0.3s;
-  font-size: 2rem;
-  font-weight: 500;
-  border-radius: 1rem;
-}
-
 .top-items-display-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 .term-tabs-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin: 0 15rem;
 }
 
 .term-tab {
@@ -151,7 +148,14 @@
   border-radius: 1rem;
 }
 
-@media screen and (max-width: 1080px) {
+@media screen and (max-width: 1280px) {
+  .item-cards-container {
+    grid-template-columns: repeat(3, 20em);
+    grid-template-rows: repeat(10, 20em);
+  }
+}
+
+@media screen and (max-width: 960px) {
   .item-cards-container {
     grid-template-columns: repeat(2, 20em);
     grid-template-rows: repeat(10, 20em);
@@ -164,3 +168,35 @@
     grid-template-rows: repeat(20, 20em);
   }
 }
+
+@media screen and (max-width: 680px) {
+  .selector-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    width: 100%;
+    max-width: 680px;
+  }
+
+  .selector-btn-first, .selector-btn-second {
+    margin: 0 2rem;
+    width: calc(100% - 4rem);
+  }
+
+  .selector-btn-first {
+    border-radius: 1rem 1rem 0 0 ;
+  }
+
+  .selector-btn-second {
+    border-radius: 0 0 1rem 1rem ;
+  }
+
+  .term-tabs-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
