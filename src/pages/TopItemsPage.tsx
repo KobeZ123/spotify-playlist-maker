@@ -13,20 +13,22 @@ export default function TopItemsPage() {
           <h1 className="top-items-heading">Top Items</h1>
           <div className="selector-container">
             <button
-              className={
-                selectedItem === "artists"
+              className={"selector-btn-first " +
+                (selectedItem === "artists"
                   ? "selector-btn-selected"
                   : "selector-btn"
+                )
               }
               onClick={() => setSelectedItem("artists")}
             >
               Artists
             </button>
             <button
-              className={
-                selectedItem === "tracks"
+              className={"selector-btn-second " +
+                (selectedItem === "tracks"
                   ? "selector-btn-selected"
                   : "selector-btn"
+                )
               }
               onClick={() => setSelectedItem("tracks")}
             >
