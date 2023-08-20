@@ -1,7 +1,7 @@
 import { useState } from "react";
-import TopArtistsDisplay from "../components/TopArtistsDisplay";
-import TopTracksDisplay from "../components/TopTracksDisplay";
 import ReauthenticateWrapper from "../components/ReauthenticatePageWrapper";
+import TopItemsDisplay from "../components/TopItemsDisplay";
+import { getTopArtistsLongTerm, getTopArtistsMediumTerm, getTopArtistsShortTerm, getTopTracksLongTerm, getTopTracksMediumTerm, getTopTracksShortTerm } from "../api/loadData";
 
 export default function TopItemsPage() {
   const [selectedItem, setSelectedItem] = useState<string>("artists");
@@ -37,9 +37,16 @@ export default function TopItemsPage() {
           </div>
           <h1 className="top-items-subheading">Here are your top {selectedItem}</h1>
           {selectedItem === "artists" ? (
-            <TopArtistsDisplay />
+            <TopItemsDisplay isArtist={true} 
+              getItemsShortTerm={getTopArtistsShortTerm} 
+              getItemsMediumTerm={getTopArtistsMediumTerm} 
+              getItemsLongTerm={getTopArtistsLongTerm} />
           ) : (
-            <TopTracksDisplay />
+            // <TopTracksDisplay />
+            <TopItemsDisplay isArtist={false} 
+              getItemsShortTerm={getTopTracksShortTerm} 
+              getItemsMediumTerm={getTopTracksMediumTerm} 
+              getItemsLongTerm={getTopTracksLongTerm} />
           )}
         </div>
       }

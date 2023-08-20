@@ -16,30 +16,24 @@ export default function TopItemsDisplay({
   isArtist
 }: TopItemsDisplayProps) {
   const token = useStore((state) => state.token);
-  // the user's top artists as a list of items
-  const [topItemsList, setTopItemsList] = useState<any[]>([]);
-  // the selected term for top artists
+  const [topArtistsList, setTopArtistsList] = useState<any[]>([]);
+  const [topTracksList, setTopTracksList] = useState<any[]>([]);
   const [selectedTerm, setSelectedTerm] = useState<string>("short_term");
 
   // loads top artists when
   useEffect(() => {
     if (token != null) {
       if (selectedTerm === "short_term") {
-        getItemsShortTerm(token, setTopItemsList);
+        getItemsShortTerm(token, isArtist? setTopArtistsList: setTopTracksList);
       }
       if (selectedTerm === "medium_term") {
-        getItemsMediumTerm(token, setTopItemsList);
+        getItemsMediumTerm(token, isArtist? setTopArtistsList: setTopTracksList);
       }
       if (selectedTerm === "long_term") {
-        getItemsLongTerm(token, setTopItemsList);
+        getItemsLongTerm(token, isArtist? setTopArtistsList: setTopTracksList);
       }
-      console.log(topItemsList);
     }
   }, [selectedTerm, isArtist]);
-
-  useEffect(() => {
-    console.log(topItemsList);
-  }, [topItemsList]);
 
   return (
     <div className="top-items-display-container">
@@ -71,18 +65,24 @@ export default function TopItemsDisplay({
       </div>
       <div className="items-container">
         <section className="item-cards-container">
-          {topItemsList.map((item) => (
+          { isArtist ? topArtistsList.map((item) => (
             <span className="item-card-container" key={item.name + "_card"}>
               <img
                 className="item-img"
-                src={isArtist? 
-                  (item.images.length > 0 ? item.images[0].url : "") : 
-                  (item.album.images.length > 0 ? item.album.images[0].url : "")}
+                src={item.images.length > 0 ? item.images[0].url : "" }
                 alt={`${item.name}_img`}
               />
               <p className="item-text">{item.name}</p>
-            </span>
-          ))}
+            </span> 
+          )): topTracksList.map((item) => (
+            <span className="item-card-container" key={item.name + "_card"}>
+              <img
+                className="item-img"
+                src={item.album.images.length > 0 ? item.album.images[0].url : ""}
+                alt={`${item.name}_img`}
+              />
+              <p className="item-text">{item.name}</p>
+            </span> ))}
         </section>
       </div>
     </div>
