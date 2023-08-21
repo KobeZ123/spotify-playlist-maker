@@ -25,6 +25,7 @@
   flex-direction: row;
   justify-content: center;
   width: 100%;
+  max-width: 1200px;
 }
 
 .item-selector-btn {
@@ -178,6 +179,7 @@
   font-family: 'Montserrat', sans-serif;
 }
 
+/* grid sizes breakpoints */
 @media screen and (max-width: 1280px) {
   .item-cards-container {
     grid-template-columns: repeat(3, 20em);
@@ -188,14 +190,21 @@
 @media screen and (max-width: 960px) {
   .item-cards-container {
     grid-template-columns: repeat(2, 20em);
-    grid-template-rows: repeat(10, 20em);
+    grid-template-rows: repeat(10, 18em);
   }
 }
 
 @media screen and (max-width: 680px) {
   .item-cards-container {
-    grid-template-columns: repeat(1, 20em);
-    grid-template-rows: repeat(20, 20em);
+    grid-template-columns: repeat(2, 16em);
+    grid-template-rows: repeat(10, 18em);
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .item-cards-container {
+    grid-template-columns: repeat(1, 16em);
+    grid-template-rows: repeat(20, 18em);
   }
 }
 
