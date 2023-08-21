@@ -81,12 +81,10 @@ export default function SelectArtists() {
     <div className="playlist-page-container">
       <div className="playlist-page-content">
         <h1>Select Some Artists</h1>
-        <div>
-          <p className="how-it-works-p">
-            Use the search feature or choose some of your favorite artists to
-            curate the playlist!
-          </p>
-        </div>
+        <p className="how-it-works-p">
+          Use the search feature or choose some of your favorite artists to
+          curate the playlist!
+        </p>
         <ArtistSearchBar handleItemClick={handleArtistClick} />
         <section className="adjustable-width-large">
           <div className="column-section-with-margins">

@@ -91,21 +91,21 @@ export default function SelectDuration() {
             <p className="warning-text">Please enter a playlist name.</p>
           )}
           <span className="adjustable-width-medium search-bar-span">
-            <input
-              className="input-bar"
-              onChange={(event) => {
+          <input
+            className="input-bar"
+            onChange={(event) => {
                 setPlaylistName(event.target.value);
               }}
               value={playlistName}
               type="text"
               placeholder="name your playlist"
-            />
+          />
           </span>
         </div>
 
-        <section className="adjustable-width-large">
+        
           <div className="column-section-with-margins">
-            <h4>How long is your playlist?</h4>
+            <h1>How long is your playlist?</h1>
             <div className="column-section-centered">
               {isSubmitted && (duration === "" || parseInt(duration) < 5) && (
                 <p className="warning-text">
@@ -121,11 +121,11 @@ export default function SelectDuration() {
                   min={0}
                   max={9999}
                 />
-                <p className="min-text">MIN</p>
+                <p className="min-text">MINUTES</p>
               </div>
             </div>
           </div>
-        </section>
+       
         <section className="progress-btn-div">
           <button className="playlist-back-btn" onClick={handleBack}>
             Back

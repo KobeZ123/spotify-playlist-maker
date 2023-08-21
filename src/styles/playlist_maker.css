@@ -45,13 +45,7 @@
   flex-direction: column;
   align-items: center;
   height: auto;
-}
-
-@media screen and (max-width: 680px) {
-  .playlist-page-container {
-    padding-right: 2rem;
-    padding-left: 2rem;
-  }
+  padding: 2rem;
 }
 
 .playlist-page-container h1 {
@@ -82,7 +76,7 @@
   height: auto;
 }
 
-.playlist-page-container p {
+.how-it-works-p {
   font-size: 1.5rem;
   font-weight: 400; 
   margin-top: 0.5rem;
@@ -120,6 +114,7 @@
 
 .playlist-back-btn {
   background-color: var(--primary-white);
+  
   padding: 1rem 4rem;
   font-size: 1.5rem;
   font-weight: 600;
@@ -137,6 +132,7 @@
 
 .playlist-next-btn {
   background-color: var(--primary-pink);
+  
   padding: 1rem 4rem;
   font-size: 1.5rem;
   font-weight: 600;
@@ -241,7 +237,7 @@
 
 @media screen and (max-width: 680px) {
   .adjustable-width-large {
-    width: auto;
+    width: 100%;
   }
 }
 
@@ -287,6 +283,7 @@
   outline: none;
   border: 0;
   width: 100%;
+  box-sizing: border-box;
   display: block;
   border-radius: 1rem;
 }
@@ -334,6 +331,7 @@
   margin-bottom: 0.25rem;
   margin-right: 1rem;
   margin-left: 1rem;
+  font-size: 1.5rem;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -351,6 +349,7 @@
 }
 
 .item-result-slip {
+  font-size: 1.5rem;
   padding: 0 1rem;
   color: var(--primary-black);
   margin: 0.25rem 0rem;
@@ -383,13 +382,14 @@ input.nosubmit {
 
 .selection-recommendations {
   text-align: left;
+  width: 100%;
 }
 
 .rec-cards-container {
+  margin-top: 1rem;
   display: grid;
-  grid-template-columns: repeat(4, 20rem);
-  grid-template-rows: repeat(1, 18rem);
-  place-items: center;
+  grid-template-columns: repeat(4, 18rem);
+  grid-template-rows: repeat(2, 20rem);
 }
 
 .rec-card-container {
@@ -411,6 +411,87 @@ input.nosubmit {
 .rec-card-container.selected {
   background-color: var(--primary-green);
 }
+
+.item-img {
+  object-fit: cover;
+  width: 12rem;
+  height: 12rem;
+  border-radius: 1rem;
+}
+
+.item-text {
+  font-size: 1.25rem;
+  margin: 0;
+  font-weight: 600;
+  margin-top: 0.5rem;
+  color: var(--primary-black);
+  max-width: 12rem;
+  overflow: hidden;
+  text-align: center;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines to show */
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+/* grid sizes breakpoints */
+
+@media screen and (max-width: 1280px) {
+  .rec-cards-container {
+    grid-template-columns: repeat(2, 50%);
+    grid-template-rows: repeat(4, 10em);
+  }
+
+  .rec-card-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+  }
+
+  .item-img {
+    width: 8rem;
+    height: 8rem;
+  }
+
+  .item-text {
+    width: fill-available;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .rec-cards-container {
+    grid-template-columns: repeat(1, 100%);
+    grid-template-rows: repeat(8, 10em);
+  }
+
+  .rec-card-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 2rem;
+    width: 90%;
+  }
+
+  .item-img {
+    width: 6rem;
+    height: 6rem;
+  }
+  .item-text {
+    width: fit-content;
+    text-align: center;
+  }
+
+  .playlist-back-btn, .playlist-next-btn {
+    padding: 1rem 0 1rem 0;
+    flex: 1;
+    margin: 1rem;
+  }
+}
+
 
 .progress-btn-div {
   display: flex;
