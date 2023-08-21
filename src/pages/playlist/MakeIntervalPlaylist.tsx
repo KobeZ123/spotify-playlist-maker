@@ -1,9 +1,8 @@
 import { Outlet } from "react-router-dom";
+import ReauthenticatePageWrapper from "../../components/ReauthenticatePageWrapper";
 
 export default function MakeIntervalPlaylist () {
   return (
-    <div>
-      <Outlet />
-    </div>
+    <ReauthenticatePageWrapper children={<Outlet />} />
   )
 }

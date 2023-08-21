@@ -1,7 +1,4 @@
-import { useEffect, useState } from "react";
 import { TOKEN_STRING } from "../utils/constants";
-import useStore from "../stores/useStore";
-import { getUserID } from "../api/loadData";
 import "../styles/reauthenticate.css";
 import "../styles/home.css";
 import ReauthenticateChoiceWrapper from "./ReauthenticateChoiceWrapper";
@@ -18,7 +15,7 @@ export default function ReauthenticatePageWrapper(props: ModalProps) {
       child_active={props.children}
       child_error={
         <div className="reauthenticate-div">
-          <h2>Logged out of Spotify account.</h2>
+          <h2>Your Spotify session expired.</h2>
           <h2>Please log in again!</h2>
           <a
             href={
