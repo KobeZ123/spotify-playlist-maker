@@ -11,12 +11,12 @@ export default function TopItemsPage() {
       children={
         <div className="top-items-page">
           <h1 className="top-items-heading">Top Items</h1>
-          <div className="selector-container">
+          <div className="item-selector-container">
             <button
-              className={"selector-btn-first " +
+              className={"item-selector-btn-first " +
                 (selectedItem === "artists"
-                  ? "selector-btn-selected"
-                  : "selector-btn"
+                  ? "item-selector-btn-selected"
+                  : "item-selector-btn"
                 )
               }
               onClick={() => setSelectedItem("artists")}
@@ -24,10 +24,10 @@ export default function TopItemsPage() {
               Artists
             </button>
             <button
-              className={"selector-btn-second " +
+              className={"item-selector-btn-second " +
                 (selectedItem === "tracks"
-                  ? "selector-btn-selected"
-                  : "selector-btn"
+                  ? "item-selector-btn-selected"
+                  : "item-selector-btn"
                 )
               }
               onClick={() => setSelectedItem("tracks")}

@@ -63,6 +63,18 @@ export default function TopItemsDisplay({
           All Time
         </button>
       </div>
+
+      {/* select for smaller screens */}
+      <select
+        className="select-container"
+        value={selectedTerm}
+        onChange={(event) => setSelectedTerm(event.target.value)}
+      >
+        <option className="select-option" value="short_term"><p>Past Month</p></option>
+        <option className="select-option" value="medium_term">Last 6 Months</option>
+        <option className="select-option" value="long_term">All Time</option>
+      </select>
+      
       <div className="items-container">
         <section className="item-cards-container">
           { isArtist ? topArtistsList.map((item) => (

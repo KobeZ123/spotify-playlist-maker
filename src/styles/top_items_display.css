@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
   padding-bottom: 5rem;
 }
 
@@ -19,24 +20,24 @@
   margin: 0;
 }
 
-.selector-container {
+.item-selector-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
   width: 100%;
 }
 
-.selector-btn {
+.item-selector-btn {
   background-color: var(--primary-green-faded);
   color: var(--primary-white);
 }
 
-.selector-btn-selected {
+.item-selector-btn-selected {
   background-color: var(--primary-green);
   color: var(--primary-white);
 }
 
-.selector-btn-first, .selector-btn-second {
+.item-selector-btn-first, .item-selector-btn-second {
   border: none;
   outline: none;
   cursor: pointer;
@@ -56,6 +57,7 @@
 
 .top-items-display-container {
   display: flex;
+  width: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -148,6 +150,34 @@
   border-radius: 1rem;
 }
 
+.select-container {
+  display: none;
+  background-color: var(--primary-green);
+  color: var(--primary-white);
+  font-family: 'Montserrat', sans-serif;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  width: 15rem;
+  padding: 1rem 2rem;
+  transition: 0.3s;
+  font-size: 1.5rem;
+  font-weight: 600;
+  border-radius: 1rem;
+}
+
+.select-container:focus {
+  border-radius: 1rem 1rem 0 0;
+}
+
+.select-option {
+  padding: 1rem 2rem;
+  background-color: var(--primary-green-faded);
+  font-size: 1.5rem;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+}
+
 @media screen and (max-width: 1280px) {
   .item-cards-container {
     grid-template-columns: repeat(3, 20em);
@@ -170,26 +200,26 @@
 }
 
 @media screen and (max-width: 680px) {
-  .selector-container {
+  .item-selector-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 1rem;
-    width: 100%;
+    margin: 1rem;
+    width: 90%;
     max-width: 680px;
   }
 
-  .selector-btn-first, .selector-btn-second {
+  .item-selector-btn-first, .item-selector-btn-second {
     margin: 0 2rem;
-    width: calc(100% - 4rem);
+    width: 100%;
   }
 
-  .selector-btn-first {
+  .item-selector-btn-first {
     border-radius: 1rem 1rem 0 0 ;
   }
 
-  .selector-btn-second {
+  .item-selector-btn-second {
     border-radius: 0 0 1rem 1rem ;
   }
 
@@ -197,6 +227,16 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+  }
+
+  .term-tabs-container {
+    display: none;
+  }
+
+  .select-container {
+    display: block;
+    width: 90%;
+    margin: 1rem;
   }
 }
 
