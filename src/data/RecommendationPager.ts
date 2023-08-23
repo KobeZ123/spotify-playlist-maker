@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useRecommendationFetcher } from "./RecommendationsFetcher";
+import { RecommendationType } from "../utils/constants";
 
 export function useRecommendationPager() {
   const COUNT_PER_PAGE = 8;
