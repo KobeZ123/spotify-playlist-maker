@@ -68,7 +68,7 @@ export async function searchTracks(token: string, query: string, callback: (resu
 
 // ABSTRACTION: returns the user's top item in the given term 
 export async function getTopItemByTerm(token: string, type: string, term: string, 
-    callback: (result: any) => void, limit: number = 20, offset: number = 0) {
+    callback: (result: any) => void = () => {}, limit: number = 20, offset: number = 0) {
     var allowed_terms: string[] = [SHORT_TERM, MEDIUM_TERM, LONG_TERM];
     if (!allowed_terms.includes(term)) {
         throw new Error("invalid term for getTopItemByTerm");
