@@ -1,6 +1,11 @@
-export const ARTISTS = "artists";
-export const GENRES = "genres";
-export const TRACKS = "tracks";
+export const ARTISTS: string = "artists";
+export const GENRES: string = "genres";
+export const TRACKS: string = "tracks";
+
+export enum RecommendationType {
+  ARTISTS = "artists",
+  GENRES = "genres",
+}
 
 export const TOKEN_STRING = "token";
 
