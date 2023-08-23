@@ -1,10 +1,18 @@
+import { useEffect } from "react";
+import { useRecommendationPager } from "../../data/RecommendationPager";
 import { ItemSelectionRecommendationProps, SelectionCardProps } from "../../utils/types";
 
 export default function ArtistSelectionRecommendation(
   props: ItemSelectionRecommendationProps
 ) {
+  const { data, addPage } = useRecommendationPager();
+
+  useEffect(() => {
+    console.log(data);
+  }, [])
   return (
     <section className="selection-recommendations">
+      <button onClick={() => addPage()}>ADD PAGE</button>
       <h3>Some of your favorites</h3>
       <section className="rec-cards-container">
         {props.topItemsList.length == 0 ? (
