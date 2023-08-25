@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   getTopItemsAndSelectRandom,
 } from "../../api/loadData";
@@ -14,15 +14,15 @@ import { useNavigate } from "react-router-dom";
 import ArtistSelectedSlip from "../../components/playlist/ArtistSelectedSlip";
 import ItemSelectionRecommendation from "../../components/playlist/ArtistSelectionRecommendation";
 import ArtistSearchBar from "../../components/playlist/ArtistSearchBar";
-import { usePlaylistFormStore } from "../../stores/usePlaylistFormStore";
+import { FormDataContext } from "../../context/FormDataContext";
 
 export default function SelectArtists() {
   const navigate = useNavigate();
   const token = useStore((state) => state.token);
-  const { updatePlaylistFormData } = usePlaylistFormStore();
 
-  // the selected artists as a list of data objects
-  const [selectedArtists, setSelectedArtists] = useState<any[]>([]);
+  const { formData, dispatch } = useContext(FormDataContext);
+  const { selectedArtists } = formData;
+
   // the user's top artists as a list of items
   const [topArtistsList, setTopArtistsList] = useState<any[]>([]);
 
@@ -39,41 +39,38 @@ export default function SelectArtists() {
     }
   }, []);
 
+  // handles the next button click
   const handleNext = (event: any) => {
     event.preventDefault();
     console.log("next page");
-    updatePlaylistFormData("selectedArtists", selectedArtists);
     navigate("/interval_playlist/select_tracks");
   };
 
+  // handles the previous page back click
   const handleBack = (event: any) => {
     event.preventDefault();
     console.log("back page");
     navigate("..");
   };
 
-  const handleArtistClick = (
-    event: React.MouseEvent<HTMLElement>,
+  // dispatches the add artist action
+  const handleAddArtist = (artist: any) => {
+    dispatch({ type: "ADD_ARTIST", payload: artist });
+  }
+
+  // dispatches the remove artist action
+  const handleRemoveArtist = (artist: any) => {
+    dispatch({ type: "REMOVE_ARTIST", payload: artist });
+  }
+
+  // handles the click of an artist and determines whether to add or remove
+  const handleGeneralArtistClick = (
     artist_data: any
   ) => {
-    // const target = (event.target as HTMLElement).closest('.rec-card-container');
-    // if (target) {
-    //   target.classList.toggle('selected');
-    // }
-    let artist_id = (event.target as HTMLElement).id;
-    let artist_key = (event.target as HTMLElement).getAttribute("key");
-    console.log(artist_data);
-    const hasDuplicate = selectedArtists.some(
-      (item) => item.id === artist_data.id
-    );
-    // if artist is already selected, remove it
-    if (hasDuplicate) {
-      setSelectedArtists(
-        selectedArtists.filter((element) => element.id != artist_data.id)
-      );
+    if (selectedArtists.some((item) => item.id === artist_data.id)) {
+      handleRemoveArtist(artist_data);
     } else {
-      // if the artist is not selected yet, add it
-      setSelectedArtists([...selectedArtists, artist_data]);
+      handleAddArtist(artist_data);
     }
   };
 
@@ -85,7 +82,7 @@ export default function SelectArtists() {
           Use the search feature or choose some of your favorite artists to
           curate the playlist!
         </p>
-        <ArtistSearchBar handleItemClick={handleArtistClick} />
+        <ArtistSearchBar handleItemClick={handleAddArtist} />
         <section className="adjustable-width-large">
           <div className="column-section-with-margins">
             <h4>Here are the artists you selected</h4>
@@ -94,7 +91,7 @@ export default function SelectArtists() {
                 {selectedArtists.map((artist) => (
                   <ArtistSelectedSlip
                     data={artist}
-                    handleClick={handleArtistClick}
+                    handleClick={handleRemoveArtist}
                     key={artist.id}
                   />
                 ))}
@@ -105,7 +102,7 @@ export default function SelectArtists() {
         <ItemSelectionRecommendation
           topItemsList={topArtistsList}
           selectedItems={selectedArtists}
-          handleItemClick={handleArtistClick}
+          handleItemClick={handleGeneralArtistClick}
         />
         <section className="progress-btn-div">
           <button className="playlist-back-btn" onClick={handleBack}>

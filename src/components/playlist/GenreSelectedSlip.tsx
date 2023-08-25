@@ -13,7 +13,7 @@ export default function GenreSelectedSlip(props: GenreSelectedSlipProps) {
       </p>
       <p
         className="remove-selected-x"
-        onClick={(event) => props.handleClick(event, props.data)}
+        onClick={(event) => props.handleClick(props.data)}
       >
         x
       </p>

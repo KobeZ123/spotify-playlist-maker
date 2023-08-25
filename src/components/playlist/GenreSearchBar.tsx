@@ -25,6 +25,18 @@ export default function GenreSearchBar(props: SearchBarProps) {
     }
   };
 
+  const handleKeyDown = (event: any) => {
+    if (event.key === 'Enter') {
+      event.preventDefault(); // Prevent form submission or page reload
+      if (genreResults.length > 0) {
+        const selectedGenres = genreResults[0];
+        props.handleItemClick(selectedGenres);
+        setQuery(""); 
+        setGenreResults([]);
+      }
+    } 
+  };
+
   return (
     <section className="search-container">
       <span
@@ -41,11 +53,13 @@ export default function GenreSearchBar(props: SearchBarProps) {
             handleSearch(event.target.value);
             setQuery(event.target.value);
           }}
+          onKeyDown={handleKeyDown}
           value={query}
           type="search"
           placeholder="Search"
           autoCorrect="false"
           spellCheck="false"
+          autoFocus
         />
       </span>
       <div
@@ -63,7 +77,7 @@ export default function GenreSearchBar(props: SearchBarProps) {
                 id={genre["id"]}
                 data-item={genre}
                 onClick={(event) => {
-                  props.handleItemClick(event, genre);
+                  props.handleItemClick(genre);
                   setQuery("");
                   setGenreResults([]);
                 }}

@@ -22,7 +22,7 @@ export default function TrackSelectionRecommendation(
                   }
                   key={track.name + "_card"}
                   onClick={(event) => {
-                    props.handleItemClick(event, track);
+                    props.handleItemClick(track);
                   }}
                 >
                   <img
