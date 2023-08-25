@@ -1,24 +1,27 @@
 import { useEffect } from "react";
 import { useRecommendationPager } from "../../data/RecommendationPager";
 import { ItemSelectionRecommendationProps, SelectionCardProps } from "../../utils/types";
+import { RecommendationType } from "../../utils/constants";
 
 export default function ArtistSelectionRecommendation(
   props: ItemSelectionRecommendationProps
 ) {
-  const { data, addPage } = useRecommendationPager();
+  const { data, addPage, hasNextPage, hasPreviousPage, goToNextPage, goToPreviousPage } = useRecommendationPager(RecommendationType.ARTISTS);
 
-  useEffect(() => {
-    console.log(data);
-  }, [])
   return (
     <section className="selection-recommendations">
-      <button onClick={() => addPage()}>ADD PAGE</button>
+       <button onClick={() => addPage()}>ADD PAGE</button>
+      <button onClick={() => console.log(data)}>SEE PAGER</button>
+      <button onClick={() => goToNextPage()}>NEXT PAGE</button>
+      <button onClick={() => goToPreviousPage()}>PREVIOUS PAGE</button>
+      {hasNextPage() && <h3>HAS NEXT PAGE</h3>}
+      {hasPreviousPage() && <h3>HAS PREVIOUS PAGE</h3>}
       <h3>Some of your favorites</h3>
       <section className="rec-cards-container">
         {props.topItemsList.length == 0 ? (
           <h3>Loading...</h3>
         ) : (
-          props.topItemsList.map(
+          data.currentPage.map(
             (artist, index) =>
               index < 8 && (
                 <ArtistSelectionCard 
