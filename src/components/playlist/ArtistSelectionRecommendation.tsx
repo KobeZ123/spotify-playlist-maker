@@ -1,4 +1,4 @@
-import { ItemSelectionRecommendationProps } from "../../utils/types";
+import { ItemSelectionRecommendationProps, SelectionCardProps } from "../../utils/types";
 
 export default function ArtistSelectionRecommendation(
   props: ItemSelectionRecommendationProps
@@ -13,29 +13,37 @@ export default function ArtistSelectionRecommendation(
           props.topItemsList.map(
             (artist, index) =>
               index < 8 && (
-                <span
-                  className={
-                    "rec-card-container" +
-                    (props.selectedItems.some((item) => item.id === artist.id)
-                      ? " selected"
-                      : "")
-                  }
-                  key={artist.name + "_card"}
-                  onClick={(event) => {
-                    props.handleItemClick(event, artist);
-                  }}
-                >
-                  <img
-                    className="item-img"
-                    src={artist.images.length > 0 ? artist.images[0].url : ""}
-                    alt={`${artist.name}`}
-                  />
-                  <p className="item-text">{artist.name}</p>
-                </span>
+                <ArtistSelectionCard 
+                  data={artist} 
+                  selected={props.selectedItems.some((item) => item.id === artist.id)}
+                  onSelected={props.handleItemClick} />
               )
           )
         )}
       </section>
     </section>
   );
+}
+
+
+
+const ArtistSelectionCard = ({data, selected, onSelected}: SelectionCardProps) => {
+  return (
+    <span
+      className={
+        "rec-card-container" + (selected ? " selected" : "")
+      }
+      key={data.name + "_card"}
+      onClick={() => {
+        onSelected(data);
+      }}
+    >
+      <img
+        className="rec-item-img"
+        src={data.images.length > 0 ? data.images[0].url : ""}
+        alt={`${data.name}`}
+      />
+      <p className="rec-item-text">{data.name}</p>
+    </span>
+  )
 }

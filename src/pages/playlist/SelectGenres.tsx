@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   COLOR_PALETTE,
 } from "../../utils/constants";
@@ -6,43 +6,46 @@ import { useNavigate } from "react-router-dom";
 import useStore from "../../stores/useStore";
 import GenreSearchBar from "../../components/playlist/GenreSearchBar";
 import GenreSelectedSlip from "../../components/playlist/GenreSelectedSlip";
-import { usePlaylistFormStore } from "../../stores/usePlaylistFormStore";
+import { FormDataContext } from "../../context/FormDataContext";
 
 export default function SelectGenres() {
   const navigate = useNavigate();
-  const { updatePlaylistFormData } = usePlaylistFormStore();
 
-  // the selected artists as a list of data objects
-  const [selectedGenres, setSelectedGenres] = useState<any[]>([]);
+  const { formData, dispatch } = useContext(FormDataContext);
+  const { selectedGenres } = formData;
 
+  // handles the next button click
   const handleNext = (event: any) => {
     event.preventDefault();
     console.log("next page");
-    updatePlaylistFormData("selectedGenres", selectedGenres);
     navigate("/interval_playlist/select_duration");
   };
 
+  // handles the previous page back click
   const handleBack = (event: any) => {
     event.preventDefault();
     console.log("back page");
     navigate("/interval_playlist/select_tracks");
   };
 
-  const handleGenreClick = (
-    event: React.MouseEvent<HTMLElement>,
-    genre: any
+  // dispatches the add genre action
+  const handleAddGenre = (genre: any) => {
+    dispatch({ type: "ADD_GENRE", payload: genre });
+  }
+
+  // dispatches the remove genre action
+  const handleRemoveGenre = (genre: any) => {
+    dispatch({ type: "REMOVE_GENRE", payload: genre });
+  }
+
+  // handles the click of a genre and determines whether to add or remove
+  const handleGeneralArtistClick = (
+    genre_name: any
   ) => {
-    const hasDuplicate = selectedGenres.some(
-      (item) => item === genre
-    );
-    // if artist is already selected, remove it
-    if (hasDuplicate) {
-      setSelectedGenres(
-        selectedGenres.filter((element) => element != genre)
-      );
+    if (selectedGenres.some((item) => item === genre_name)) {
+      handleRemoveGenre(genre_name);
     } else {
-      // if the artist is not selected yet, add it
-      setSelectedGenres([...selectedGenres, genre]);
+      handleAddGenre(genre_name);
     }
   };
 
@@ -50,7 +53,7 @@ export default function SelectGenres() {
     <div className="playlist-page-container">
       <div className="playlist-page-content">
         <h1>Select Your Vibes</h1>
-        <GenreSearchBar handleItemClick={handleGenreClick} />
+        <GenreSearchBar handleItemClick={handleAddGenre} />
         <section className="adjustable-width-large">
           <div className="column-section-with-margins">
             <h4>Here are the genres you selected</h4>
@@ -59,7 +62,7 @@ export default function SelectGenres() {
                 {selectedGenres.map((genre, index) => (
                   <GenreSelectedSlip
                     data={genre}
-                    handleClick={handleGenreClick}
+                    handleClick={handleRemoveGenre}
                     color={COLOR_PALETTE[index % COLOR_PALETTE.length]}
                     key={genre}
                   />

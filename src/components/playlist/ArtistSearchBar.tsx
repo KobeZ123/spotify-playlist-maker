@@ -20,24 +20,20 @@ export default function ArtistSearchBar(props: SearchBarProps) {
     }
   };
 
+  const handleKeyDown = (event: any) => {
+    if (event.key === 'Enter') {
+      event.preventDefault(); // Prevent form submission or page reload
+      if (artistResults.length > 0) {
+        const selectedArtist = artistResults[0];
+        props.handleItemClick(selectedArtist);
+        setQuery(""); 
+        setArtistResults([]);
+      }
+    } 
+  };
+
   return (
     <section className="search-container">
-      {/* <span className="search-bar-span">
-            <input
-              className="search-bar-input"
-              type="text"
-              value={artistQuery}
-              onChange={(event) => {
-                setArtistQuery(event.target.value);
-              }}
-            />
-            <button
-              className="search-bar-btn"
-              onClick={() => handleSearch(artistQuery)}
-            >
-              Search
-            </button>
-          </span> */}
       <span className={"adjustable-width-medium" + (
             artistResults.length > 0
               ? " search-bar-span-opened"
@@ -51,9 +47,11 @@ export default function ArtistSearchBar(props: SearchBarProps) {
           }}
           value={query}
           type="search"
+          onKeyDown={handleKeyDown}
           placeholder="Search"
           autoCorrect="false"
           spellCheck="false"
+          autoFocus
         />
       </span>
       <div
@@ -72,8 +70,8 @@ export default function ArtistSearchBar(props: SearchBarProps) {
                 key={artist["id"]}
                 id={artist["id"]}
                 data-item={artist}
-                onClick={(event) => {
-                  props.handleItemClick(event, artist);
+                onClick={() => {
+                  props.handleItemClick(artist);
                   setQuery("");
                   setArtistResults([]);
                 }}

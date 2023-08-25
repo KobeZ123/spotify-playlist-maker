@@ -5,14 +5,22 @@ export interface TopItemDisplayProps {
 export interface ItemSelectionRecommendationProps {
   topItemsList: any[];
   selectedItems: any[];
-  handleItemClick: (event: any, artist: any) => void;
+  handleItemClick: (artist: any) => void;
 }
 
+// handles when a card or slip item is clicked 
 export interface ItemSelectProps {
   data: any;
-  handleClick: (event: any, data: any) => void;
+  handleClick: (data: any) => void;
+}
+
+// interface for a selection card 
+export interface SelectionCardProps {
+  data: any;
+  selected: boolean;
+  onSelected: (data: any) => void;
 }
 
 export interface SearchBarProps {
-  handleItemClick: (event: any, data: any) => void;
+  handleItemClick: (data: any) => void;
 }

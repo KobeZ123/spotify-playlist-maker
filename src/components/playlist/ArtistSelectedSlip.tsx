@@ -12,7 +12,7 @@ export default function ArtistSelectedSlip(props: ItemSelectProps) {
       </p>
       <p
         className="remove-selected-x"
-        onClick={(event) => props.handleClick(event, props.data)}
+        onClick={() => props.handleClick(props.data)}
       >
         x
       </p>
