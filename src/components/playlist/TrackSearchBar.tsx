@@ -23,22 +23,6 @@ export default function TrackSearchBar(props: SearchBarProps) {
 
   return (
     <section className="search-container">
-      {/* <span className="search-bar-span">
-            <input
-              className="search-bar-input"
-              type="text"
-              value={artistQuery}
-              onChange={(event) => {
-                setArtistQuery(event.target.value);
-              }}
-            />
-            <button
-              className="search-bar-btn"
-              onClick={() => handleSearch(artistQuery)}
-            >
-              Search
-            </button>
-          </span> */}
       <span
         className={
           "adjustable-width-medium" +
