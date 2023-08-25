@@ -39,11 +39,11 @@ const ArtistSelectionCard = ({data, selected, onSelected}: SelectionCardProps) =
       }}
     >
       <img
-        className="item-img"
+        className="rec-item-img"
         src={data.images.length > 0 ? data.images[0].url : ""}
         alt={`${data.name}`}
       />
-      <p className="item-text">{data.name}</p>
+      <p className="rec-item-text">{data.name}</p>
     </span>
   )
 }
