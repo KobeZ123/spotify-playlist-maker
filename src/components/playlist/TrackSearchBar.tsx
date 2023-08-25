@@ -21,6 +21,18 @@ export default function TrackSearchBar(props: SearchBarProps) {
     }
   };
 
+  const handleKeyDown = (event: any) => {
+    if (event.key === 'Enter') {
+      event.preventDefault(); // Prevent form submission or page reload
+      if (trackResults.length > 0) {
+        const selectedTracks = trackResults[0];
+        props.handleItemClick(selectedTracks);
+        setQuery(""); 
+        setTrackResults([]);
+      }
+    } 
+  };
+
   return (
     <section className="search-container">
       <span
@@ -37,11 +49,13 @@ export default function TrackSearchBar(props: SearchBarProps) {
             handleSearch(event.target.value);
             setQuery(event.target.value);
           }}
+          onKeyDown={handleKeyDown}
           value={query}
           type="search"
           placeholder="Search"
           autoCorrect="false"
           spellCheck="false"
+          autoFocus
         />
       </span>
       <div
@@ -59,7 +73,7 @@ export default function TrackSearchBar(props: SearchBarProps) {
                 id={track["id"]}
                 data-item={track}
                 onClick={(event) => {
-                  props.handleItemClick(event, track);
+                  props.handleItemClick(track);
                   setQuery("");
                   setTrackResults([]);
                 }}

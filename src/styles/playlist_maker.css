@@ -415,14 +415,14 @@ input.nosubmit {
   background-color: var(--primary-green);
 }
 
-.item-img {
+.rec-item-img {
   object-fit: cover;
   width: 12rem;
   height: 12rem;
   border-radius: 1rem;
 }
 
-.item-text {
+.rec-item-text {
   font-size: 1.25rem;
   margin: 0;
   font-weight: 600;
@@ -453,12 +453,12 @@ input.nosubmit {
     width: 90%;
   }
 
-  .item-img {
+  .rec-item-img {
     width: 8rem;
     height: 8rem;
   }
 
-  .item-text {
+  .rec-item-text {
     width: fill-available;
     text-align: center;
   }
@@ -479,11 +479,12 @@ input.nosubmit {
     width: 90%;
   }
 
-  .item-img {
+  .rec-item-img {
     width: 6rem;
     height: 6rem;
   }
-  .item-text {
+  
+  .rec-item-text {
     width: fit-content;
     text-align: center;
   }

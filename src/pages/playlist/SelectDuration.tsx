@@ -1,33 +1,42 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { usePlaylistFormStore } from "../../stores/usePlaylistFormStore";
 import useStore from "../../stores/useStore";
 import {
   createEmptyPlaylist,
   selectTracksForPlaylistAlgorithm,
 } from "../../api/postData";
 import { durationToMilliseconds } from "../../utils/utils";
+import { FormDataContext } from "../../context/FormDataContext";
 
 export default function SelectDuration() {
   const token = useStore((state) => state.token);
-  const selectedArtists = usePlaylistFormStore(
-    (state) => state.formData.selectedArtists
-  );
-  const selectedTracks = usePlaylistFormStore(
-    (state) => state.formData.selectedTracks
-  );
-  const selectedGenres = usePlaylistFormStore(
-    (state) => state.formData.selectedGenres
-  );
+
+  const { formData, dispatch } = useContext(FormDataContext);
+  const { selectedArtists, selectedTracks, selectedGenres, playlistID } = formData;
+  
   const navigate = useNavigate();
-  const { updatePlaylistFormData } = usePlaylistFormStore();
 
   const [playlistName, setPlaylistName] = useState<string>("");
   const [duration, setDuration] = useState<string>("");
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
   const [isPlaylistCreated, setIsPlaylistCreated] = useState<boolean>(false);
-  const [playlistID, setPlaylistID] = useState<string>("");
 
+  // updates the playlist name
+  const updatePlaylistName = (name: string) => {
+    dispatch({ type: "SET_PLAYLIST_NAME", payload: name });
+  }
+
+  // updates the playlist duration
+  const updatePlaylistDuration = (duration: string) => {
+    dispatch({ type: "SET_PLAYLIST_DURATION", payload: parseInt(duration) });
+  }
+
+  // i[dates the playlist id
+  const updatePlaylistID = (id: string) => {
+    dispatch({ type: "SET_PLAYLIST_ID", payload: id });
+  }
+
+  // when the playlist ID is created, tracks can begin generating for the playlist
   useEffect(() => {
     console.log("set to true");
     
@@ -38,7 +47,7 @@ export default function SelectDuration() {
       console.log(playlistID);
     
     if (token != null && playlistID != "" && isPlaylistCreated) {
-      updatePlaylistFormData("playlistID", playlistID);
+      updatePlaylistID(playlistID);
       console.log("playlist created, time to populate");
       selectTracksForPlaylistAlgorithm(
         token,
@@ -61,11 +70,11 @@ export default function SelectDuration() {
     setIsSubmitted(true);
     if (playlistName.length >= 1 && parseInt(duration) >= 5) {
       console.log("next page");
-      updatePlaylistFormData("playlistName", playlistName);
-      updatePlaylistFormData("playlistDuration", parseInt(duration));
+      updatePlaylistName(playlistName);
+      updatePlaylistDuration(duration);
       console.log("creating empty playlist");
       if (token != null) {
-        createEmptyPlaylist(token, playlistName, setPlaylistID);
+        createEmptyPlaylist(token, playlistName, updatePlaylistID);
         setIsPlaylistCreated(true);
       }
     }

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getTopItemsAndSelectRandom, searchTracks } from "../../api/loadData";
 import {
   LONG_TERM,
@@ -13,14 +13,17 @@ import TrackSelectionRecommendation from "../../components/playlist/TrackSelecti
 import TrackSelectedSlip from "../../components/playlist/TrackSelectedSlip";
 import TrackSearchBar from "../../components/playlist/TrackSearchBar";
 import { usePlaylistFormStore } from "../../stores/usePlaylistFormStore";
+import { FormDataContext } from "../../context/FormDataContext";
 
 export default function SelectTracks() {
   const navigate = useNavigate();
   const token = useStore((state) => state.token);
+
+  const { formData, dispatch } = useContext(FormDataContext);
+  const { selectedTracks } = formData;
+  
   const { updatePlaylistFormData } = usePlaylistFormStore();
 
-  // the selected artists as a list of data objects
-  const [selectedTracks, setSelectedTracks] = useState<any[]>([]);
   // the user's top artists as a list of items
   const [topTracksList, setTopTracksList] = useState<any[]>([]);
 
@@ -62,6 +65,7 @@ export default function SelectTracks() {
     });
   });
 
+  // handles the next button click
   const handleNext = (event: any) => {
     event.preventDefault();
     console.log("next page");
@@ -69,34 +73,31 @@ export default function SelectTracks() {
     navigate("/interval_playlist/select_genres");
   };
 
+  // handles the previous page back click
   const handleBack = (event: any) => {
     event.preventDefault();
     console.log("back page");
     navigate("/interval_playlist/select_artists");
   };
 
-  const handleTrackClick = (
-    event: React.MouseEvent<HTMLElement>,
+  // dispatches the add track action
+  const handleAddTrack = (track: any) => {
+    dispatch({ type: "ADD_TRACK", payload: track });
+  }
+
+  // dispatches the remove track action
+  const handleRemoveTrack = (track: any) => {
+    dispatch({ type: "REMOVE_TRACK", payload: track });
+  }
+
+  // handles the click of a track and determines whether to add or remove
+  const handleGeneralArtistClick = (
     track_data: any
   ) => {
-    // const target = (event.target as HTMLElement).closest('.rec-card-container');
-    // if (target) {
-    //   target.classList.toggle('selected');
-    // }
-    let artist_id = (event.target as HTMLElement).id;
-    let artist_key = (event.target as HTMLElement).getAttribute("key");
-    console.log(track_data);
-    const hasDuplicate = selectedTracks.some(
-      (item) => item.id === track_data.id
-    );
-    // if artist is already selected, remove it
-    if (hasDuplicate) {
-      setSelectedTracks(
-        selectedTracks.filter((element) => element.id != track_data.id)
-      );
+    if (selectedTracks.some((item) => item.id === track_data.id)) {
+      handleRemoveTrack(track_data);
     } else {
-      // if the artist is not selected yet, add it
-      setSelectedTracks([...selectedTracks, track_data]);
+      handleAddTrack(track_data);
     }
   };
 
@@ -110,7 +111,7 @@ export default function SelectTracks() {
             curate the playlist!
           </p>
         </div>
-        <TrackSearchBar handleItemClick={handleTrackClick} />
+        <TrackSearchBar handleItemClick={handleAddTrack} />
         <section className="adjustable-width-large">
           <div className="column-section-with-margins">
             <h4>Here are the tracks you selected</h4>
@@ -119,7 +120,7 @@ export default function SelectTracks() {
                 {selectedTracks.map((track) => (
                   <TrackSelectedSlip
                     data={track}
-                    handleClick={handleTrackClick}
+                    handleClick={handleRemoveTrack}
                     key={track.id}
                   />
                 ))}
@@ -130,7 +131,7 @@ export default function SelectTracks() {
         <TrackSelectionRecommendation
           topItemsList={topTracksList}
           selectedItems={selectedTracks}
-          handleItemClick={handleTrackClick}
+          handleItemClick={handleGeneralArtistClick}
         />
         <section className="progress-btn-div">
           <button className="playlist-back-btn" onClick={handleBack}>

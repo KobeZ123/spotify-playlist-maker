@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
-import { usePlaylistFormStore } from "../../stores/usePlaylistFormStore";
-import axios from "axios";
+import { useContext, useEffect, useState } from "react";
 import useStore from "../../stores/useStore";
+import { FormDataContext } from "../../context/FormDataContext";
 
 export default function PlaylistSuccess() {
   const token = useStore((state) => state.token);
   const [playlistOpened, setPlaylistOpened] = useState<boolean>(false);
-  const playlistID = usePlaylistFormStore((state) => state.formData.playlistID);
+  const { playlistID } = useContext(FormDataContext).formData;
+
   useEffect(() => {
     console.log("playlist id");
     console.log(playlistID);

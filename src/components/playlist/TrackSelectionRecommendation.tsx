@@ -22,11 +22,11 @@ export default function TrackSelectionRecommendation(
                   }
                   key={track.name + "_card"}
                   onClick={(event) => {
-                    props.handleItemClick(event, track);
+                    props.handleItemClick(track);
                   }}
                 >
                   <img
-                    className="item-img"
+                    className="rec-item-img"
                     src={
                       track.album.images.length > 0
                         ? track.album.images[0].url
@@ -34,7 +34,7 @@ export default function TrackSelectionRecommendation(
                     }
                     alt={`${track.name}`}
                   />
-                  <p className="item-text">{track.name}</p>
+                  <p className="rec-item-text">{track.name}</p>
                 </span>
               )
           )
