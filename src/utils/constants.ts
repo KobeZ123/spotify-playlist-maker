@@ -4,7 +4,7 @@ export const TRACKS: string = "tracks";
 
 export enum RecommendationType {
   ARTISTS = "artists",
-  GENRES = "genres",
+  TRACKS = "tracks",
 }
 
 export const TOKEN_STRING = "token";

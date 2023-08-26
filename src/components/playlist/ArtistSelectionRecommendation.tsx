@@ -13,27 +13,26 @@ export default function ArtistSelectionRecommendation(
     <section className="selection-recommendations">
       <h3>Some of your favorites</h3>
       <div className="rec-cards-pager-container">
-
-      <img className={`change-page-btn ${hasPreviousPage() ? '' : 'hidden'}`} src={left_arrow} width={36} height={36} onClick={goToPreviousPage}/>
-      
-      <section className="rec-cards-container">
-        {props.topItemsList.length == 0 ? (
-          <h3>Loading...</h3>
-        ) : (
-          data.currentPage.map(
-            (artist, index) =>
-              index < 8 && (
-                <ArtistSelectionCard 
-                  key={artist.id}
-                  data={artist} 
-                  selected={props.selectedItems.some((item) => item.id === artist.id)}
-                  onSelected={props.handleItemClick} />
-              )
-          )
-        )}
-      </section>
-      
-      <img className={`change-page-btn ${hasNextPage() ? '' : 'hidden'}`} src={right_arrow} width={36} height={36} onClick={goToNextPage}/>
+        <img className={`change-page-btn ${hasPreviousPage() ? '' : 'hidden'}`} src={left_arrow} width={36} height={36} onClick={goToPreviousPage}/>
+        
+        <section className="rec-cards-container">
+          {data.currentPage == null || data.currentPage.length == 0 ? (
+            <h3>Loading...</h3>
+          ) : (
+            data.currentPage.map(
+              (artist, index) =>
+                index < 8 && (
+                  <ArtistSelectionCard 
+                    key={artist.id}
+                    data={artist} 
+                    selected={props.selectedItems.some((item) => item.id === artist.id)}
+                    onSelected={props.handleItemClick} />
+                )
+            )
+          )}
+        </section>
+        
+        <img className={`change-page-btn ${hasNextPage() ? '' : 'hidden'}`} src={right_arrow} width={36} height={36} onClick={goToNextPage}/>
       </div>
     </section>
   );
