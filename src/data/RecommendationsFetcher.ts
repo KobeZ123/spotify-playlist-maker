@@ -29,9 +29,9 @@ export function useRecommendationFetcher(recommendationType: RecommendationType)
       await getTopItemByTerm(token, recommendationType, MEDIUM_TERM, setMediumTermItems, MEDIUM_TERM_LIMIT);
       await getTopItemByTerm(token, recommendationType, LONG_TERM, setLongTermItems, LONG_TERM_LIMIT);
       
-      console.log(shortTermItems);
-      console.log(mediumTermItems);
-      console.log(longTermItems);
+      // console.log(shortTermItems);
+      // console.log(mediumTermItems);
+      // console.log(longTermItems);
       // initialize alreadySelected array
       let arrayWithZeros = [];
 
@@ -46,7 +46,7 @@ export function useRecommendationFetcher(recommendationType: RecommendationType)
 
   // requests a list of {amount} items
   const requestRecommendations = (amount: number) => {
-    if (alreadySelected != null) {
+    if (alreadySelected.length > 0) {
       let result = []
       let count = 0
 
@@ -68,7 +68,8 @@ export function useRecommendationFetcher(recommendationType: RecommendationType)
       
       return result;
     }
+    return null;
   };
 
-  return { fetchRecommendations, requestRecommendations };
+  return { data: alreadySelected ,fetchRecommendations, requestRecommendations };
 }
