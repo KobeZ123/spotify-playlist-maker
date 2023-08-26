@@ -116,8 +116,8 @@ export function useRecommendationPager(recommendationType: RecommendationType) {
     console.log("current page");
     console.log(currentPageIdx);
     console.log("total pages");
-    console.log(pager.length);
-    return currentPageIdx < pager.length - 1 && pager.length > currentPageIdx + 1;
+    console.log(MAX_PAGES - 1);
+    return currentPageIdx < MAX_PAGES - 1;
   }
 
   const goToPreviousPage = () => {

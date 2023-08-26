@@ -1,22 +1,21 @@
-import { useEffect } from "react";
 import { useRecommendationPager } from "../../data/RecommendationPager";
 import { ItemSelectionRecommendationProps, SelectionCardProps } from "../../utils/types";
 import { RecommendationType } from "../../utils/constants";
+import right_arrow from "../../assets/arrow-icon-right.png";
+import left_arrow from "../../assets/arrow-icon-left.png";
 
 export default function ArtistSelectionRecommendation(
   props: ItemSelectionRecommendationProps
 ) {
-  const { data, addPage, hasNextPage, hasPreviousPage, goToNextPage, goToPreviousPage } = useRecommendationPager(RecommendationType.ARTISTS);
+  const { data, hasNextPage, hasPreviousPage, goToNextPage, goToPreviousPage } = useRecommendationPager(RecommendationType.ARTISTS);
 
   return (
     <section className="selection-recommendations">
-       <button onClick={() => addPage()}>ADD PAGE</button>
-      <button onClick={() => console.log(data)}>SEE PAGER</button>
-      <button onClick={() => goToNextPage()}>NEXT PAGE</button>
-      <button onClick={() => goToPreviousPage()}>PREVIOUS PAGE</button>
-      {hasNextPage() && <h3>HAS NEXT PAGE</h3>}
-      {hasPreviousPage() && <h3>HAS PREVIOUS PAGE</h3>}
       <h3>Some of your favorites</h3>
+      <div className="rec-cards-pager-container">
+
+      <img className={`change-page-btn ${hasPreviousPage() ? '' : 'hidden'}`} src={left_arrow} width={36} height={36} onClick={goToPreviousPage}/>
+      
       <section className="rec-cards-container">
         {props.topItemsList.length == 0 ? (
           <h3>Loading...</h3>
@@ -25,6 +24,7 @@ export default function ArtistSelectionRecommendation(
             (artist, index) =>
               index < 8 && (
                 <ArtistSelectionCard 
+                  key={artist.id}
                   data={artist} 
                   selected={props.selectedItems.some((item) => item.id === artist.id)}
                   onSelected={props.handleItemClick} />
@@ -32,6 +32,9 @@ export default function ArtistSelectionRecommendation(
           )
         )}
       </section>
+      
+      <img className={`change-page-btn ${hasNextPage() ? '' : 'hidden'}`} src={right_arrow} width={36} height={36} onClick={goToNextPage}/>
+      </div>
     </section>
   );
 }
