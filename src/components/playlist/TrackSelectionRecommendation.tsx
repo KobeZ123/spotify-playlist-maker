@@ -13,7 +13,9 @@ export default function TrackSelectionRecommendation(
     <section className="selection-recommendations">
       <h3>Some of your favorites</h3>
       <div className="rec-cards-pager-container">
-        <img className={`change-page-btn ${hasPreviousPage() ? '' : 'hidden'}`} src={left_arrow} width={36} height={36} onClick={goToPreviousPage}/>
+        <button className={`change-page-btn ${data.currentPage != null && hasPreviousPage() ? '' : 'hidden'}`} onClick={goToPreviousPage}>
+          <img src={left_arrow} width={36} height={36}/>
+        </button>
 
         <section className="rec-cards-container">
           {data.currentPage == null || data.currentPage.length == 0 ? (
@@ -32,7 +34,9 @@ export default function TrackSelectionRecommendation(
           )}
         </section>
 
-        <img className={`change-page-btn ${hasNextPage() ? '' : 'hidden'}`} src={right_arrow} width={36} height={36} onClick={goToNextPage}/>
+        <button className={`change-page-btn ${data.currentPage != null && hasNextPage() ? '' : 'hidden'}`} onClick={goToNextPage}>
+          <img src={right_arrow} width={36} height={36}/>
+        </button>
       </div>
     </section>
   );
