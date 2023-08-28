@@ -3,18 +3,27 @@ import { ItemSelectionRecommendationProps, SelectionCardProps } from "../../util
 import { RecommendationType } from "../../utils/constants";
 import right_arrow from "../../assets/arrow-icon-right.png";
 import left_arrow from "../../assets/arrow-icon-left.png";
+import { useEffect } from "react";
 
 export default function ArtistSelectionRecommendation(
   props: ItemSelectionRecommendationProps
 ) {
   const { data, hasNextPage, hasPreviousPage, goToNextPage, goToPreviousPage } = useRecommendationPager(RecommendationType.ARTISTS);
 
+  useEffect(() => {
+    console.log(data);
+    console.log(hasPreviousPage());
+    console.log(hasNextPage());
+  }, [data]);
+
   return (
     <section className="selection-recommendations">
       <h3>Some of your favorites</h3>
       <div className="rec-cards-pager-container">
-        <img className={`change-page-btn ${hasPreviousPage() ? '' : 'hidden'}`} src={left_arrow} width={36} height={36} onClick={goToPreviousPage}/>
-        
+        <button className={`change-page-btn ${data.currentPage != null && hasPreviousPage() ? '' : 'hidden'}`} onClick={goToPreviousPage}>
+          <img src={left_arrow} width={36} height={36} />
+        </button>
+
         <section className="rec-cards-container">
           {data.currentPage == null || data.currentPage.length == 0 ? (
             <h3>Loading...</h3>
@@ -32,7 +41,9 @@ export default function ArtistSelectionRecommendation(
           )}
         </section>
         
-        <img className={`change-page-btn ${hasNextPage() ? '' : 'hidden'}`} src={right_arrow} width={36} height={36} onClick={goToNextPage}/>
+        <button className={`change-page-btn ${data.currentPage != null && hasNextPage() ? '' : 'hidden'}`} onClick={goToNextPage}>
+          <img src={right_arrow} width={36} height={36}/>
+        </button>
       </div>
     </section>
   );

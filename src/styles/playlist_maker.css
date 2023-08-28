@@ -132,7 +132,6 @@
 
 .playlist-next-btn {
   background-color: var(--primary-pink);
-  
   padding: 1rem 4rem;
   font-size: 1.5rem;
   font-weight: 600;
@@ -400,6 +399,7 @@ input.nosubmit {
   padding: 1rem 0.5rem;
   margin-right: 0.5rem;
   margin-left: 0.5rem;
+  cursor: pointer;
 }
 
 .hidden {
