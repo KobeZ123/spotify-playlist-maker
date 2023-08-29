@@ -3,6 +3,7 @@ import { RecommendationType } from "../../utils/constants";
 import { ItemSelectionRecommendationProps, SelectionCardProps } from "../../utils/types";
 import right_arrow from "../../assets/arrow-icon-right.png";
 import left_arrow from "../../assets/arrow-icon-left.png";
+import { LoadingSelectionCardPlaceholder } from "./LoadingSelectionCardPlaceholder";
 
 export default function TrackSelectionRecommendation(
   props: ItemSelectionRecommendationProps
@@ -19,7 +20,9 @@ export default function TrackSelectionRecommendation(
 
         <section className="rec-cards-container">
           {data.currentPage == null || data.currentPage.length == 0 ? (
-            <h3>Loading...</h3>
+            Array.from({ length: 8 }, (_, i) => (
+              <LoadingSelectionCardPlaceholder />
+            ))
           ) : (
             data.currentPage.map(
               (track, index) =>
