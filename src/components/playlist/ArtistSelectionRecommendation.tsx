@@ -4,6 +4,7 @@ import { RecommendationType } from "../../utils/constants";
 import right_arrow from "../../assets/arrow-icon-right.png";
 import left_arrow from "../../assets/arrow-icon-left.png";
 import { useEffect } from "react";
+import { LoadingSelectionCardPlaceholder } from "./LoadingSelectionCardPlaceholder";
 
 export default function ArtistSelectionRecommendation(
   props: ItemSelectionRecommendationProps
@@ -23,10 +24,11 @@ export default function ArtistSelectionRecommendation(
         <button className={`change-page-btn ${data.currentPage != null && hasPreviousPage() ? '' : 'hidden'}`} onClick={goToPreviousPage}>
           <img src={left_arrow} width={36} height={36} />
         </button>
-
         <section className="rec-cards-container">
           {data.currentPage == null || data.currentPage.length == 0 ? (
-            <h3>Loading...</h3>
+            Array.from({ length: 8 }, (_, i) => (
+              <LoadingSelectionCardPlaceholder />
+            ))
           ) : (
             data.currentPage.map(
               (artist, index) =>
@@ -48,8 +50,6 @@ export default function ArtistSelectionRecommendation(
     </section>
   );
 }
-
-
 
 const ArtistSelectionCard = ({data, selected, onSelected}: SelectionCardProps) => {
   return (

@@ -436,6 +436,14 @@ input.nosubmit {
   background-color: var(--primary-green);
 }
 
+.rec-card-loader-web {
+  display: block;
+}
+
+.rec-card-loader-mobile {
+  display: none;
+}
+
 .rec-item-img {
   object-fit: cover;
   width: 12rem;
@@ -484,6 +492,14 @@ input.nosubmit {
   .rec-item-text {
     width: fill-available;
     text-align: center;
+  }
+
+  .rec-card-loader-web {
+    display: none;
+  }
+  
+  .rec-card-loader-mobile {
+    display: block;
   }
 }
 
